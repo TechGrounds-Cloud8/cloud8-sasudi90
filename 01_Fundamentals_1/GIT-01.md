@@ -4,6 +4,8 @@
 ## Key terminology
 **Git ** is een vrij gedistribueerd versiebeheersysteem. Het wordt ook wel een softwarebroncode-managementproject genoemd. De nadruk ligt op snelheid. Git is oorspronkelijk gemaakt door Linus Torvalds voor de ontwikkeling van de Linuxkernel.
 
+**GitHub** is een online platform voor softwareontwikkeling en versiebeheer. GitHub is gebouwd rond het versiebeheersysteem Git, en biedt daardoor alle mogelijkheden van Git voor het beheren van versies en broncode. Het beschikt onder ander over toegangscontrole en verschillende samenwerkingsfuncties, zoals een issue tracker, een forum voor het aanvragen van functies, takenlijsten en wiki's voor ieder project.
+
 
 ## Exercise
 ### Sources
