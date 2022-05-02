@@ -1,19 +1,26 @@
 # [Git en Github introduction]
-[Setting up Git and Github]
+Setting up Git and Github
 
 ## Key terminology
-**Git ** is een vrij gedistribueerd versiebeheersysteem. Het wordt ook wel een softwarebroncode-managementproject genoemd. De nadruk ligt op snelheid. Git is oorspronkelijk gemaakt door Linus Torvalds voor de ontwikkeling van de Linuxkernel.
-
-**GitHub** is een online platform voor softwareontwikkeling en versiebeheer. GitHub is gebouwd rond het versiebeheersysteem Git, en biedt daardoor alle mogelijkheden van Git voor het beheren van versies en broncode. Het beschikt onder ander over toegangscontrole en verschillende samenwerkingsfuncties, zoals een issue tracker, een forum voor het aanvragen van functies, takenlijsten en wiki's voor ieder project.
+git: an open source, distributed version-control system
+GitHub: a platform for hosting and collaborating on Git repositories
+Repository = A repository is usually used to organize a single project. Repositories can contain folders and files, images, videos, spreadsheets, and data sets -- anything your project needs.
+Main / Master = "master" is a naming convention for a branch. After cloning (downloading) a project from a remote server, the resulting local repository has a single local branch: the so-called "master" branch. This means that "master" can be seen as a repository's "default" branch.
+Branch = Branching lets you have different versions of a repository at one time.
+Commit = a Git object, a snapshot of your entire repository compressed into a SHA
+Push / Pull = If you have a code change in your repository, and want to move it to a target repository, then: "Push" is you forcing the changes being present in the target repository ( git push ). "Pull" is the target repository grabbing your changes to be present there ( git pull from the other repo)
+Merge = The git merge command lets you take the independent lines of development created by git branch and integrate them into a single branch.
+Fork = a copy of a repository on GitHub owned by a different user
 
 
 ## Exercise
 ### Sources
-[https://kinsta.com/nl/kennisbank/git-vs-github/
-https://git-scm.com/book/nl/v2/Aan-de-slag-Wat-is-Git%3F]
+https://kinsta.com/nl/kennisbank/git-vs-github/
+https://git-scm.com/book/nl/v2/Aan-de-slag-Wat-is-Git%3F
+
 
 ### Overcome challanges
-[Give a short description of your challanges you encountered, and how you solved them.]
+Challenges were the meaning of the keywords. Looked it up and went my way. Github Desktop made the implementation of these keywords/commands alot easier. 
 
 ### Results
 [Describe here the result of the exercise. An image can speak more than a thousand words, include one when this wisdom applies.]
