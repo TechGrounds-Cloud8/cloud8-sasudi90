@@ -2,7 +2,8 @@
 [Setting up Git and Github]
 
 ## Key terminology
-[Write a list of key terminology with a short description. To prevent duplication you can reference to previous excersizes.]
+**Git ** is een vrij gedistribueerd versiebeheersysteem. Het wordt ook wel een softwarebroncode-managementproject genoemd. De nadruk ligt op snelheid. Git is oorspronkelijk gemaakt door Linus Torvalds voor de ontwikkeling van de Linuxkernel.
+
 
 ## Exercise
 ### Sources
