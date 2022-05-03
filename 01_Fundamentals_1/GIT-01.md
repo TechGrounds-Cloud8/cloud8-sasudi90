@@ -15,15 +15,15 @@ Setting up Git and Github
 
 ## Exercise
 ### Sources
-1. https://kinsta.com/nl/kennisbank/git-vs-github/
-2. https://training.github.com/downloads/github-git-cheat-sheet/
-3. https://www.youtube.com/watch?v=3Tn58KQvWtU
+1. [Wat is Git en Github](https://kinsta.com/nl/kennisbank/git-vs-github/)
+2. [Git cheatsheet](https://training.github.com/downloads/github-git-cheat-sheet/)
+3. [How to use Github and VSCode](https://www.youtube.com/watch?v=3Tn58KQvWtU)
 
 ### Overcome challanges
 Challenges were the meaning of the keywords. Looked it up and went my way. Github Desktop made the implementation of these keywords/commands alot easier. 
 
 ### Results
 Screenshots say more than words in this case. 
-![screenshot of peer permission](../00_includes/proofPeerPermission.png)
+
 ![screenshot of clone repo](../00_includes/proofCloneRepo.png)
 
