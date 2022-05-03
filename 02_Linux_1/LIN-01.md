@@ -7,7 +7,7 @@ SSH connection from local computer to virtual machine.
 
 ## Exercise
 ### Sources
-- [Change permission on file](https://v2cloud.com/tutorials/)how-to-change-folder-permissions-on-windows
+- [Change permission on file](https://v2cloud.com/tutorials/how-to-change-folder-permissions-on-windows)
 - [SSH connection with Putty](https://www.puttygen.com/convert-pem-to-ppk)
 - [SSH connection with PowerShell](https://lazyadmin.nl/powershell/powershell-ssh/)
 
