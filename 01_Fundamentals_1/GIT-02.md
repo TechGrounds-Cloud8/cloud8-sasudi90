@@ -8,9 +8,9 @@ Get to know Markdown.
 
 ## Exercise
 ### Sources
-- https://www.youtube.com/watch?v=f49LJV1i-_w
-- https://www.markdownguide.org/cheat-sheet/
-- https://www.script-tutorials.com/wysiwyg-and-wysiwym-editors/
+- [What is Markdown?](https://www.youtube.com/watch?v=f49LJV1i-_w)
+- [Markdown cheat sheet](https://www.markdownguide.org/cheat-sheet/)
+- [Explanation wysiwyg and wysiwym](https://www.script-tutorials.com/wysiwyg-and-wysiwym-editors/)
 
 ### Overcome challenges
 Get to know what Markdown is, why it is used and what the syntaxis is. 
