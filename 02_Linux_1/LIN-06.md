@@ -1,8 +1,9 @@
-# [Processes]
-[Give a short summary of the subject matter.]
+# Processes
+Start, check and end processes.
 
 ## Key terminology
-- sudo apt install telnetd -y
+- daemon
+- sudo apt install telnetd -y: install telnetd and automate with -y
 - ps aux | grep inetd: get PID
 - sudo systemctl status inetd: shows status (pid, memory) of process 'inetd' in this particular case. 
 - sudo systemcl stop inetd

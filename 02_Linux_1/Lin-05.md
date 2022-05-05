@@ -15,4 +15,10 @@ Understanding and changing file permissions
 Looked up the commands :D
 
 ### Results
+Used the following relevant commands mentioned in the screenshot
+1. chmod u+x 
+2. chmod go-rw
+3. sudo groupadd
+4. ls -la
+5. sudo chgrp
 ![screenshot of terminal with commands and results](../00_includes/05-LIN.png)

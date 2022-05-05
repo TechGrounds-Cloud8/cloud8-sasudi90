@@ -15,5 +15,7 @@ Manage groups and users.
 ### Results
 - Added a new user with 'sudo useradd' and check with 'cat etc/group' or 'cat etc/passwd'
   ![Add a new user](../00_includes/04-LIN_sudoNewUser.png)
-- Added a group and new user ![add new user in map](../00_includes/04-LIN_sudoNewUserInMap.png)
-- Proof of sudo new user and in a new group by using command: cat etc/group/[proof sudo group](../00_includes/04-LIN_proofSudoGroup.png)
+- Screenshot of user in *sudo group* and in a new group using the command **cat etc/group**
+  ![add new user in map](../00_includes/04-LIN_sudoNewUserInMap.png)
+- Proof of sudo new user and in a new group by using command: cat etc/group/ 
+  ![proof sudo group](../00_includes/04-LIN_proofSudoGroup.png)
