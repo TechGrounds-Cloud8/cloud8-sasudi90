@@ -36,7 +36,7 @@ Looked up the following:
 ### Results
 
 - Cron job running 'date-out.sh' every minute!
-  - [cronjob1](../00_includes/08-LIN_cronjob1.png)
+  - ![cronjob1](../00_includes/08-LIN_cronjob1.png)
 - Cron disk space script
   - ![cronjob2](../00_includes/08-LIN_cronjob2.png)
 - Cron list en when the cron events are running.
