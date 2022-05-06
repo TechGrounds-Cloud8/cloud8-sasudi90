@@ -22,6 +22,7 @@ Study and create a cronjob.
 - [Cron expression](https://crontab.guru/#0_0_*_*_5)
 - [How to use 'logger'](https://www.networkworld.com/article/3274570/using-logger-on-linux.html)
 - [How to check free disk space](https://opensource.com/article/18/7/how-check-free-disk-space-linux#:~:text=Linux%20df%20command,space%20on%20the%20Linux%20system.&text=df%20%2DT%20shows%20the%20disk,ext3%2C%20btrfs%2C%20etc.)
+  
 ### Overcome challanges
 Looked up the following:
 - What's a cron (job)?
@@ -32,10 +33,10 @@ Looked up the following:
 
 ### Results
 
-- Cron job running 'date' every minute!
+- Cron job running 'date-out.sh' every minute!
   - [cronjob1](../00_includes/08-LIN_cronjob1.png)
 - Cron disk space script
   - ![cronjob2](../00_includes/08-LIN_cronjob2.png)
-- Cron list
+- Cron list en when the cron events are running.
   -  ![list](../00_includes/08-LIN_cronList.png)
 - Reading out var/log ![syslog](../00_includes/08-LIN_syslog.png)
