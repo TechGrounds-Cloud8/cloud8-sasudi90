@@ -2,11 +2,13 @@
 Get to know Markdown.
 
 ## Key terminology
-- Markdown: software tool, lightweight 'markup' language. Used for it's accesibility. Applicable for creating websites, documents/notes, e-mail and technical documentation like Github.  
-- WYSIWYG
-- WYSIWYM
+- Markdown = software tool, lightweight 'markup' language. Used for it's accesibility. Applicable for creating websites, documents/notes, e-mail and technical documentation like Github.  
+- WYSIWYG = Stands for 'what you see is what you get', text editor with build in functions in buttons and drag and drop form. Shows your document with immmediate preview.
+- WYSIWYM = Stands for 'what you see is what you mean', text editor which does not instantly previews what you mean. Think of HTML syntax!
 
 ## Exercise
+Maak een document met je gekozen editor.
+
 ### Sources
 - [What is Markdown?](https://www.youtube.com/watch?v=f49LJV1i-_w)
 - [Markdown cheat sheet](https://www.markdownguide.org/cheat-sheet/)

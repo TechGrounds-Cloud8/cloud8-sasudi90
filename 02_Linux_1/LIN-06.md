@@ -2,11 +2,12 @@
 Start, check and end processes.
 
 ## Key terminology
-- daemon
-- sudo apt install telnetd -y: install telnetd and automate with -y
-- ps aux | grep inetd: get PID
-- sudo systemctl status inetd: shows status (pid, memory) of process 'inetd' in this particular case. 
-- sudo systemcl stop inetd
+- daemon: service process running in background to monitor and manage system services
+- apt install telnetd -y: install telnetd and automate with -y
+- ps aux | grep inetd: get PID by using grep filter option
+- systemctl: a command responsible for examining and controlling the systemd system and service manager 
+- systemctl *status* inetd: shows status (pid, memory) of process 'inetd' in this particular case. 
+- systemcl *stop* inetd: stops a specific process in this case inetd
 
 ## Exercise
 1. Start the telnet daemon.
@@ -19,7 +20,10 @@ Start, check and end processes.
 - [Stop service process](https://youtube.com/clip/UgkxBoKt0so_dD99dDL8_ruDb3C9m1cag6VV)
 
 ### Overcome challanges
-[Give a short description of your challanges you encountered, and how you solved them.]
+- What is daemon?
+- How do I install daemon?
+- How to check status of process?
+- How do I stop a specific process?
 
 ### Results
 - First update and then install ![install](../00_includes/06-LIN_updateInstall.png)

@@ -10,7 +10,6 @@
 3. Create a script that writes available disk space to a log file in ‘/var/logs’. Use a cron job so that it runs weekly.
 
 ### Sources
-[List your sources you used for solving the exercise]
 - https://www.freecodecamp.org/news/cron-jobs-in-linux/
 - https://opensource.com/article/18/7/how-check-free-disk-space-linux#:~:text=Linux%20df%20command,space%20on%20the%20Linux%20system.&text=df%20%2DT%20shows%20the%20disk,ext3%2C%20btrfs%2C%20etc.)
 - https://crontab.guru/#0_0_*_*_5

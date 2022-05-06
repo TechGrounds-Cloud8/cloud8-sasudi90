@@ -2,9 +2,14 @@
 Learn how the text editor works in the terminal.
 
 ## Key terminology
-[Write a list of key terminology with a short description. To prevent duplication you can reference to previous excersizes.]
+- cat: literally 'concatenate', command used for viewing, creating and appending files in Linux
+- nano: user friendlier (imho) build-in text editor
+- grep: filter option, where the query is shown in it's concerning sentence
 
 ## Exercise
+1. Your Linux machine
+2. A text file with 2 lines of text
+
 ### Sources
 - [How to read a txt file](https://andysbrainbook.readthedocs.io/en/latest/unix/Unix_03_ReadingTextFiles.html#:~:text=Use%20the%20command%20line%20to,file%20to%20see%20its%20contents.)
 - [How to delete file](https://allinfo.space/2019/04/01/het-verwijderen-van-bestanden-en-directories-in-de-linux-terminal/)
