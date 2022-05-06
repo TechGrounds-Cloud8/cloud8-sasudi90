@@ -1,5 +1,5 @@
 # [Files and Directories]
-Get to know directories and files.
+Get to know directories and files. 
 
 ## Key terminology
 - Directory = map

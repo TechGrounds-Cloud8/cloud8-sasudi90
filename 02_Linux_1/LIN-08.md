@@ -1,5 +1,5 @@
 # Cron Job
-Study and create a cronjob.
+Study and create a 'cron job'.
 
 ## Key terminology
 - cron: job scheduling utility 
@@ -11,6 +11,7 @@ Study and create a cronjob.
 - logger -f: log the contents of a file to syslog
 - logger 'comment here': adds comment to syslog
 - tail '-numberOfLines' /var/log/syslog: use sudo to use this command to read syslog 
+- syslog: is a way network devices can use a standard message format to communicate with a logging server. It was designed specifically to make it easy to monitor network devices
 
 ## Exercise
 1. Create a Bash script that writes the current date and time to a file  in your home directory.
@@ -20,6 +21,7 @@ Study and create a cronjob.
 ### Sources
 - [Cron jobs in Linux](https://www.freecodecamp.org/news/cron-jobs-in-linux/)
 - [Cron expression](https://crontab.guru/#0_0_*_*_5)
+- [What is syslog?](https://www.rapid7.com/blog/post/2017/05/24/what-is-syslog/)
 - [How to use 'logger'](https://www.networkworld.com/article/3274570/using-logger-on-linux.html)
 - [How to check free disk space](https://opensource.com/article/18/7/how-check-free-disk-space-linux#:~:text=Linux%20df%20command,space%20on%20the%20Linux%20system.&text=df%20%2DT%20shows%20the%20disk,ext3%2C%20btrfs%2C%20etc.)
   

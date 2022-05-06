@@ -1,5 +1,5 @@
 # Markdown
-Get to know Markdown.
+Get to know Markdown and try it out.
 
 ## Key terminology
 - Markdown = software tool, lightweight 'markup' language. Used for it's accesibility. Applicable for creating websites, documents/notes, e-mail and technical documentation like Github.  

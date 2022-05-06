@@ -32,7 +32,7 @@ Looked up the commands :D
 5. sudo chgrp
 ![screenshot of terminal with commands and results](../00_includes/05-LIN.png)
 
-- changed owner by using 'chmown'
+- changed owner by using 'chmown' 
 ![screenshot of chown](../00_includes/05-LIN_chown.png)
 
 

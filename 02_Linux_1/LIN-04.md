@@ -29,4 +29,4 @@ How do I
 - Screenshot of user in *sudo group* and in a new group using the command **cat etc/group**
   ![add new user in map](../00_includes/04-LIN_sudoNewUserInMap.png)
 - Proof of sudo new user and in a new group by using command: cat etc/group/ 
-  ![proof sudo group](../00_includes/04-LIN_proofSudoGroup.png)
+  ![proof sudo group](../00_includes/04-LIN_proofSudoGroup.png) 

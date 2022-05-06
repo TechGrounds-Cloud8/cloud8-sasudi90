@@ -2,8 +2,9 @@
 Create scripts and run them.
 
 ## Key terminology
-- $PATH
-- 
+- $PATH: variable that can be configured to tell our Linux system where to look for certain program
+- Bash: UNIX command language interpreter that executes commands read from the standard input or from a file
+- httpd: piece of software that listens for network requests (listener)
 
 ## Exercise
 7.1
@@ -19,21 +20,21 @@ Create scripts and run them.
 - Create a script that generates a random number between 1 and 10, stores it in a variable, and then appends the number to a text file only if the number is bigger than 5. If the number is 5 or smaller, it should append a line of text to that same text file instead.
 
 ### Sources
-1 
-- https://www.howtogeek.com/658904/how-to-add-a-directory-to-your-path-in-linux/
-- https://www.linuxfordevices.com/tutorials/linux/append-text-to-the-end-of-a-file-in-linux
-- https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_02_01.html
-- https://mkyong.com/apache/how-to-install-apache-http-server-in-ubuntu/
+- [How to add directory to ¤PATH](https://www.howtogeek.com/658904/how-to-add-a-directory-to-your-path-in-linux/)
+- [Append to end of .txt](https://www.linuxfordevices.com/tutorials/linux/append-text-to-the-end-of-a-file-in-linux)
+- [Bash beginners tutorial](https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_02_01.html)
+- [Install httpd server](https://mkyong.com/apache/how-to-install-apache-http-server-in-ubuntu/)
  
 2 & 3
-- https://coderwall.com/p/s2ttyg/random-number-generator-in-bash
-- https://tecadmin.net/tutorial/bash-scripting/bash-if-else-statement/
+- [Random number generator in bash](https://coderwall.com/p/s2ttyg/random-number-generator-in-bash)
+- [If else statement](https://tecadmin.net/tutorial/bash-scripting/bash-if-else-statement/)
 
 ### Overcome challanges
 How do I
-- add a path to the $PATH variable
+- add a path to the $PATH variable 
 - append a text to a .txt
-- 
+- how to install httpd
+- use the if else statement in bash
 
 ### Results
 - Added a path to $PATH![added to variable $PATH](../00_includes/07-LIN_addPath.png)

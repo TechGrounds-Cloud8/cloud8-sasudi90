@@ -21,7 +21,7 @@ Start, check and end processes.
 
 ### Overcome challanges
 - What is daemon?
-- How do I install daemon?
+- How do I install daemon? 
 - How to check status of process?
 - How do I stop a specific process?
 

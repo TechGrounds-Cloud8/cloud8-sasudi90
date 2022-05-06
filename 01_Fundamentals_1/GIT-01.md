@@ -1,7 +1,7 @@
-# [Git en Github introduction]
+# Git en Github introduction
 Get to know and setting up Git and Github
 
-## [Key terminology]
+## Key terminology
 - git: an open source, distributed version-control system 
 - GitHub: a platform for hosting and collaborating on Git repositories 
 - Repository = A repository is usually used to organize a single project. Repositories can contain folders and files, images, videos, spreadsheets, and data sets -- anything your project needs.

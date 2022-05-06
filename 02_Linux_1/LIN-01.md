@@ -2,8 +2,8 @@
 Make SSH connection from local computer to virtual machine. 
 
 ## Key terminology
-- SSH
-- VM
+- SSH:protocol for securely exchanging data between two computers over an untrusted network. 
+- VM: 
 
 ## Exercise
 1. Make an SSH-connection to your machine. SSH requires the key file to have specific permissions, so you might need to change those.

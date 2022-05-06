@@ -8,7 +8,7 @@ Learn how the text editor works in the terminal.
 
 ## Exercise
 1. Your Linux machine
-2. A text file with 2 lines of text
+2. A text file with 2 lines of text 
 
 ### Sources
 - [How to read a txt file](https://andysbrainbook.readthedocs.io/en/latest/unix/Unix_03_ReadingTextFiles.html#:~:text=Use%20the%20command%20line%20to,file%20to%20see%20its%20contents.)
