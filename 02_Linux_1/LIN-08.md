@@ -1,8 +1,16 @@
 # Cron Job
-[Give a short summary of the subject matter.]
+Study and create a cronjob.
 
 ## Key terminology
-[Write a list of key terminology with a short description. To prevent duplication you can reference to previous excersizes.]
+- cron: job scheduling utility 
+- crontab: tables where running predefined scripts are stored
+- crontab -e: edits crontab entries to add, delete, or edit cron jobs
+- crontab -l: list all the cron jobs for the current user
+- df -h: shows disk space in human-readable format
+- logger: command to add log files to /var/log/syslog
+- logger -f: log the contents of a file to syslog
+- logger 'comment here': adds comment to syslog
+- tail '-numberOfLines' /var/log/syslog: use sudo to use this command to read syslog 
 
 ## Exercise
 1. Create a Bash script that writes the current date and time to a file  in your home directory.
@@ -10,18 +18,24 @@
 3. Create a script that writes available disk space to a log file in ‘/var/logs’. Use a cron job so that it runs weekly.
 
 ### Sources
-- https://www.freecodecamp.org/news/cron-jobs-in-linux/
-- https://opensource.com/article/18/7/how-check-free-disk-space-linux#:~:text=Linux%20df%20command,space%20on%20the%20Linux%20system.&text=df%20%2DT%20shows%20the%20disk,ext3%2C%20btrfs%2C%20etc.)
-- https://crontab.guru/#0_0_*_*_5
-- https://www.networkworld.com/article/3274570/using-logger-on-linux.html
-
+- [Cron jobs in Linux](https://www.freecodecamp.org/news/cron-jobs-in-linux/)
+- [Cron expression](https://crontab.guru/#0_0_*_*_5)
+- [How to use 'logger'](https://www.networkworld.com/article/3274570/using-logger-on-linux.html)
+- [How to check free disk space](https://opensource.com/article/18/7/how-check-free-disk-space-linux#:~:text=Linux%20df%20command,space%20on%20the%20Linux%20system.&text=df%20%2DT%20shows%20the%20disk,ext3%2C%20btrfs%2C%20etc.)
 ### Overcome challanges
-[Give a short description of your challanges you encountered, and how you solved them.]
+Looked up the following:
+- What's a cron (job)?
+- How to create, start and see cronjobs
+- How to check diskspace?
+- How to comment in var/log/?
 
 
 ### Results
 
--![](../00_includes/08-LIN_cronjob1.png)
--![](../00_includes/08-LIN_cronjob2.png)
--![](../00_includes/08-LIN_cronList.png)
--![](../00_includes/08-LIN_syslog.png)
+- Cron job running 'date' every minute!
+  - [cronjob1](../00_includes/08-LIN_cronjob1.png)
+- Cron disk space script
+  - ![cronjob2](../00_includes/08-LIN_cronjob2.png)
+- Cron list
+  -  ![list](../00_includes/08-LIN_cronList.png)
+- Reading out var/log ![syslog](../00_includes/08-LIN_syslog.png)

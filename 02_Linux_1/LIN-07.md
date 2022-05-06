@@ -30,11 +30,14 @@ Create scripts and run them.
 - https://tecadmin.net/tutorial/bash-scripting/bash-if-else-statement/
 
 ### Overcome challanges
-[Give a short description of your challanges you encountered, and how you solved them.]
+How do I
+- add a path to the $PATH variable
+- append a text to a .txt
+- 
 
 ### Results
 - Added a path to $PATH![added to variable $PATH](../00_includes/07-LIN_addPath.png)
 - Script that appends a line of text to a .txt whenever executed![scrip1](../00_includes/07-LIN_script1.png)
 - Script that install httpd, Apache2 in this case. Automated with -y . End with a status check. ![script2](../00_includes/07-LIN_script2.png)
 - Script that stores a generated number in a variable![script3](../00_includes/07-LIN_script3.png) 
-- Script with if else function ![script4](../00_includes/07-LIN_script4.png)
+- Script with if else function![script4](../00_includes/07-LIN_script4.png)
