@@ -41,5 +41,5 @@ Looked up the following:
   - ![cronjob2](../00_includes/08-LIN_cronjob2.png)
 - Cron list en when the cron events are running.
   -  ![list](../00_includes/08-LIN_cronList.png)
-- Reading out var/log !
-  - [syslog](../00_includes/08-LIN_syslog.png)
+- Reading out var/log/syslog
+  - ![syslog](../00_includes/08-LIN_syslog.png)
