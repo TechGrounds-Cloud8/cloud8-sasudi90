@@ -1,14 +1,22 @@
 # Bash scripts
-[Give a short summary of the subject matter.]
+Create scripts and run them.
 
 ## Key terminology
-[Write a list of key terminology with a short description. To prevent duplication you can reference to previous excersizes.]
+- $PATH
+- 
 
 ## Exercise
+7.1
 1. Create a directory called ‘scripts’. Place all the scripts you make in this directory.
 2. Add the scripts directory to the PATH variable.
 3. Create a script that appends a line of text to a text file whenever it is executed.
 4. Create a script that installs the httpd package, activates httpd, and enables httpd. Finally, your script should print the status of httpd in the terminal.
+   
+7.2
+- Create a script that generates a random number between 1 and 10, stores it in a variable, and then appends the number to a text file.
+
+7.3
+- Create a script that generates a random number between 1 and 10, stores it in a variable, and then appends the number to a text file only if the number is bigger than 5. If the number is 5 or smaller, it should append a line of text to that same text file instead.
 
 ### Sources
 1 
@@ -25,4 +33,8 @@
 [Give a short description of your challanges you encountered, and how you solved them.]
 
 ### Results
-- 
+- Added a path to $PATH![added to variable $PATH](../00_includes/07-LIN_addPath.png)
+- Script that appends a line of text to a .txt whenever executed![scrip1](../00_includes/07-LIN_script1.png)
+- Script that install httpd, Apache2 in this case. Automated with -y . End with a status check. ![script2](../00_includes/07-LIN_script2.png)
+- Script that stores a generated number in a variable![script3](../00_includes/07-LIN_script3.png) 
+- Script with if else function ![script4](../00_includes/07-LIN_script4.png)
