@@ -30,7 +30,7 @@ Add a directory to the (variable) $PATH. Create scripts and run them.
 - [Random number generator in bash](https://coderwall.com/p/s2ttyg/random-number-generator-in-bash)
 - [If else statement](https://tecadmin.net/tutorial/bash-scripting/bash-if-else-statement/)
 
-### Overcome challanges
+### Overcome challenges
 How do I
 - add a path to the $PATH variable 
 - append a text to a .txt
