@@ -3,6 +3,7 @@ Creat and navigate through directories, learn some basic commands and creat file
 
 ## Key terminology
 - Directory = map
+- mkdir = make directory
 - Absolute path = refer to same location in file system relative to root directory (type out every directory till path is complete)
 - Relative path = points to a specific location in a file relative to current directory you're from from.
 - cd = change directory
