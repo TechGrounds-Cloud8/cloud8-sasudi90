@@ -1,13 +1,14 @@
 # [Files and Directories]
-Creat and navigate through directories, learn some basic commands and creat files. 
+Creat and navigate through directories, learn some basic commands and create files. 
 
 ## Key terminology
 - Directory = map
 - mkdir = make directory
+- dir - list of directories in a directory
 - Absolute path = refer to same location in file system relative to root directory (type out every directory till path is complete)
 - Relative path = points to a specific location in a file relative to current directory you're from from.
 - cd = change directory
-- ls = list files and format
+- ls = list files and format in a directory
 
 ## Exercise
 1. Find out your current working directory.
