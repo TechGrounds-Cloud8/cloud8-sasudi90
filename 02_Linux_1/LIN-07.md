@@ -38,7 +38,8 @@ How do I
 
 ### Results
 - Added a path to $PATH![added to variable $PATH](../00_includes/07-LIN_addPath.png)
-- Script that appends a line of text to a .txt whenever executed![scrip1](../00_includes/07-LIN_script1.png)
+- Script that appends a line of text to a .txt whenever executed
+  - ![scrip1](../00_includes/07-LIN_script1.png)
 - Script that install httpd, Apache2 in this case. Automated with -y . End with a status check. 
   -![script2](../00_includes/07-LIN_script2.png)
 - Script that stores a generated number in a variable
