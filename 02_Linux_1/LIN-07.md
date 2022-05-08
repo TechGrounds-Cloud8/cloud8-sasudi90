@@ -1,5 +1,5 @@
 # Bash scripts
-Create scripts and run them.
+Add a directory to the (variable) $PATH. Create scripts and run them.
 
 ## Key terminology
 - $PATH: variable that can be configured to tell our Linux system where to look for certain program

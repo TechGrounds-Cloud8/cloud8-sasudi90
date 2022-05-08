@@ -16,7 +16,7 @@ Learn how the text editor works in the terminal.
 - [How to rename file in Linux](https://phoenixnap.com/kb/rename-file-linux)
 - [Relative vs absolute paths in Linux](https://www.computernetworkingnotes.com/linux-tutorials/differences-between-absolute-path-and-relative-path-in-linux.html)
   
-### Overcome challanges
+### Overcome challenges
 Needed to look up some commands, no real challenges. I do have some basic knowledge about working in a terminal. 
 
 ### Results

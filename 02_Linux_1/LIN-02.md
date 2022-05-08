@@ -21,8 +21,8 @@ Creat and navigate through directories, learn some basic commands and create fil
 - Knowledge from the past. I still remembered how to navigate and change directory (cd) or make directories (mkdir).
 - [Absolute vs relative directory](http://www.differencebetween.net/technology/difference-between-absolute-and-relative-path/#:~:text=In%20simple%20words%2C%20an%20absolute,directory%20you%20are%20working%20on.)
 
-### Overcome challanges
-Refreshed 
+### Overcome challenges
+Refreshed my knowledge.
 
 ### Results
 ![Screenshot ](../00_includes/02-LIN.png)

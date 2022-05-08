@@ -1,5 +1,5 @@
 # File permissions
-Understanding and changing file permissions
+Understanding and changing file permissions, change group and change owner of files. 
 
 ## Key terminology
 - chmod: change permissions
@@ -7,6 +7,10 @@ Understanding and changing file permissions
 - chown: change owner
 - u, g, o: user, group, others
 - r, w, x: read, write, execute
+- groupadd: create new group
+- ls -l: show file or directory, size, modified date and time, file or folder name and ownder of the file and its permissions
+- ls -lh: shows sizes in human-readable format.
+- 
 
 ## Exercise
 1. Create a text file.

@@ -14,7 +14,7 @@ Make SSH connection from local computer to virtual machine.
 - [SSH connection with Putty](https://www.puttygen.com/convert-pem-to-ppk)
 - [SSH connection with PowerShell](https://lazyadmin.nl/powershell/powershell-ssh/)
 
-### Overcome challanges
+### Overcome challenges
 The whole day was a battle. Getting a connection with Putty was slightly easy. But using Powershell (PS) was a real challenge, I could not get the syntax in PS and the file permissions right. 
 - How do I make connection with an SSH private key with .pem file in Windows
   - Putty (easy)

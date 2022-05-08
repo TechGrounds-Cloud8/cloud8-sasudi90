@@ -1,10 +1,13 @@
 # [Users and groups]
-Manage groups and users.
+Manage groups and users and give sudo power to (new) user.
 
 ## Key terminology
+- su: login other user
 - sudo: almighty power to bypass permissions
 - sudo usermod -aG sudo: give user almighty sudo power 
 - groupadd: create group
+- etc/group: where you can find list of groups
+- etc/passwd: where you can find list of users
 
 ## Exercise
 - Create a new user in your VM. 
@@ -17,7 +20,7 @@ Manage groups and users.
 - [How to give user sudo authority](https://linuxize.com/post/how-to-add-user-to-sudoers-in-ubuntu/)
 - [How to add user to group](https://linuxize.com/post/how-to-add-user-to-group-in-linux/)
 
-### Overcome challanges
+### Overcome challenges
 How do I
 - create a new user and log in to that user with use of a password 
 - give new user 'sudo' permission
