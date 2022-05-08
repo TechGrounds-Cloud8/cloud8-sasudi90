@@ -41,7 +41,7 @@ How do I
 - Script that appends a line of text to a .txt whenever executed![scrip1](../00_includes/07-LIN_script1.png)
 - Script that install httpd, Apache2 in this case. Automated with -y . End with a status check. 
   -![script2](../00_includes/07-LIN_script2.png)
-- Script that stores a generated number in a variable![script3]
-  - (../00_includes/07-LIN_script3.png) 
-- Script with if else function![script4]
-  -(../00_includes/07-LIN_script4.png)
+- Script that stores a generated number in a variable
+  - ![script3](../00_includes/07-LIN_script3.png) 
+- Script with if else function
+  - ![script4](../00_includes/07-LIN_script4.png)
