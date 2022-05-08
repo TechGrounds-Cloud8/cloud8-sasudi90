@@ -25,7 +25,7 @@ Study and create a 'cron job'.
 - [How to use 'logger'](https://www.networkworld.com/article/3274570/using-logger-on-linux.html)
 - [How to check free disk space](https://opensource.com/article/18/7/how-check-free-disk-space-linux#:~:text=Linux%20df%20command,space%20on%20the%20Linux%20system.&text=df%20%2DT%20shows%20the%20disk,ext3%2C%20btrfs%2C%20etc.)
   
-### Overcome challanges
+### Overcome challenges
 Looked up the following:
 - What's a cron (job)?
 - How to create, start and see cronjobs
