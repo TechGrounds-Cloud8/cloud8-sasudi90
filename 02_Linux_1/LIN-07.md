@@ -20,6 +20,7 @@ Create scripts and run them.
 - Create a script that generates a random number between 1 and 10, stores it in a variable, and then appends the number to a text file only if the number is bigger than 5. If the number is 5 or smaller, it should append a line of text to that same text file instead.
 
 ### Sources
+1
 - [How to add directory to ¤PATH](https://www.howtogeek.com/658904/how-to-add-a-directory-to-your-path-in-linux/)
 - [Append to end of .txt](https://www.linuxfordevices.com/tutorials/linux/append-text-to-the-end-of-a-file-in-linux)
 - [Bash beginners tutorial](https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_02_01.html)
