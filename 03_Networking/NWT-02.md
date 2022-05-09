@@ -7,7 +7,7 @@ Common network devices:
 - hub: multiport repeater on **layer 1; physicial**. These devices connect multiple wires coming from different branches, they can't filter data  and do not have the build-in intelligence to find out best path for data packets. 
 - bridge; this device operates at **layer 2; data link**. This device is a repeater with add on functionality of filtering content by reading MAC adresses of the communicating systems. 
 - switch; The switch operates at **layer 2; data link**. A switch is a multiport bridge with a buffer and a design that can boost its efficiency (a large number of ports imply less traffic) and performance (can perform error checking before forwarding data).
-- routers: A router is a device like a switch that routes data packets based on their IP addresses. The router is mainly a **Network Layer device, layer 4**.
+- routers: A router is a device like a switch that routes data packets based on their IP addresses. The router is mainly a **Network Layer device, layer 3**.
 - NIC: network interface care is a network adapter that is used to connect the computer to the network by LAN. **layer 2, data link**
 - access point: is a hardware device, more of a central hub for devices to connect to a local area network **layer 1, physical**
 
@@ -24,6 +24,7 @@ DHCP: Dynamic Host Configuration Protocol is a build in feature on networking de
 ### Sources
 - [Most common network devices in OSI environment](https://www.geeksforgeeks.org/network-devices-hub-repeater-bridge-switch-router-gateways/)
 - [Difference between repeater and access point](http://www.differencebetween.net/technology/difference-between-access-point-and-extender/#:~:text=Access%20point%20is%20a%20wireless,area%20of%20your%20wireless%20network.)
+- [Network devices, protocols and the OSI model](https://www.quora.com/What-devices-are-used-in-each-layer-of-the-OSI-model)
 - a friend 
 
 ### Overcome challenges
@@ -31,6 +32,9 @@ DHCP: Dynamic Host Configuration Protocol is a build in feature on networking de
 - What's DHCP?
 
 ### Results
+- Network devices and where they belong in the OSI model
+  - ![](../00_includes/NTW/NTW-02NTWDandLayers.jpg)
 - Connected devices to router. Extra information would be the private IP adresses given by the router.
   - DHCP server can be found at the default gateway on the router (which I can find in the CMD using ipconfig /all; 192.168.1.1). Configuration is done automaticly.
   - ![screenshot router](../00_includes/NTW/NTW-02.png)
+  - Configuration of DHCP server![screenshot configuratie](../00_includes/NTW/NTW-02configuration.png)
