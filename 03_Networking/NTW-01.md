@@ -46,6 +46,6 @@ The OSI and TCP/IP models are networkprotocols; a set of rules for routing and a
 
 Key differences between the 2 models in usage:
 - OSI has 7 layers and TCP/IP 5 layers.
-- OSI model is used more likely to be used for troubleshooting, it's a logical and conceptual model which defines network communication used by systems open to the inetner and communication with other systems. TCP/IP helps to detemind how a specific computer should be connected to the net and it's transmition. 
+- OSI model is used more likely to be used for troubleshooting, it's a logical and conceptual model which defines network communication used by systems open to the inetner and communication with other systems. TCP/IP helps to determine how a specific computer should be connected to the net and it's transmition. 
 
 
