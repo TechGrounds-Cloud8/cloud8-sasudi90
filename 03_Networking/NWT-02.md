@@ -13,7 +13,7 @@ Common network devices:
 
 - Differences between *access points and repeater*: A range extender repeats the wireless signal from your router to expand its reach by creating a second network, while an access point relies on a hardwired connection to your network, rather than simply repeating the existing network.
 
-DHCP: Dynamic Host Configuration Protocol is a build in feature on networking devices, such as routers, access points and switches. A DHCP server gives (private) IP adresses to devices connected to the DHCP server. 
+DHCP: Dynamic Host Configuration Protocol is a build in feature on networking devices, such as routers, access points and switches. A DHCP server gives (private) IP adresses to devices connected to the DHCP server (like Oprah giving out free stuff). 
 
 ## Exercise
 - Benoem en beschrijf de functies van veel voorkomend netwerkapparatuur
@@ -24,11 +24,13 @@ DHCP: Dynamic Host Configuration Protocol is a build in feature on networking de
 ### Sources
 - [Most common network devices in OSI environment](https://www.geeksforgeeks.org/network-devices-hub-repeater-bridge-switch-router-gateways/)
 - [Difference between repeater and access point](http://www.differencebetween.net/technology/difference-between-access-point-and-extender/#:~:text=Access%20point%20is%20a%20wireless,area%20of%20your%20wireless%20network.)
+- a friend 
 
 ### Overcome challenges
 - What are the most common network devices and to which layer of the OSI model do they belong? 
+- What's DHCP?
 
 ### Results
 - Connected devices to router. Extra information would be the private IP adresses given by the router.
-  - DHCP server can be found at the default gateway on the router (which i can find in the CMD using ipconfig /all; 192.168.1.1). Configuration is done automaticly.
+  - DHCP server can be found at the default gateway on the router (which I can find in the CMD using ipconfig /all; 192.168.1.1). Configuration is done automaticly.
   - ![screenshot router](../00_includes/NTW/NTW-02.png)
