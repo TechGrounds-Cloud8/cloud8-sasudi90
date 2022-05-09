@@ -24,7 +24,7 @@ At the very top of the OSI Reference Model stack of layers, we find the Applicat
 - Bottom up approach: approach which starts at the physical (layer 1)
  of the OSI model and works it's way up. Designing a network with this approach is said to be faster. Bottom-up troubleshooting is a good approach to use when the problem is suspected to be a physical one.
 
-- Top down approach: approach starting with the needs of the organization and prvides more flexibility when redesigning a network and less probability of failure. When troubleshooting: End-user applications of an end system are tested before tackling the more specific networking pieces. 
+- Top down approach: approach starting with the needs of the organization (layer 7: application) and provides more flexibility when redesigning a network and less probability of failure. When troubleshooting: End-user applications of an end system are tested before tackling the more specific networking pieces. 
 
 
 ## Exercise
