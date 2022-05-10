@@ -1,5 +1,5 @@
 # Binary and hex
-Study binary en hexadecimal counting, in particular counting in base 2 and 16.
+Study binary en hexadecimal counting, in other words counting in base 2 and 16.
 
 ## Key terminology
 - base 2: The binary number system, in mathematics, positional numeral system has 2 as the base and so requiring only two different symbols for its digits, 0 and 1, instead of the usual 1 - 10 needed in the decimal system. 
