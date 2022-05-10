@@ -25,6 +25,8 @@ Identifying protocols
 ### Overcome challanges
 - Looked up some key terms concerning the introduction of this exercise.
 - Looked up the different protocols suiting their layers in the OSI mode.
+- Looked for organizations concerning protocols
+- How to adress making a protocol
 
 ### Results
 1. Different kinds of protocols per layer of OSI model
