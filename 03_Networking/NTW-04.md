@@ -25,21 +25,21 @@ Decimal to binary:<br>
 112 = 0111 000<br>
 73 = 0100 1001<br>
 
-Binary to decimal:
+Binary to decimal: <br>
 1010 1010 = 170<br>
 1111 0000 = 240<br>
 1101 1011 = 219<br>
 1010 0000 = 160<br>
 0011 1010 = 58<br>
 
-Decimal to hex:
+Decimal to hex:<br>
 15 = F<br>
 37 = 25<br>
 246 = F6<br>
 125 = 7D<br>
 209 = D1<br>
 
-Hex to decimal:
+Hex to decimal: <br>
 88 = 136<br>
 e0 = 224<br>
 cb = 203<br>
