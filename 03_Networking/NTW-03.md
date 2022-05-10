@@ -37,7 +37,7 @@ Identifying protocols
    - Internet Research Task Force (IRTF)
    - Internet Assigned Numbers Authority (IANA)
 - How to introduce own protocol:
-    - The requirements for an network protcol would gave 
+    - The requirements for an network protocol would be: 
       - a set of procedures for handshaking (adressing)
       - set of rules for interpreting data sending (data exchange format)
       - steps for recovery if communication is broken (error recovery)
