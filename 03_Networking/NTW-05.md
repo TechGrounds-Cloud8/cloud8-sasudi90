@@ -27,7 +27,7 @@ Different kind of IP adresses and how it is written.
 
 ### Overcome challenges
 - Looked up key terms
-- 
+- Looked for a way to change my IP adresses or what the outcome could be
 
 ### Results
 1. 2. Public IP for today is 87.214.6.89. Public IP adresses are given bij my   ISP   and is dynamic. The public IP of these devices are the same because it is connected to the same network device.
