@@ -19,11 +19,11 @@ Translate some binary and hexadecimal numbers.
 
 ### Results
 Decimal to binary:<br>
-16 = 10000<br>
+16 = 0001 0000<br>
 128 = 1000 0000<br>
 228 = 1110 0100<br>
-112 = 1110 000<br>
-73 = 1001 001<br>
+112 = 0111 000<br>
+73 = 0100 1001<br>
 
 Binary to decimal:
 1010 1010 = 170<br>
