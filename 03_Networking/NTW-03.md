@@ -20,6 +20,7 @@ Identifying protocols
 - [HTTPS](https://www.cloudflare.com/learning/ssl/what-is-https/)
 - [Internet Protocols Suite](https://www.sciencedirect.com/topics/computer-science/internet-protocol-suite)
 - [Organizations dedicated to defining internet protocols and standards](https://www.internetx.com/en/news-detailview/who-creates-the-standards-and-protocols-for-the-internet/#:~:text=The%20Internet%20Assigned%20Numbers%20Authority,a%20subsidiary%20organization%20of%20ICANN.)
+- [Requirements for network protocol](https://www.tutorialspoint.com/what-are-the-network-protocol-requirements-in-the-communication-process)
 
 ### Overcome challanges
 - Looked up some key terms concerning the introduction of this exercise.
@@ -36,7 +37,12 @@ Identifying protocols
    - Internet Research Task Force (IRTF)
    - Internet Assigned Numbers Authority (IANA)
 - How to introduce own protocol:
-    - ?
+    - The requirements for an network protcol would gave 
+      - a set of procedures for handshaking (adressing)
+      - set of rules for interpreting data sending (data exchange format)
+      - steps for recovery if communication is broken (error recovery)
+
+
 3. Screenshot of WireShark capturing data traffix![screenshot wireshark local network](../ntw/../00_includes/NTW/NTW03_wiresharklocal.png)
 
 
