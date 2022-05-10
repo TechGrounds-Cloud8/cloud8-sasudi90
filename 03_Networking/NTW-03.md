@@ -6,7 +6,7 @@ Identifying protocols
 - UDP: User Datagram Protocol is used for  time-sensitive transmissions such as video playback. It speeds up communications by not formally establishing a connection before data is transferred. This allows data to be transferred very quickly, but it can also cause packets to become lost in transit — and create opportunities for exploitation in the form of DDoS attacks.
 - fire and forget: On local networks, applications can send Fire-and-Forget messages through UDP (User Datagram Protocol). UDP is connection-less, and does not require a sync up between sender and receiver. Therefore, it is extremely efficient. However, UDP is not reliable, and carries "at most once" semantics for message delivery
 - three way handshake: two computers begin by establishing a connection via an automated process called a ‘handshake.’ Only once this handshake has been completed will one computer actually transfer data packets to the other.
-- 
+![3wayhandhake](../00_includes/NTW/NTW03_3way.png)
 - HTTPS: Hypertext transfer protocol secure (HTTPS) is the secure version of HTTP, which is the primary protocol used to send data between a web browser and a website. 
 
 ## Exercise
