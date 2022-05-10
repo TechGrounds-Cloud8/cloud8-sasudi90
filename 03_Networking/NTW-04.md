@@ -7,7 +7,7 @@ Study binary en hexadecimal counting, in particular counting in base 2 and 16.
 
 
 ## Exercise
-Translate some binary and hexadecimal.
+Translate some binary and hexadecimal numbers.
 
 ### Sources
 - [Binary theory](https://learn.sparkfun.com/tutorials/binary/counting-and-converting)
