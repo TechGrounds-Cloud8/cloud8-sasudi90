@@ -1,5 +1,5 @@
 # [Subnetting]
-Get to know how subnetting works and create one. 
+Get to know how subnetting works and create a network architecture with this newfound knowledge. 
 
 ## Key terminology
 - LAN: Stands for Local Area Network. It's a structure for organizing and protecting network communicayions for devices running within a single router. 
