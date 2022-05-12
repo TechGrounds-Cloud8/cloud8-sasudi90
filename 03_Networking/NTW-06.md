@@ -28,5 +28,6 @@ Get to know how subnetting works and create a network architecture with this new
 - Took the architecture from a cloud perspective. 
   - The cloud gives the acces to the internet, let's call that the internet gateway; the front door (with a public IP adress) of our little network. 
   - To divide the different subnets inside our LAN we chose a total of 62 hosts with CIDR notation /26. Where the IP adress range is between 192.168.0.1 - 192.168.62 to divide over the subnets. 
+  - Subnet mask would be 255.255.255.192
   - It is possible to chose an 10.0.0.0 or 172.0.0.0 depending on how many hosts are needed. 
 ![Architecture](../00_includes/NTW/NTW06-_architecture2.png)
