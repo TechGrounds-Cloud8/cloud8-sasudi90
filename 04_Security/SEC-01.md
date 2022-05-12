@@ -2,9 +2,10 @@
 Scan a network using nmap and analyse it by using Wireshark. 
 
 ## Key terminology
-nmap: network mapper. It's a tool inside Linux to scan IP adresses and ports in a network and to detect installed applications. 
+- nmap: network mapper. It's a tool inside Linux to scan IP adresses and ports in a network and to detect installed applications. 
 nmap scanme.nmap.org: Scans a single host for 1000 well-known ports. These ports are the ones used by popular services like SQL, SNTP, apache, and others.
-nmap -A scanme.nmap.org: Nmap has an aggressive mode that enables OS detection, version detection, script scanning, and traceroute. You can use the -A argument to perform an aggressive scan.
+- nmap -A scanme.nmap.org: Nmap has an aggressive mode that enables OS detection, version detection, script scanning, and traceroute. You can use the -A argument to perform an aggressive scan.
+- nmap -sn : TCP null scan; nmap cmd to determine if ports are closed on the target machine
 
 ## Exercise
 - Scan the network of your Linux machine using nmap. What do you find?
