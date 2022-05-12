@@ -16,6 +16,7 @@ nmap -A scanme.nmap.org: Nmap has an aggressive mode that enables OS detection, 
 
 ### Overcome challanges
 - Looked what nmap is and how to use it.
+- Read some info in Wireshark
 
 ### Results
 - TCP null scan. Use ifconfig first to see personal IP adress. 
