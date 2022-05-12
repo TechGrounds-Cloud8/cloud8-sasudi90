@@ -26,8 +26,7 @@ Get to know how subnetting works and create a network architecture with this new
 
 ### Results
 - Took the architecture from a cloud perspective. 
-  - The cloud gives the acces to the internet, let's call that the internet gateway; the front door (with a public IP adress) of our little network. The NAT gateway would be the first subnet, given private IP 10.0.0.0 /30 because it only needs 1 host (there's a minium of 2). There's a range of 10.0.0.1 - 10.0.0.2
-  - The private subnet connected to the NAT get's a private IP; 10.0.0.32 /27, with a range of 10.0.0.33-10.0.0.62 (30 hosts). A possibility would be to go a CIDR /26 with 62 hosts available depending on what the customer wants. 
-  - The public subnet is given the IP 10.0.0.96 /29 with 6 hosts (>5 hosts was requirement), the range for this subnet are 10.0.0.97 - 10.0.0.102.
-  - Then there's a LAN private subnet connected to the NAT subnet en public subnet. This subnet is given IP adress 10.0.0.64 /27 with a range of 10.0.0.65 - 10.0.0.94. It's either /27 with 30 hosts OR /28 with 14 hosts. 
-![Architecture](../00_includes/NTW/NTW06_architecture.png)
+  - The cloud gives the acces to the internet, let's call that the internet gateway; the front door (with a public IP adress) of our little network. 
+  - To divide the different subnets inside our LAN we chose a total of 62 hosts with CIDR notation /26. Where the IP adress range is between 192.168.0.1 - 192.168.62 to divide over the subnets. 
+  - It is possible to chose an 10.0.0.0 or 172.0.0.0 depending on how many hosts are needed. 
+![Architecture](../00_includes/NTW/NTW06-_architecture2.png)
