@@ -7,7 +7,7 @@ Study firewalls, statefull and stateless, hardware and software.
   - stateless: uses clues from destination adress, source and other key values to asses whether threats are peresent. 
   - hardware: is physical hardware, installed between network elements and connected devices, and is tasked with filtering traffic for cyber threat to the network or devices. Filtering out unauthorized or suspicious users based on traffic analysis is one of the biggest benefits of hardware firewall.
   - software: is installed on computer or server; working with a wide variety of other IT security solutions to provide more robust and cohesive security for enterprises of all sizes.
-  - apache2 -version
+  - UFW: (uncomplicated firewall) is a firewall configuration tool that runs on top of iptables, included by default within Ubuntu distributions.
 
 ## Exercise
 1. Installeer een webserver op je VM.
