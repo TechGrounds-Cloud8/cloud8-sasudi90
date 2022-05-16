@@ -22,4 +22,4 @@ Afterwards: Place a copy of this filled out form in your repository.
 
 ## What can we do to improve?
  - Stretching, walking, moving 
- - Preparation for future software downloading for next assignmentsS
+ - Preparation for future software downloading for next assignments
