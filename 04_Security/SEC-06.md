@@ -24,7 +24,7 @@ Study public key infrastructure; components, deployment, certificates.
 - [Find certificates in Ubuntu](https://ubuntu.com/server/docs/security-certificates#:~:text=The%20default%20location%20to%20install,%2Fssl%2Fcerts%2Fcacert.)
 
 ### Overcome challenges
-
+- Looked up what PKI is and it's entities
 
 ### Results
 1. Self signed certificate
