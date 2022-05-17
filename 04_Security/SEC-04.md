@@ -17,6 +17,7 @@ You are not allowed to use any private messages or other communication channels 
 - [Symmetric encryption](https://www.sciencedirect.com/topics/computer-science/symmetric-encryption)
 - [Historical encryption](https://www.secplicity.org/2017/05/25/historical-cryptography-ciphers/)
 - [Types of cryptography](https://www.youtube.com/watch?v=lnKPoWZnNNM)
+- [Key generator](https://cryptotools.net/)
 
 ### Overcome challenges
 - Looked up what symmetric encryption is 
