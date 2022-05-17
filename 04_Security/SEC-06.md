@@ -25,6 +25,8 @@ Study public key infrastructure; components, deployment, certificates.
 
 ### Overcome challenges
 - Looked up what PKI is and it's entities
+- Looked up how to create self signed certificates
+- 
 
 ### Results
 1. Self signed certificate
