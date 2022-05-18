@@ -25,7 +25,7 @@ Get to know how passwords are encrypted and stored .
 - [Rainbow table](https://www.youtube.com/watch?v=wlkNmdZ7cvY)
 
 ### Overcome challenges
-[Give a short description of your challanges you encountered, and how you solved them.]
+- Looked up key terminology
 
 ### Results
 1. Hashes are non reversible unlike encryption, so it's safer for password storing and data integrity. Hashing transform passwords into data that can't be converted back to the original pw. 
