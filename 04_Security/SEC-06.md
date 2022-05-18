@@ -13,6 +13,14 @@ Study public key infrastructure; components, deployment, certificates.
 - ![](../sec/../00_includes/SEC/SEC06diagramPKI.png)
 - **self-signed certificate** is a digital certificate that’s not signed by a publicly trusted Certificate Authority (CA). Self-signed certificates are considered different from traditional CA certificates that are signed and issued by a CA because self-signed certificates are created, issued, and signed by the company or developer who is responsible for the website or software associated with the certificate.
 -  x.509: standard format for public key certificates, digital documents that securely associate cryptographic key pairs with identities such as websites, individuals, or organizations.
+-  openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes -out example.crt -keyout example.key: 
+   -  -newkey rsa:2048 – creates a new certificate request and 2048 bit RSA key.
+   - -x509 – creates a X.509 certificate.
+   - -sha256 – use 265-bit SHA (Secure Hash Algorithm) to create the certificate
+   -  -days 365 – the number of days to certify the certificate for. Typically a year or more
+   - -nodes – creates a key without a passphrase.
+   - -out example.crt – specifies the filename to write the newly created certificate to
+   - -keyout example.key – specifies the filename to write the private key to.
 
 ## Exercise
 1. Create a self-signed certificate on your VM.
