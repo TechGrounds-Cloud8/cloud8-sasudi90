@@ -9,6 +9,8 @@ Study public key infrastructure; components, deployment, certificates.
   - availability: data should be consistently and readily accessible for authorized parties
 - Certificate Authority: stores, issues and signs the digital certificates
 - Registration authority: verifies the identity of entities requesting their digital to be stored at the CA.
+- Validation authority: provides validation of PKI certificates
+- ![](../sec/../00_includes/SEC/SEC06diagramPKI.png)
 - **self-signed certificate** is a digital certificate that’s not signed by a publicly trusted Certificate Authority (CA). Self-signed certificates are considered different from traditional CA certificates that are signed and issued by a CA because self-signed certificates are created, issued, and signed by the company or developer who is responsible for the website or software associated with the certificate.
 -  x.509: standard format for public key certificates, digital documents that securely associate cryptographic key pairs with identities such as websites, individuals, or organizations.
 
