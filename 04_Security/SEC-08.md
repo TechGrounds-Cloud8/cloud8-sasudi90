@@ -33,7 +33,7 @@ Detecting threats, responding to it and how to analyze security processes.
 - RPO: Recovery Point Objective (RPO) is a measure of how frequently you take backups. RPO represents how fresh recovered data will be. In practice, the RPO indicates the amount of data (updated or created) that will be lost or need to be reentered after an outage.
 - RTO: Recovery Time Objective (RTO) is the amount of downtime a business can tolerate. The shorter the RTO = the higher the cost.
 - cost in RTO: data, PR, financial
-- ![](../00_includes/SEC/SEC08RPO_RTO.jpg)
+- ![RTO and RPO](../00_includes/SEC/SEC08RPO_RTO.jpg)
 
 ## Exercise
 - A Company makes daily backups of their database. The database is automatically recovered when a failure happens using the most recent available backup. The recovery happens on a different physical machine than the original database, and the entire process takes about 15 minutes. What is the RPO of the database?
