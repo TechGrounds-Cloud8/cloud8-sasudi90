@@ -1,5 +1,5 @@
 # [Detection, response and analysis]
-[Give a short summary of the subject matter.]
+Detecting threats, responding to it and how to analyze security processes. 
 
 ## Key terminology
 - IDS: Intrusion detection system: **detects** attackers and network anomalies and sends alerts via email, text, etc. (alarm/alert)
