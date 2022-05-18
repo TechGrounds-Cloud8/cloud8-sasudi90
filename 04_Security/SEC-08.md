@@ -50,5 +50,5 @@ Detecting threats, responding to it and how to analyze security processes.
 - Looked up key terminology. 
 
 ### Results
-1. Recovery point of objective would be 15 minutes as it is stated in the question itself; 'the entire process', so that's the maximum time which the company will be down for. 
+1. Recovery point of objective would be maximum 24 (DAILY back up) hours loss of data and minimum of 15 minutes as it is. 
 2. Recovery time objective is 8 minutes, because it takes 8 minutes to pull the newest version of concerning website.
