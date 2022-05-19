@@ -50,5 +50,5 @@ Detecting threats, responding to it and how to analyze security processes.
 - Looked up key terminology. 
 
 ### Results
-1. Recovery point of objective would be maximum 24 (DAILY back up) hours loss of data and minimum of 15 minutes as it is. 
+1. Recovery point of objective would be maximum 24 (DAILY back up) hours loss of data. 
 2. Recovery time objective is 8 minutes, because it takes 8 minutes to pull the newest version of concerning website.
