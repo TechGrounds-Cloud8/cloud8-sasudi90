@@ -41,7 +41,7 @@ Study
    - volume based discounts and realize important savings as your usage increases
 2. - S3 free tier ![s3 free tier](../../00_includes/AWS/01/FreeTier_S3.png)
    - EC2 free tier ![EC2 free tier](../../00_includes/AWS/01/FreeTier_EC2.png)
-   - AWS free tier: - The AWS Free Tier provides customers the ability to explore and try out AWS services free of charge up to specified limits for each service. 22 AWS services are always free, 33 are free for a year. Services with a 12-month Free Tier allow customers to use the product for free up to specified limits for one year from the date the account was activated. Services with an Always Free offer allow customers to use the product for free up to specified limits as long as they are an AWS customer. 
+   - AWS free tier: ![Free tier](../../00_includes/AWS/01/ForeverFree.png)
 3. - Capital Expenditure: It is the **initial spending of money (whole together) on physical infrastructure**, and then deducting that up-front expense over time. The up-front cost from CapEx has a value that reduces over time. All expenses incurred for long-term benefits in the future lie under CapEx.
 - Operational Expenditure: It is like a pay-as-you-go service. You can deduct this expense in the same year you spend it. There is no up-front cost, as you pay for a **service or product** as you use it. It is as the name suggests, the expense of daily operation.
   - ![differences capex and opex](../../00_includes/AWS/01/DifferenceCapexOpex.png)
