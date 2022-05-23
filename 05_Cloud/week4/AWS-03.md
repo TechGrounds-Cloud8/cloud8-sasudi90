@@ -12,7 +12,7 @@ Understand the main benefits of the cloud computing.
 
 - **Stop spending money running and maintaining data centers** – Focus on projects that differentiate your business, not the infrastructure. Cloud computing lets you focus on your own customers, rather than on the heavy lifting of racking, stacking, and powering servers.
 
-Go global in minutes – Easily deploy your application in multiple regions around the world with just a few clicks. This means you can provide lower latency and a better experience for your customers at minimal cost.
+- **Go global in minutes** – Easily deploy your application in multiple regions around the world with just a few clicks. This means you can provide lower latency and a better experience for your customers at minimal cost.
 
 ## Exercise
 Study the six advantages of cloud computing.
@@ -25,3 +25,9 @@ Study the six advantages of cloud computing.
   
 ### Results
 See key terminology.
+1. Not having to invest in own infrastructure/hardware but rather scalable renting.
+2. The more the merrier. By having loads of clients AWS can achieve higher economies of scale, which translates into lower pay as-you-go prices.
+3. Scaling options on the go, flexibilty.
+4. AWS products/IT resources are a click away and don't need to be developed/installed by developers.
+5. Focus on business growth and not IT infrastructure.
+6. Deployment all over the world. 
