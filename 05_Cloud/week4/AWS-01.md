@@ -2,9 +2,13 @@
 Study AWS Global infrastructure and its components. 
 
 ## Key terminology 
-- **AWS availabilty zone**: data center living within a 'region', consist of one or more discrete data centers.  84 Availability Zones.  Each zone in a region has redundant and separate power, networking and connectivity to reduce the likelihood of two zones failing simultaneously. A common misconception is that a single zone equals a single data center. In fact, each zone is backed by one or more physical data centers, with the largest backed by five. While a single availability zone can span multiple data centers, no two zones share a data center. Abstracting things further, to distribute resources evenly across the zones in a given region, Amazon independently maps zones to identifiers for each account. In AZ’s, customers are able to operate production applications and databases that are more fault tolerant, scalable, and highly available than you would see from a single data center. 
 - **Regions**: geographical location with multiple Availablity Zones, 26 regions. Every region is physically isolated from and independent of every other region in terms of location, power, water supply, etc. This level of isolation is critical for workloads with compliance and data sovereignty requirements where guarantees must be made that user data does not leave a particular geographic region.
-- **Edge location**: AWS data centers designed to deliver services with the lowest latency possible, closer to users than Regions or Availablity Zones, responses are fast.
+- **AWS availabilty zone**: data center living within a 'region', consist of one or more discrete data centers.  84 Availability Zones.  Each zone in a region has redundant and separate power, networking and connectivity to reduce the likelihood of two zones failing simultaneously. A common misconception is that a single zone equals a single data center. In fact, each zone is backed by one or more physical data centers, with the largest backed by five. While a single availability zone can span multiple data centers, no two zones share a data center. Abstracting things further, to distribute resources evenly across the zones in a given region, Amazon independently maps zones to identifiers for each account. In AZ’s, customers are able to operate production applications and databases that are more fault tolerant, scalable, and highly available than you would see from a single data center. 
+- **Edge location**: Edge locations are AWS data centers designed to deliver services with the lowest latency possible. Amazon has dozens of these data centers spread across the world. They’re closer to users than Regions or Availability Zones, often in major cities, so responses can be fast and snappy. A subset of services for which latency really matters use edge locations, including:
+
+  - CloudFront, which uses edge locations to cache copies of the content that it serves, so the content is closer to users and can be delivered to them faster.
+  - Route 53, which serves DNS responses from edge locations, so that DNS queries that originate nearby can resolve faster (and, contrary to what you might think, is also Amazon’s premier database).
+  - Web Application Firewall and AWS Shield, which filter traffic in edge locations to stop unwanted traffic as soon as possible.
 - **IAM**: Identity and Access Management. With IAM, you can manage AWS permissions for workforce users and workloads.  You can specify who can access which services and resources, and under which conditions.
 - **RDS**: relational database service;  is a collection of managed services that makes it simple to set up, operate, and scale databases in the cloud.
 - **latency**: is a measurement of a round-trip between two systems such as how long it takes data to make its way between two
@@ -26,6 +30,7 @@ Keep in account when choosing a Region:
 ### Sources
 - [Global infrastructure](https://docs.aws.amazon.com/whitepapers/latest/aws-overview/global-infrastructure.html)
 - [Using regions and availablity zones](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-regions)
+- [Edge locations](https://www.lastweekinaws.com/blog/what-is-an-edge-location-in-aws-a-simple-explanation/)
 - [Considering Region](https://aws.amazon.com/blogs/architecture/what-to-consider-when-selecting-a-region-for-your-workloads/)
 
 ### Overcome challenges
