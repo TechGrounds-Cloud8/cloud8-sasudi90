@@ -1,5 +1,5 @@
 # [AWS Pricing]
-Study AWS pricing model 
+Study AWS pricing model and shallow dive into the S3 and EC2 services.
 
 ## Key terminology
 - **pay as you go model**: Only pay for what u use, helps anorganiazation remain agile, responsive and scalable. 
@@ -39,10 +39,13 @@ Study
    - allows you to easily adapt to changing business needs without overcommitting budgets and improving your responsiveness to changes. With a pay as you go model, you can adapt your business depending on need and not on forecasts, reducing the risk or overprovisioning or missing capacity.
    - By paying for services on an as needed basis, you can redirect your focus to innovation and invention, reducing procurement complexity and enabling your business to be fully elastic.
    - volume based discounts and realize important savings as your usage increases
-2. - S3 free tier ![s3 free tier](../../00_includes/AWS/01/FreeTier_S3.png)
-   - EC2 free tier ![EC2 free tier](../../00_includes/AWS/01/FreeTier_EC2.png)
-   - AWS free tier: ![Free tier](../../00_includes/AWS/01/ForeverFree.png)
+2. - S3 free tier 
+      - ![s3 free tier](../../00_includes/AWS/FreeTier_S3.png)
+   - EC2 free tier 
+     - ![EC2 free tier](../../00_includes/AWS/FreeTier_EC2.png)
+   - AWS free tier: 
+     - ![Free tier](../../00_includes/AWS/ForeverFree.png)
 3. - Capital Expenditure: It is the **initial spending of money (whole together) on physical infrastructure**, and then deducting that up-front expense over time. The up-front cost from CapEx has a value that reduces over time. All expenses incurred for long-term benefits in the future lie under CapEx.
 - Operational Expenditure: It is like a pay-as-you-go service. You can deduct this expense in the same year you spend it. There is no up-front cost, as you pay for a **service or product** as you use it. It is as the name suggests, the expense of daily operation.
-  - ![differences capex and opex](../../00_includes/AWS/01/DifferenceCapexOpex.png)
+  - ![differences capex and opex](../../00_includes/AWS/DifferenceCapexOpex.png)
 

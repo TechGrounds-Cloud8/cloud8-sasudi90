@@ -15,11 +15,13 @@ Understand the main benefits of the cloud computing.
 Go global in minutes – Easily deploy your application in multiple regions around the world with just a few clicks. This means you can provide lower latency and a better experience for your customers at minimal cost.
 
 ## Exercise
+Study the six advantages of cloud computing.
+
 ### Sources
-[List your sources you used for solving the exercise]
+- [Six advantages of Cloud Computing](https://docs.aws.amazon.com/whitepapers/latest/aws-overview/six-advantages-of-cloud-computing.html)
 
 ### Overcome challenges
-[Give a short description of your challanges you encountered, and how you solved them.]
-
+- Looked up six advantages of cloud computing. 
+  
 ### Results
-[Describe here the result of the exercise. An image can speak more than a thousand words, include one when this wisdom applies.]
+See key terminology.
