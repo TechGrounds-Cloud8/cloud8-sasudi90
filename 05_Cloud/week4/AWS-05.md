@@ -1,5 +1,5 @@
 # [S3]
-Learn about S3. 
+Learn about S3 and how to publish on it. 
 
 Amazon Simple Storage Service (Amazon S3) is an object storage service offering industry-leading scalability, data availability, security, and performance. Customers of all sizes and industries can store and protect any amount of data for virtually any use case, such as data lakes, cloud-native applications, and mobile apps. With cost-effective storage classes and easy-to-use management features, you can optimize costs, organize data, and configure fine-tuned access controls to meet specific business, organizational, and compliance requirements.
 <br>
@@ -37,13 +37,26 @@ Region: Frankfurt (eu-central-1)
 
 
 ### Sources
-- []()
 - [Storage classes S3](https://aws.amazon.com/s3/storage-classes/)
-- 
+- [Enabling website hosting](https://docs.aws.amazon.com/AmazonS3/latest/userguide/EnableWebsiteHosting.html)
+- [How to host a website using S3](https://www.youtube.com/watch?v=-mIANj3lBFk)
 
 ### Overcome challenges
-
+- Looked up the storage classes of the S3
+- Looked up how to use S3 buckets for static website hosting 
 
 ### Results
-See key terminology.
-1. 
+1. Created a S3 bucket with a picture of my cat and published it.  
+   - Made a bucket for my picture. ![buckets](../../00_includes/AWS/AWS-05/S3_buckets.png)
+   - Confirmation from my fellow students ![Chum](../../00_includes/AWS/AWS-05/chum.png)
+2. Steps to get website online:
+   -  Make bucket
+   -  Bucket  for website hosting
+      -  ![](../../00_includes/AWS/AWS-05/S3_enableStaticWebsite.png)
+   -  Enable public access
+      -  ![](../../00_includes/AWS/AWS-05/S3_publicAcces.png)
+   -  Enable ACL
+      -  ![](../../00_includes/AWS/AWS-05/S3_ACL.png)
+   -  Publish by ACL
+      -  ![](../../00_includes/AWS/AWS-05/S3_publishStaticWebsite.png)
+   - Here's the static website ![](../../00_includes/AWS/AWS-05/S3_staticWebsite.png)
