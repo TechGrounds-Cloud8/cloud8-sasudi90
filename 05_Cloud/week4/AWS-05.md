@@ -34,6 +34,7 @@ Region: Frankfurt (eu-central-1)
 - [Storage classes S3](https://aws.amazon.com/s3/storage-classes/)
 - [Enabling website hosting](https://docs.aws.amazon.com/AmazonS3/latest/userguide/EnableWebsiteHosting.html)
 - [How to host a website using S3](https://www.youtube.com/watch?v=-mIANj3lBFk)
+- Killian
 
 ### Overcome challenges
 - Looked up the storage classes of the S3
@@ -50,10 +51,6 @@ Created a S3 bucket with a picture of my cat and published it.
    -  Make bucket
    -  Bucket  for website hosting
       -  ![](../../00_includes/AWS/AWS-05/S3_enableStaticWebsite.png)
-   -  Enable public access
-      -  ![](../../00_includes/AWS/AWS-05/S3_publicAcces.png)
-   -  Enable ACL
-      -  ![](../../00_includes/AWS/AWS-05/S3_ACL.png)
-   -  Publish by ACL
-      -  ![](../../00_includes/AWS/AWS-05/S3_publishStaticWebsite.png)
-   - Here's the static website ![](../../00_includes/AWS/AWS-05/S3_staticWebsite.png)
+   -  Enable public access by changing Bucket Plicy
+      -  ![](../../00_includes/AWS/AWS-05/S3_BucketPolicyPermissions.png)
+   - Here's the static website with amazed Pikachu ![](../../00_includes/AWS/AWS-05/S3_staticWebsite.png)
