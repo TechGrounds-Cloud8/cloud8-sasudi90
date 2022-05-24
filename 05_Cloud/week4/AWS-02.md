@@ -32,7 +32,9 @@ Study
 - [CapEx and OpEx](https://www.youtube.com/watch?v=dLplo_mPc1Q)
 
 ### Overcome challenges
-[Give a short description of your challanges you encountered, and how you solved them.]
+- Looked up the pricing model
+- Looked up the free tier, S3 and EC2 services
+- Looked up capex and opex in Cloud Computing
 
 ### Results
 1. Advantages of their pricing model:  
