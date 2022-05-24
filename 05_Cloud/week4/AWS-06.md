@@ -53,8 +53,18 @@ General purpose, compute optimized, memory optimized, storage optimized, and acc
 - [Security groups](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html)
 - [User data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html)
 - [Spot instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html)
+- Killian
 
 ### Overcome challenges
-
+- Looked up some terminology 
+- EC2 user guide, clicked some here and thereto try out some functions. 
 
 ### Results
+1. Status check
+   - ![](../../00_includes/AWS/AWS-06/instanceCheck.png)
+2. Properties
+   - ![](../../00_includes/AWS/AWS-06/instanceOverview.png)
+3. SSH connection
+   - ![](../../00_includes/AWS/AWS-06/sshconn.png)
+4. Termination
+   - ![](../../00_includes/AWS/AWS-06/termination.png)
