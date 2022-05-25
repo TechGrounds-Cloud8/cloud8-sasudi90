@@ -1,5 +1,5 @@
 # [Security groups]
-Study about security groups and network access control lists. 
+Study security groups and network access control lists. 
 
 ## Key terminology
 - **Security Groups**: In AWS, a security group controls traffic to or from an EC2 instance according to a set of inbound and outbound rules. This means it represents instance-level (NIC) security. For example, an inbound rule might allow traffic from a single IP address to access the instance, while an outbound rule might allow all traffic to leave the instance.
