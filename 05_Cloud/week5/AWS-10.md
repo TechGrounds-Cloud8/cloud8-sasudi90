@@ -3,9 +3,10 @@ Amazon VPC is typically described as a virtual private data center in the cloud.
 With a VPC you have full control over the design of the network. You can create subnets, internet gateways (igw), NAT gateways, VPN connections, and more.
 
 ## Key terminology
-- **VPC**:
-- **NAT-gateway**:
-- 
+- **VPC**: virtual networking environment, including resource placement, connectivity, and security
+- **NAT-gateway**: A NAT gateway is a Network Address Translation (NAT) service. You can use a NAT gateway so that instances in a private subnet can connect to services outside your VPC but external services cannot initiate a connection with those instances.
+- **route table**: Your VPC has an implicit router, and you use route tables to control where network traffic is directed. Each subnet in your VPC must be associated with a route table, which controls the routing for the subnet (subnet route table).
+- **Elastic IP adress**: An Elastic IP address is a reserved public IP address that you can assign to any EC2 instance in a particular region, until you choose to release it. To allocate an Elastic IP address to your account in a particular region, see Allocate an Elastic IP address.
 
 ## Exercise 1
 Allocate an Elastic IP address to your account.
