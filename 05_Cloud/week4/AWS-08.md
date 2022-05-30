@@ -18,7 +18,7 @@ Study Security Groups and Network Access Control Lists in AWS
 
 ### Sources
 - [Security groups](https://www.youtube.com/watch?v=00uUXZ9oPec)
-- [Security Groups vs NJetwork ACL's](https://www.youtube.com/watch?v=ttc0b2NZTV0)
+- [Security Groups vs Network ACL's](https://www.youtube.com/watch?v=ttc0b2NZTV0)
 - [EC2 instances with security groups](https://www.youtube.com/watch?v=Z973mNYD3xg)
 
 ### Overcome challenges
