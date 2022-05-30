@@ -1,6 +1,6 @@
 # [VPC] 
 Amazon VPC is typically described as a virtual private data center in the cloud. It is a virtual network that is logically isolated from other VPCs.
-With a VPC you have full control over the design of the network. You can create subnets, internet gateways (igw), NAT gateways, VPN connections, and more.
+With a VPC you have full control over the design of the network. You can create subnets, internet gateways (igw), NAT gateways, VPN connections, and more. 
 
 ## Key terminology
 - **VPC**: virtual networking environment, including resource placement, connectivity, and security
@@ -90,8 +90,8 @@ Connect to your server using the public IPv4 DNS name.
 3. Created new Security Group
     - Inbound rules![](../../00_includes/AWS/AWS-10/secGroupInbound.png)
     - Outbound rules![](../../00_includes/AWS/AWS-10/secGroupOutbound.png)
-4. - ![](../../00_includes/AWS/AWS-10/allocatedEIP.png)
-   - ![](../../00_includes/AWS/AWS-10/allocatedEIP2.png)
-   - ![](../../00_includes/AWS/AWS-10/dns4Webserver.png) 
+4. - Making a VPC gives an Elastic IP by default, but not reachable. A new EIP has to be allocated to this VPC![](../../00_includes/AWS/AWS-10/allocatedEIP.png)
+   - Allocate the EIP to 'Web Server instance'![](../../00_includes/AWS/AWS-10/allocatedEIP2.png)
+   - Connected to server using allocated EIP![](../../00_includes/AWS/AWS-10/dns4Webserver.png) 
    
    
