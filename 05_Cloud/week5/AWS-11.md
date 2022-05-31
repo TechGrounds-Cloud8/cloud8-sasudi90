@@ -75,4 +75,7 @@
 - Looked up terminology
 
 ### Results
-[Describe here the result of the exercise. An image can speak more than a thousand words, include one when this wisdom applies.]
+1. ![](../../00_includes/AWS/AWS-12/e3.png)
+2. ![](../../00_includes/AWS/AWS-12/loadbalancer.png)
+3. ![](../../00_includes/AWS/AWS-12/e3.png)
+4. ![extra instances](../../00_includes/AWS/AWS-12/extraInstance.png)
