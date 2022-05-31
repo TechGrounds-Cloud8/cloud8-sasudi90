@@ -1,5 +1,6 @@
 # [ELB & Auto Scaling]]
-[Give a short summary of the subject matter.]
+One of the main advantages of the cloud is that you don’t need to guess how much capacity you need. You can always scale up and down with on-demand services. One of the services that enables this is called Auto Scaling.
+
 
 ## Key terminology
 - **Elastic load balancing**: automatically distributes incoming application traffic across multiple targets and virtual appliances in one or more Availability Zones (AZs).
