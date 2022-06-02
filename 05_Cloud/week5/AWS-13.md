@@ -127,3 +127,6 @@ Note: ![](../../00_includes/AWS/AWS-13/s3_ebs_efs.png)
 8. Connect to other instance with SSH via PowerShell, navigate to /dev/, mkdir efs for mount point.
 9.  Mount efs and check with dh -f if successfull.
 10. Behold the files from the first instance in /efs/![](../../00_includes/AWS/AWS-13/EFS2.png)
+
+Jokes on me because I couldn't find /mnt/efs/fs1 but picture below shows the OG mount :')
+![lol](/00_includes/AWS/AWS-13/lolEFS.png)
