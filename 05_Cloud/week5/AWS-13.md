@@ -6,7 +6,16 @@
 -  EFS: Amazon Elastic File System (Amazon EFS) automatically grows and shrinks as you add and remove files with no need for management or provisioning.
 - RDS: Amazon Relational Database Service (RDS) is a collection of managed services that makes it simple to set up, operate, and scale databases in the cloud. Choose from seven popular engines
 - Aurora: Amazon Aurora is a relational database management system (RDBMS) built for the cloud with full MySQL and PostgreSQL compatibility. 
+- Differences between RDS and Aurora
+  - Amazon RDS for PostgreSQL supports up to 64 TiB of storage and recent PostgreSQL versions.
 
+  - DB instances for Amazon RDS for PostgreSQL use Amazon Elastic Block Store (Amazon EBS) volumes for database and log storage.
+
+  - Aurora PostgreSQL uses a high-performance storage subsystem customized to take advantage of fast distributed storage. The underlying storage grows automatically in chunks of 10 GiB, up to 128 TiB. Aurora improves upon PostgreSQL for massive throughput and highly concurrent workloads. The combination of PostgreSQL compatibility with Aurora enterprise database capabilities provides an ideal target for commercial database migrations.
+  - ![](../../00_includes/AWS/AWS-13/RDSandAurora.png)
+
+Database services by AWS
+![](../../00_includes/AWS/AWS-13/DBservices.png)
 
 ## Exercise
 Study:
@@ -18,12 +27,15 @@ Study:
 - [CDN](https://www.cloudflare.com/learning/cdn/what-is-a-cdn/)
 - [RDS](https://aws.amazon.com/rds/)
 - [Aurora](https://aws.amazon.com/rds/aurora/)
+- [Aurora - RDS](https://www.youtube.com/watch?v=yHCwjAbwS6M)
+- [Differences RDS and Aurora](https://aws.amazon.com/blogs/database/is-amazon-rds-for-postgresql-or-amazon-aurora-postgresql-a-better-choice-for-me/)
 - [Elastic Beanstalk](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/Welcome.html)
 - [Alternatives to EB](https://www.g2.com/products/aws-elastic-beanstalk/competitors/alternatives)
 - [AWS CloudFront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html)
 - [Alternatives to Cloudfront](https://stackshare.io/amazon-cloudfront/alternatives)
 - [Route53](https://aws.amazon.com/route53/)
 - [Alternatives to Route53](https://www.g2.com/products/amazon-route-53/competitors/alternatives)
+- [Aurora Serverless tutorial](https://www.youtube.com/watch?v=ciRbXZqBl7M)
 
 ### Overcome challenges
 - Looked up the key terminology and AWS services
@@ -31,35 +43,31 @@ Study:
 <br>
 <br> 
 
-# Results
+# Theory
 ## Elastic Beanstalk
-- Utility: Elastic Beanstalk is a platform within AWS that is used for deploying and scaling web applications. In simple terms this platform as a service (PaaS) takes your application code and deploys it while provisioning the supporting architecture and compute resources required for your code to run. Elastic Beanstalk also fully manages the patching and security updates for those provisioned resources. 
-- Replacement in classical setting: Elastic Beanstalk provisions and operates the infrastructure and manages the application stack (platform) for you, so you don't have to spend the time or develop the expertise. It will also keep the underlying platform running your application up-to-date with the latest patches and updates.
-- How to combine with other services:
-  - CloudFront
-  - Logging Elastic Beanstalk API calls with AWS CloudTrail
-  - CloudWatch
-  - CloudWatch Logs
-  - EventBridge
-  - Finding and tracking Elastic Beanstalk resources with AWS Config
-  - DynamoDB
-  - ElastiCache
-  - Amazon Elastic File System
-  - AWS Identity and Access Management
-  - Amazon RDS
-  - Amazon S3
-  - Amazon VPC
-<br>
-<br>To use Elastic Beanstalk, you create an application, upload an application version in the form of an application source bundle (for example, a Java .war file) to Elastic Beanstalk, and then provide some information about the application. Elastic Beanstalk automatically launches an environment and creates and configures the AWS resources needed to run your code. After your environment is launched, you can then manage your environment and deploy new application versions. The following diagram illustrates the workflow of Elastic Beanstalk.
-- Differences with similar services: 
-    -  Google App Engine.
-    -  Salesforce Heroku.
-    -  Azure Web Apps.
-    -  Azure App Service.
-    -  Cloud Foundry.
-    -  Dokku.
-    -  Salesforce Platform.
-    -  Plesk.
+1. Utility: <br>
+   Elastic Beanstalk is a platform within AWS that is used for deploying and scaling web applications. In simple terms this platform as a service (PaaS) takes your application code and deploys it while provisioning the supporting architecture and compute resources required for your code to run.
+
+
+2. Replacement in classical setting:<br> 
+   Elastic Beanstalk provisions and operates the infrastructure and manages the application stack (platform) for you, so you don't have to spend the time or develop the expertise. It will also keep the underlying platform running your application up-to-date with the latest patches and updates.
+
+
+3. How to combine with other services:
+  With AWS Elastic Beanstalk, you can:  
+    -  Select the operating system that matches your application requirements (e.g., Amazon Linux or Windows Server 2016)
+    -  Choose from several Amazon EC2 instances including On-Demand, Reserved instances, and Spot instances 
+    -  Choose from several available database and storage options
+    -  Enable login access to Amazon EC2 instances for immediate and direct troubleshooting
+    -  Quickly improve application reliability by running in more than one Availability Zone
+    -  Enhance application security by enabling HTTPS protocol on the load balancer
+    -  Access built-in Amazon CloudWatch monitoring and getting notifications on application health and other important events
+    -  Adjust application server settings (e.g., JVM settings) and pass environment variables
+    -  Run other application components, such as a memory caching service, side-by-side in Amazon EC2
+    -  Access log files without logging in to the application servers
+
+4. Differences with similar services: <br>
+   Most other PaaS-solutions do not offer the flexibility and control that Elastic Beanstalk facilitates. Flexibility and control for developers are predetermined by the vendor, with set infrastructure (on all or some parts). With AWS EB developers retain full control over AWS resources and they could manage severak or all of the elements of their infrastructure using EB's management capabilities.  
 
 ## CloudFront (CDN)
 - Utility: Amazon CloudFront is a web service that speeds up distribution of your static and    dynamic web content, such as .html, .css, .js, and image files, to your users. CloudFront delivers your content through a worldwide network of data centers called edge locations. When a user requests content that you're serving with CloudFront, the request is routed to the edge location that provides the lowest latency (time delay), so that content is delivered with the best possible performance.
@@ -107,6 +115,7 @@ Study:
     -   DNSimple.
   
 # EFS - lab
+Note: ![](../../00_includes/AWS/AWS-13/s3_ebs_efs.png)
 1. Made security group with solely access with SSH; called it EFS group
 2. Create 1 EFS with SG EFS group 
 3. Create 2 instances with connection to concerning EFS WITH SAME SG.
