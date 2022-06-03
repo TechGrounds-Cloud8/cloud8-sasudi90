@@ -63,7 +63,7 @@ Study:
     -  Enable login access to Amazon EC2 instances for immediate and direct troubleshooting
     -  Quickly improve application reliability by running in more than one Availability Zone
     -  Enhance application security by enabling HTTPS protocol on the load balancer
-    -  Access built-in Amazon CloudWatch monitoring and getting notifications on application health and other important events
+    -  Access built-in Amazon CloudWatch monitoring and getting notifications on application health and other important eventss
     -  Adjust application server settings (e.g., JVM settings) and pass environment variables
     -  Run other application components, such as a memory caching service, side-by-side in Amazon EC2
     -  Access log files without logging in to the application servers
