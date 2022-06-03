@@ -1,5 +1,6 @@
-# [File, AppServices, CDN, DNS & Database]
-
+# [Elastic Beanstalk, Cloudfront, Route53, Elastic File System, RDS/Aurora]
+Theoretical part: Elastic Beanstalk, cloudfront and Route53; usage and their combo's with other AWS services.
+Practical part: EFS, connect via instance. RDS/Aurora: Create a webserver and make a connection to the RDS database.  
 
 ## Key terminology
 - CDN: A content delivery network refers to a geographically distributed group of servers which work together to provide fast delivery of Internet content. A CDN allows for the quick transfer of assets needed for loading Internet content.
@@ -53,7 +54,7 @@ Study:
    Elastic Beanstalk provisions and operates the infrastructure and manages the application stack (platform) for you, so you don't have to spend the time or develop the expertise. It will also keep the underlying platform running your application up-to-date with the latest patches and updates.
 
 
-3. How to combine with other services:
+3. How to combine with other services:<br>
   With AWS Elastic Beanstalk, you can:  
     -  Select the operating system that matches your application requirements (e.g., Amazon Linux or Windows Server 2016)
     -  Choose from several Amazon EC2 instances including On-Demand, Reserved instances, and Spot instances 
@@ -70,15 +71,19 @@ Study:
    Most other PaaS-solutions do not offer the flexibility and control that Elastic Beanstalk facilitates. Flexibility and control for developers are predetermined by the vendor, with set infrastructure (on all or some parts). With AWS EB developers retain full control over AWS resources and they could manage severak or all of the elements of their infrastructure using EB's management capabilities.  
 
 ## CloudFront (CDN)
-- Utility: Amazon CloudFront is a web service that speeds up distribution of your static and    dynamic web content, such as .html, .css, .js, and image files, to your users. CloudFront delivers your content through a worldwide network of data centers called edge locations. When a user requests content that you're serving with CloudFront, the request is routed to the edge location that provides the lowest latency (time delay), so that content is delivered with the best possible performance.
+1. Utility: <br>
+   Amazon CloudFront is a web service that speeds up distribution of your static and dynamic web content, such as .html, .css, .js, and image files, to your users. CloudFront delivers your content through edge locations for low latency and high data data transfer speeds. When a user requests content that you're serving with CloudFront, the request is routed to the edge location that provides the lowest latency (time delay), so that content is delivered with the best possible performance.
 
     If the content is already in the edge location with the lowest latency, CloudFront delivers it immediately.
 
     If the content is not in that edge location, CloudFront retrieves it from an origin that you've defined—such as an Amazon S3 bucket, a MediaPackage channel, or an HTTP server (for example, a web server) that you have identified as the source for the definitive version of your content.
-- Replacement in classical setting: This used to be done manually, now it's just easier because of automated processes. 
-- How to combine with other services:
+2. Replacement in classical setting: <br>
+   Amazon CloudFront lets you quickly obtain the benefits of high performance content delivery without negotiated contracts or high prices. Amazon CloudFront gives all developers access to inexpensive, pay-as-you-go pricing – with a self-service model. Developers also benefit from tight integration with other Amazon Web Services. 
+
+3. How to combine with other services:
   <br>CloudFront works seamlessly with any AWS origin, such as Amazon S3, Amazon EC2, Elastic Load Balancing, or with any custom HTTP origin. You can customize your content delivery through CloudFront using the secure and programmable edge computing features CloudFront Functions and AWS Lambda@Edge.
-- Differences with similar services:
+
+4. Differences with similar services:
     -   CloudFlare. 
     -   Google Cloud Storage.
     -   Fastly. 
@@ -87,32 +92,22 @@ Study:
     -   Azure CDN. 
     -   Incapsula.
 
-
-- Utility: Amazon Route 53 is a scalable and highly available DNS service that translates human readable website names into the numeric IP address location of the target website host or a private VPC or application endpoint.
+## Route 53
+1. Utility: <br>
+   Amazon Route 53 is a scalable and highly available DNS service that translates human readable website names into the numeric IP address location of the target website host or a private VPC or application endpoint.
   
-  - ROUTE 53 HOSTED ZONES
-    A hosted zone is a collection of DNS information. These records describe how you want to route traffic for the nominated domain and it’s subdomains.
+     - ROUTE 53 HOSTED ZONES
+      A hosted zone is a collection of DNS information. These records describe how you want to route traffic for the nominated domain and it’s subdomains.
 
-    A hosted zone has the same name as the primary domain and can be either a public or private hosted zone.
+      A hosted zone has the same name as the primary domain and can be either a public or private hosted zone.
 
-    A public hosted zone describes how you want to route traffic for the domain in the public internet while a private hosted zone defines how you want to route traffic in a private AWS VPC.
-- Replacement in classical setting: regular DNS server
-- How to combine with other services:
-  - Amazon Route 53 integrates with AWS Identity and Access Management (IAM), a service that lets your organization do the following:
-
-    -  Create users and groups under your organization's AWS account
-    -  Easily share your AWS account resources among the users in the account
-    -  Assign unique security credentials to each user
-    -  Granularly control user access to services and resources
+      A public hosted zone describes how you want to route traffic for the domain in the public internet while a private hosted zone defines how you want to route traffic in a private AWS VPC.
+2. Replacement in classical setting: <br>
+      General DNS concepts (without hosted zones). Using a global anycast network of DNS servers around the world, Amazon Route 53 is designed to automatically route your users to the optimal location depending on network conditions. As a result, the service offers low query latency for your end users, as well as low update latency for your DNS record management needs. 
+3. How to combine with other services:
+  - Amazon Route 53 is designed to work well with other AWS features and offerings. You can use Amazon Route 53 to map domain names to your Amazon EC2 instances, Amazon S3 buckets, Amazon CloudFront distributions, and other AWS resources. By using the AWS Identity and Access Management (IAM) service with Amazon Route 53, you get fine grained control over who can update your DNS data.
 - Differences with similar services:
-    -   Cloudflare DNS.
-    -   Google Cloud DNS.
-    -   Azure DNS.
-    -   GoDaddy Premium DNS.
-    -   DNSMadeEasy.
-    -   ClouDNS.
-    -   UltraDNS.
-    -   DNSimple.
+    - There are no similar services in AWS for Route 53. There are some other providers like GoDaddy or Google for instance. 
   
 # EFS - lab
 Note: ![](../../00_includes/AWS/AWS-13/s3_ebs_efs.png)
@@ -128,5 +123,32 @@ Note: ![](../../00_includes/AWS/AWS-13/s3_ebs_efs.png)
 9.  Mount efs and check with dh -f if successfull.
 10. Behold the files from the first instance in /efs/![](../../00_includes/AWS/AWS-13/EFS2.png)
 
-Jokes on me because I couldn't find /mnt/efs/fs1 but picture below shows the OG mount :')
+Jokes on me because I couldn't find /mnt/efs/fs1 but picture below shows the OG mount :') What i did before was making own mount points for the EFS. 
 ![lol](/00_includes/AWS/AWS-13/lolEFS.png)
+
+# RDS - Create a webserver and an Amazon Aurora DB Cluster
+Structure which will be made: 
+![](../../00_includes/AWS/AWS-13/diagram.png)
+1. Complete the tasks in Tutorial: Create an Amazon VPC for use with a DB   instance.
+
+Before you begin this tutorial, make sure that you have a VPC with both public and private subnets, and corresponding security groups. If you don't have these, complete the following tasks in the tutorial:
+
+   - Create a VPC with private and public subnets
+   - Create additional subnets
+   - Create a VPC security group for a public web server
+   - Create a VPC security group for a private DB instance
+   - Create a DB subnet group
+   - [Settings voor DB VPC](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_Tutorials.WebServerDB.CreateVPC.html)
+![](../../00_includes/AWS/AWS-13/DBVPC.png)
+
+2. Create an Amazon Aurora DB cluster: [Create Aurora db cluster](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_Tutorials.WebServerDB.CreateDBCluster.html)
+   ![](../../00_includes/AWS/AWS-13/AuroraDBCLuster.png)
+
+3. Create an EC2 instance and install a web server:[Create an EC2 instance and install a web server](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_Tutorials.WebServerDB.CreateWebServer.html)
+- User data when making EC2 instance![](../../00_includes/AWS/AWS-13/EC2_userdata.png)
+- Commands used as stated in the AWS tutorial
+  - ![](../../00_includes/AWS/AWS-13/CMDS.png)
+- No security, so some classmates added random stuff
+  - ![](../../00_includes/AWS/AWS-13/WebserverWithAurora.png)
+- Monitoring: see when there was activity (input being deliverd)
+  - ![](../../00_includes/AWS/AWS-13/metricActivity.png)
