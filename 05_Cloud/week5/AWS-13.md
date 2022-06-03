@@ -92,6 +92,12 @@ Study:
     -   Azure CDN. 
     -   Incapsula.
 
+Just going to enlight 1 comparison, which is Cloudflare - CloudFront. 
+   - Cloudflare is a CDN that acts as a DNS for your website while Amazon Cloudfront operates closer to networks and serves content directly. In other words, Cloudflare works like a proxy whereas cloudfront is an actual server that delivers content from servers closer to end-users for faster speeds and performance.
+   - Caches are different. CloudFlare caches content on its servers and CloudFront uses S3 buckets. 
+   - Cloudflare and Cloudfront deliver that content is different because Cloudflare uses multiplexing while CloudFront uses level-3 cache headers.
+![](../../00_includes/AWS/AWS-13/cloudflare-front.png)
+
 ## Route 53
 1. Utility: <br>
    Amazon Route 53 is a scalable and highly available DNS service that translates human readable website names into the numeric IP address location of the target website host or a private VPC or application endpoint.
