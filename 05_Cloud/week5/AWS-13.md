@@ -31,6 +31,7 @@ Study:
 - [Aurora - RDS](https://www.youtube.com/watch?v=yHCwjAbwS6M)
 - [Differences RDS and Aurora](https://aws.amazon.com/blogs/database/is-amazon-rds-for-postgresql-or-amazon-aurora-postgresql-a-better-choice-for-me/)
 - [Elastic Beanstalk](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/Welcome.html)
+- [EB - ](https://tutorialsdojo.com/elastic-beanstalk-vs-cloudformation-vs-opsworks-vs-codedeploy/)
 - [Alternatives to EB](https://www.g2.com/products/aws-elastic-beanstalk/competitors/alternatives)
 - [AWS CloudFront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html)
 - [Alternatives to Cloudfront](https://stackshare.io/amazon-cloudfront/alternatives)
@@ -68,6 +69,9 @@ Study:
     -  Access log files without logging in to the application servers
 
 4. Differences with similar services: <br>
+Inside AWS it would be Beanstalk vs Cloudformation:
+The essential difference between these services is that Beanstalk handles deployment/provisioning for you while CloudFormation requires a lot of input. 
+
    Most other PaaS-solutions do not offer the flexibility and control that Elastic Beanstalk facilitates. Flexibility and control for developers are predetermined by the vendor, with set infrastructure (on all or some parts). With AWS EB developers retain full control over AWS resources and they could manage severak or all of the elements of their infrastructure using EB's management capabilities.  
 
 ## CloudFront (CDN)
@@ -112,7 +116,7 @@ Just going to enlight 1 comparison, which is Cloudflare - CloudFront.
       General DNS concepts (without hosted zones). Using a global anycast network of DNS servers around the world, Amazon Route 53 is designed to automatically route your users to the optimal location depending on network conditions. As a result, the service offers low query latency for your end users, as well as low update latency for your DNS record management needs. 
 3. How to combine with other services:
   - Amazon Route 53 is designed to work well with other AWS features and offerings. You can use Amazon Route 53 to map domain names to your Amazon EC2 instances, Amazon S3 buckets, Amazon CloudFront distributions, and other AWS resources. By using the AWS Identity and Access Management (IAM) service with Amazon Route 53, you get fine grained control over who can update your DNS data.
-- Differences with similar services:
+4. Differences with similar services:
     - There are no similar services in AWS for Route 53. There are some other providers like GoDaddy or Google for instance. 
   
 # EFS - lab
