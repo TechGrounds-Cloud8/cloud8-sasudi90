@@ -1,12 +1,14 @@
-# [Subject]
+# [DynamoDB]
 [Give a short summary of the subject matter.]
 
 ## Key terminology
-[Write a list of key terminology with a short description. To prevent duplication you can reference to previous excersizes.]
+- **non relational databases**: In a nonrelational database, you create tables. A table is a place where you can store and query data.
+
+Nonrelational databases are sometimes referred to as “NoSQL databases” because they use structures other than rows and columns to organize data. One type of structural approach for nonrelational databases is key-value pairs. With key-val                         ue pairs, data is organized into items (keys), and items have attributes (values). You can think of attributes as being different features of your data.
 
 ## Exercise
 ### Sources
-[List your sources you used for solving the exercise]
+- [Amazon DynamoDB](https://aws.amazon.com/dynamodb/)
 
 ### Overcome challenges
 [Give a short description of your challanges you encountered, and how you solved them.]
