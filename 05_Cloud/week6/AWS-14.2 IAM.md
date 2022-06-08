@@ -7,6 +7,8 @@ IAM stands for Identity and Access Management; manage permissions to a workforce
   - user groups: collection of IAM users. Use groups to specify permissions for a collection of users.
   - users:  an identity with long-term credentials that is used to interact with AWS in an account.
   - roles: similar to user, but has no credentials associated with it. Instead of being linked with one person, a role is intended to be assumable by anyone who needs it. An IAM user can assume a role to temporarily take on different permissions for a specific task.
+- **role-based access control (RBAC)**: RBAC provides a way for you to assign permissions based on a person’s job function, known outside of AWS as a role. IAM provides RBAC by defining IAM roles with permissions that align with job functions.
+- **attribute-based access control (ABAC)**: ABAC is an authorization strategy that defines permissions based on attributes. In AWS, these attributes are called tags, and you can define them on AWS resources, IAM roles, and in role sessions. With ABAC, you define a set of permissions based on the value of a tag.
 - **temporary credentials in IAM**: are used primarily with IAM roles, but does not exclude other uses. You can request temporary credentials that have a more restricted set of permissions than your standard IAM user. This prevents you from accidentally performing tasks that are not permitted by the more restricted credentials. 
 - **policies within IAM**: Policies are JSON documents in AWS that let you specify who has access to AWS resources, and what actions they can perform on those resources. 
 
