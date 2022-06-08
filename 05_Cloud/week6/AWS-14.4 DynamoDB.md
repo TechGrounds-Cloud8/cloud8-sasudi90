@@ -1,6 +1,12 @@
 # [DynamoDB]
 DynamoDB is a fully managed database service of AWS. A NoSQL database service providing fast and predictable performance. With this service you create database tables which can be scaled up or down throughput capacity without downtime or performance degradation. DynamoDB automatically spreads the data and traffic for your tables over a sufficient number of servers to handle your throughput and storage requirements. DynamoDB also offers encryption at rest, which eliminates the operational burden and complexity involved in protecting sensitive data. All of your data is stored on solid-state disks (SSDs) and is automatically replicated across multiple Availability Zones in an AWS Region, providing built-in high availability and data durability.
 
+DynamoDB or RDS?
+![](../../00_includes/AWS/AWS-14.4/Dy-RDS1.png)
+![](../../00_includes/AWS/AWS-14.4/Dy-RDS2.png)
+![](../../00_includes/AWS/AWS-14.4/Dy-RDS3.png)
+![](../../00_includes/AWS/AWS-14.4/Dy-RDS4.png)
+
 ## Key terminology
 - **non relational databases**: In a nonrelational database, you create tables. A table is a place where you can store and query data. 
 Nonrelational databases are sometimes referred to as NOSQL databases because they use structures other than rows and columns to organize data. One type of structural approach for nonrelational databases is key-value pairs. 
