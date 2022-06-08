@@ -1,6 +1,8 @@
 # [SNS, SQS & EventBridge]
 Amazon Simple Notification Service (Amazon SNS) is a fully managed messaging service for both application-to-application (A2A) and application-to-person (A2P) communication. It sends messages from a topic (resource) to subscribers (resources or people). The service is designed to make web-scale computing easier for developers. 
 
+![](../../00_includes/AWS/AWS-14.6/A2A-A2P.png)
+
 Amazon Simple Queue Service (SQS) is a fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications. 
 
 Amazon EventBridge is a service that provides real-time access to changes in data in AWS services, your own applications, and software as a service (SaaS) applications without writing code. To get started, you can choose an event source on the Amazon EventBridge console, and select a target from a number of AWS services including AWS Lambda, Amazon Simple Notification Service (SNS), and Amazon Kinesis Data Firehose. Amazon EventBridge will automatically deliver the events in near-real-time.

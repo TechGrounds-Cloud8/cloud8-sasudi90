@@ -29,6 +29,7 @@ Getting started guide of AWS DynamoDB.
 ### Sources
 - [Amazon DynamoDB](https://aws.amazon.com/dynamodb/)
 - https://aws.amazon.com/getting-started/hands-on/create-nosql-table/
+- [RDS VS DynamoDB](https://tutorialsdojo.com/amazon-rds-vs-dynamodb/)
 - Killian
 
 ### Overcome challenges
