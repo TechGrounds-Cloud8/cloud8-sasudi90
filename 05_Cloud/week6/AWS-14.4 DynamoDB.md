@@ -36,13 +36,14 @@ Getting started guide of AWS DynamoDB.
 Didn't know about non-relational database so I looked that up, followed by some DynamoDB documentation and practical exercise. 
 
 ### Results
-1. Created a table with the following keys. 
-   -    ![](../../00_includes/AWS/AWS-14.4/indexsetting.png)
+1. Created a table named 'Music' with the 2 keys, 'artist' and 'song title', added some attributes afterwards.
 2. Proof of table and created items
    -    ![](../../00_includes/AWS/AWS-14.4/Table1.png)
 3. Filtered on query
    -    ![](../../00_includes/AWS/AWS-14.4/queryfilter.png)
-4. Filtered on Global secondary index. Note: when making the index fill in the 'partition key' (query) and leave the optional sort key open for this case. 
+4. Made global secondary index. 
+   - ![](../../00_includes/AWS/AWS-14.4/indexsetting.png)
+5. Filtered on Global secondary index. Note: when making the index fill in the 'partition key' (query) and leave the optional sort key open for this case. 
    ![](../../00_includes/AWS/AWS-14.4/GlbalSecIndex.png)
     
 
