@@ -17,7 +17,7 @@ Amazon CloudWatch Synthetics allows you to monitor application endpoints more ea
 Monitor an EC2 instance and set an CloudWatch alarm. 
 
 ### Sources
-[](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_architecture.html)
+[CloudWatch](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_architecture.html)
 
 ### Overcome challenges
 - None, have been looking at CloudWatch monitoring several times for assignements. 
