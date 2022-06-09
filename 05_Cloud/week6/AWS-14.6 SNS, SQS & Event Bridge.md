@@ -1,22 +1,27 @@
 # [SNS, SQS & EventBridge]
+
+## SNS
 Amazon Simple Notification Service (Amazon SNS) is a fully managed messaging service for both application-to-application (A2A) and application-to-person (A2P) communication. It sends messages from a topic (resource) to subscribers (resources or people). The service is designed to make web-scale computing easier for developers. 
 
 ![](../../00_includes/AWS/AWS-14.6/A2A-A2P.png)
 
-Amazon Simple Queue Service (SQS) is a fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications. 
+# SQS
+Amazon Simple Queue Service (SQS) is a fully managed message queuing service that enables you to separate and scale microservices and serverless applications. 
 
-Amazon EventBridge is a service that provides real-time access to changes in data in AWS services, your own applications, and software as a service (SaaS) applications without writing code. To get started, you can choose an event source on the Amazon EventBridge console, and select a target from a number of AWS services including AWS Lambda, Amazon Simple Notification Service (SNS), and Amazon Kinesis Data Firehose. Amazon EventBridge will automatically deliver the events in near-real-time.
+Amazon SQS provides short polling and long polling to receive messages from a queue. By default, queues use short polling.
+
+- Differences SQS and SNS
+
+SNS - sends messages to the subscriber using push mechanism and no need of pull. SQS - it is a message queue service used by distributed applications to exchange messages through a polling model, and can be used to decouple sending and receiving components
+
+## EventBridge
+Amazon EventBridge is a service that provides real-time access to changes in data in AWS services, your own applications, and software as a service (SaaS) applications without writing code. It's a serverless event bus that supports the publish/subscribe messaging. 
 
 ## Key terminology
-- **microservices**: 
-- **pub/sub messaging**: Publish/subscribe messaging, or pub/sub messaging, is a form of asynchronous service-to-service communication used in serverless and microservices architectures. In a pub/sub model, any message published to a topic is immediately received by all of the subscribers to the topic. Pub/sub messaging can be used to enable event-driven architectures, or to decouple applications in order to increase performance, reliability and scalability.
+- **microservices**: small pieces of software that deliver specific functions, running separately from each other: they do 'one thing'. 
+- **Dead-letter queue (DLQ)**: rather than keeping messages in decline in the primary SQS queue, once the specified number of retries are met, the message will get transferred to that dead-letter queue.
+- **pub/sub messaging**: Publish/subscribe messaging, or pub/sub messaging, is a form of asynchronous service-to-service communication used in serverless and microservices architectures. This type of messaging is used for streaming analytics and data integration pipelines to consume and distribute data.
 
-## Exercise 1
-[Becoming familiar with Amazon SNS](https://docs.aws.amazon.com/sns/latest/dg/sns-getting-started.html#sns-prerequisites)
-1. Create a topic
-2. Create a subscription to the topic
-3. Publish a message to the topic
-4. Delete the subscription and topic
 
 ### Sources
 - [SNS](https://aws.amazon.com/sns/?whats-new-cards.sort-by=item.additionalFields.postDateTime&whats-new-cards.sort-order=desc)
@@ -25,11 +30,12 @@ Amazon EventBridge is a service that provides real-time access to changes in dat
 - Killian and Ben
 
 ### Overcome challenges
-[Give a short description of your challanges you encountered, and how you solved them.]
+- Looked up the subjects and got confused at what EventBridge actually does. After doing the practical and using all three resources together the 'dime dropped'.
 
 ### Results
 
 ## SNS
+Send a message to subscribers using SNS, in this case endpoint is e-mail. 
 1. Create topic
    - ![](../../00_includes/AWS/AWS-14.6/creatTopic.png)
 2. Create subscription
@@ -41,5 +47,38 @@ Amazon EventBridge is a service that provides real-time access to changes in dat
 5. Published message received!
    - ![](../../00_includes/AWS/AWS-14.6/pubMessage.png)
 
+## SQS
+Create a queue and link it to SNS topic
+1. Create SNS topic with FIFO
+   ![](/00_includes/AWS/AWS-14.6/editFIFOSNS.png)
+2. Create SQS Queue 
+   -  ![](../../00_includes/AWS/AWS-14.6/SQS1.png)
+3. Link the topic and queue
+   -  ![](/00_includes/AWS/AWS-14.6/linkedSNSSQS.png)
+4. Send message from SNS to SQS
+   -  ![](/00_includes/AWS/AWS-14.6/SQS4.png)
+   -  ![](/00_includes/AWS/AWS-14.6/SQS3.png)
+5. Read one of the messages out 
+   -![](/00_includes/AWS/AWS-14.6/SQS5.png)
 
-
+## S3, Eventbridge, SNS and SQS
+Create an S3 bucket and use message services to send a log event with Eventbridge, SNS and SQS.
+1. Create a S3 bucket and set EventBridge notification ON 
+   ![](../../00_includes/AWS/AWS-14.6/ebS3ON.png)
+2. Create a standard SNS topic
+   ![](../../00_includes/AWS/AWS-14.6/eb_createSNS.png)
+3. Create a standard SQS queue
+   ![](/00_includes/AWS/AWS-14.6/eb_createSQS.png)
+4. Subscribe queue to topic
+   ![](../../00_includes/AWS/AWS-14.6/eb_subscribed.png)
+5. Create a rule in EventBridge to trigger a response if anything is edited to a specific S3 bucket it will send a log message to a topic (SNS) and directs the message to the subscribed.
+   - ![](/00_includes/AWS/AWS-14.6/EB1.png)
+   - ![](/00_includes/AWS/AWS-14.6/EB2.png)
+   - ![](/00_includes/AWS/AWS-14.6/EB3.png)
+   - ![](/00_includes/AWS/AWS-14.6/EB4.png)
+6. Add file to S3 bucket
+   ![](../../00_includes/AWS/AWS-14.6/eb_uploadToBucket.png)
+7. Check the designated queue.
+   - ![](../../00_includes/AWS/AWS-14.6/eb_designatedQueue.png)
+8. Check the message in queue.
+   - ![](/00_includes/AWS/AWS-14.6/eb_logMssg.png)
