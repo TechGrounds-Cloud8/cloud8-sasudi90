@@ -19,7 +19,7 @@ Amazon EventBridge is a service that provides real-time access to changes in dat
 
 ## Key terminology
 - **microservices**: small pieces of software that deliver specific functions, running separately from each other: they do 'one thing'. 
-- **Dead-letter queue (DLQ)**: rather than keeping messages in decline in the primary SQS queue, once the specified number of retries are met, the message will get transferred to that dead-letter queue.
+- **Dead-letter queue (DLQ)**: messages that can't be delivered to suybsribers succesfully are place in the dead letter que, this maye be due client errors or server erros. In the dead letter que they can be further inspected or reprocessed. 
 - **pub/sub messaging**: Publish/subscribe messaging, or pub/sub messaging, is a form of asynchronous service-to-service communication used in serverless and microservices architectures. This type of messaging is used for streaming analytics and data integration pipelines to consume and distribute data.
 
 
