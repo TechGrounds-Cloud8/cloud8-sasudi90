@@ -97,10 +97,32 @@ AWS Personal Health Dashboard provides alerts and remediation guidance when AWS 
 - **ITIL processes**
 - **ITSM tools**: IT Service Management (ITSM) tools such as the ServiceNow platform
 
-Beste practice remarks: 
+Beste practice remarks IAM: 
 
-1. AWS recommends that you create individual IAM users rather than sharing IAM user accounts.
+Lock away the AWS root user access keys.
 
-For extra security, AWS recommends that you require multi-factor authentication (MFA) for all users in your account. For privileged IAM users who are allowed to access sensitive resources or API operations, AWS recommend using U2F or hardware MFA devices.
+Create individual IAM users.
 
+Use AWS defined policies to assign permissions whenever possible.
 
+Use groups to assign permissions to IAM users.
+
+Grant least privilege.
+
+Use access levels to review IAM permissions.
+
+Configure a strong password policy for users.
+
+Enable MFA.
+
+Use roles for applications that run on AWS EC2 instances.
+
+Delegate by using roles instead of sharing credentials.
+
+Rotate credentials regularly.
+
+Remove unnecessary credentials.
+
+Use policy conditions for extra security.
+
+Monitor activity in your AWS account.
