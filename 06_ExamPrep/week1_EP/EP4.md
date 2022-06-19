@@ -1,3 +1,3 @@
-AWS Concierge: Included as part of the Enterprise Support plan, the Support Concierge Team are AWS billing and account experts that specialize in working with enterprise accounts.
+- **AWS Concierge**: Included as part of the Enterprise Support plan, the Support Concierge Team are AWS billing and account experts that specialize in working with enterprise accounts.
 
-AWS Service Catalog:
+- **AWS Service Catalog**: AWS Service Catalog allows IT administrators to create, manage, and distribute catalogs of approved products to end users, who can then access the products they need in a personalized portal. Administrators can control which users have access to each product to enforce compliance with organizational business policies. Administrators can also setup adopted roles so that end users only require IAM access to AWS Service Catalog in order to deploy approved resources.
