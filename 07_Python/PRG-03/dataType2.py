@@ -1,6 +1,3 @@
-from unicodedata import name
-
-
 name = input("enter first name: ")
 age = input("enter your age: ")
 maleOrFemale = input("are you male?")

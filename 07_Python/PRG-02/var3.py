@@ -1,6 +1,3 @@
-from re import X
-
-
 x = "Sera"
 print("First value is: ", x)
 

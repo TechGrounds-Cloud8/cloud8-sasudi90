@@ -1,3 +1,5 @@
+
+# create a dictionary with key : value
 myDictionary = {
     "First Name": "Aurèl",
     "Last Name": "Sudiarto",
@@ -5,5 +7,6 @@ myDictionary = {
     "Bank Character": "Ulrich the Unshaved"
 }
 
+#use for loop to print the dictionary
 for key in myDictionary:
-    print(key,": ", myDictionary[key])
+    print(key,":", myDictionary[key])

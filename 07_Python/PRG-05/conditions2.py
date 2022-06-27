@@ -1,15 +1,17 @@
-y = 0
-hundred = True 
+x = 0
 
-while hundred:
-    x = input("Please input a number: ")
-    y = int(x)
+#keep running function until x = 100 else break out of function
+while x != 100: 
+    try:
+        x = int(input("Please input a number: "))
     
-    if y == 100:
-        print(y, "is a nice number indeed.")
-        hundred = False
-        break
-    elif y < 100:
-        print(y, "is a pretty low number")
-    else:
-        print("Wow,", y, "is a big number!")
+        if x > 100:
+            print("Wow,", x, "is a big number!")
+        elif x < 100:
+            print(x, "is a pretty low number")
+        else:
+            print(x, "is a nice number indeed.")
+            break
+    except:
+        #if input isn't an integer
+        print("No number m8 :(")
