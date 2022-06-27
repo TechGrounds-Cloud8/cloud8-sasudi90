@@ -1,5 +1,4 @@
 myList = [9, 80, 16, 67, 35]
-x = 0
 # len() = aantal objecten in array list
 z = (len(myList))
 

@@ -1,11 +1,11 @@
-def myFunction():
-    print("First part of exercise:")
+#create function and call it, second function is with unser input
+def myFunction(): 
     print("Hello, world!")
 
-def mySecondFunction():
-    print("Second part of exercise: ")
-    name = input("Input string here: ")
+name = input("Input string here: ") 
+
+def mySecondFunction(name):
     print("Hello,", name,"!")
 
 myFunction()
-mySecondFunction()
+mySecondFunction(name)
