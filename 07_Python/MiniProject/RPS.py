@@ -48,8 +48,7 @@ comp_move = get_comp_move()
 player_score = 0
 comp_score = 0
 
-#player_name = input('Please enter your name: ')
-player_name = "Jan"
+player_name = input('Please enter your name: ')
 print('THINK FAST: (rock, paper, scissors)')
 
 while round < 3 and player_score < 2 and comp_score < 2:
