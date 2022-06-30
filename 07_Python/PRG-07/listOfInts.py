@@ -10,4 +10,4 @@ for x in range(z):
     else: 
         #print("Number stored in myList[",x,"] plus number stored in myList[", x+1,"]")
         print(myList[x] + myList[x+1])
-        x =+ 1
+        
