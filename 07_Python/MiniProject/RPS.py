@@ -62,10 +62,10 @@ while round < 3 and player_score < 2 and comp_score < 2:
         print_move(comp_move, 'Computer')
 
         result = who_wins(player_move, comp_move)
-        print('Result: ' + result)
+        print('Result: You ' + result)
         
         player_score, comp_score = scoreboard(player_score, comp_score)
-        print("Scoreboard: ", player_name, " ", player_score, ": Computer: ", comp_score) 
+        print("Scoreboard: ", player_name, "-", player_score, ": Computer -", comp_score) 
 
         round += 1
         
