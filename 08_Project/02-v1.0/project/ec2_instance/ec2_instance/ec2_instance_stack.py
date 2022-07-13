@@ -23,7 +23,10 @@ class Ec2InstanceStack(Stack):
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
-        # The code that defines your stack goes here
+        #################################
+        ############# VPC's #############
+        #################################
+
         vpc1 = ec2.Vpc(self, "Application Production Server",
         cidr="10.10.10.0/24",
         max_azs=2,
@@ -48,7 +51,10 @@ class Ec2InstanceStack(Stack):
             )]
         )
 
-        # create a new security group
+        #################################
+        ######### SG wWebserver #########
+        #################################
+
         app_prod_SG = ec2.SecurityGroup(
             self,
             "SG_allow_HTTP_HTTPS",
@@ -69,7 +75,10 @@ class Ec2InstanceStack(Stack):
             connection=ec2.Port.tcp(443)
         )
 
-        #create instance for webserver to run with app_prod_SG
+        #################################
+        ###### Webserver Instance #######
+        #################################
+
         instance_web = ec2.Instance(
             self,
             "web instance_web",
@@ -81,7 +90,10 @@ class Ec2InstanceStack(Stack):
             vpc=vpc1
         )
         
-        #NACL
+        #################################
+        ######## NACL Webserver #########
+        #################################
+
         network_acl = ec2.NetworkAcl(
             self,
             "Web_NACL",
@@ -127,14 +139,14 @@ class Ec2InstanceStack(Stack):
             rule_action=ec2.Action.ALLOW
         )
 
-        # network_acl.add_entry(
-        #     "Inbound: Ephemeral ports",
-        #     cidr=ec2.AclCidr.any_ipv4(),
-        #     rule_number=140,
-        #     traffic=ec2.AclTraffic.tcp_port_range(1024, 65535),
-        #     direction=ec2.TrafficDirection.INGRESS,
-        #     rule_action=ec2.Action.ALLOW
-        # )
+        network_acl.add_entry(
+            "Inbound: Ephemeral ports",
+            cidr=ec2.AclCidr.any_ipv4(),
+            rule_number=140,
+            traffic=ec2.AclTraffic.tcp_port_range(1024, 65535),
+            direction=ec2.TrafficDirection.INGRESS,
+            rule_action=ec2.Action.ALLOW
+        )
 
         network_acl.add_entry(
             "Outbound: Ephemeral ports to anywhere",
@@ -145,14 +157,10 @@ class Ec2InstanceStack(Stack):
             rule_action=ec2.Action.ALLOW
         )
 
-        # open port 80 for instance 
-        instance_web.connections.allow_from_any_ipv4(
-            ec2.Port.tcp(80)
-        )
-        
-        CfnOutput(self, "Output",
-            value=instance_web.instance_public_ip)
-        
+        #################################
+        ####### Management server #######
+        #################################
+
         instance_mngmt= ec2.Instance(
             self,
             "mngmnt instance_web",
@@ -162,6 +170,10 @@ class Ec2InstanceStack(Stack):
             vpc=vpc2
         )
 
+        #################################
+        ########## VPC Peering ##########
+        #################################
+
         #create vpc peering
         cfn_vPCPeering_connection = ec2.CfnVPCPeeringConnection(
             self, 
@@ -170,7 +182,10 @@ class Ec2InstanceStack(Stack):
             vpc_id=vpc1.vpc_id,
         )
 
-        #create s3 bucket
+        #################################
+        ########### S3 Bucket ###########
+        #################################
+
         bucket = s3.Bucket(
             self, 
             "postdeploybucketau",
