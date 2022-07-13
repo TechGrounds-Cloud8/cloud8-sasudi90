@@ -81,51 +81,69 @@ class Ec2InstanceStack(Stack):
             vpc=vpc1
         )
         
-        # #NACL
-        # network_acl = ec2.NetworkAcl(
-        #     self,
-        #     "Web_NACL",
-        #     vpc=vpc1,
-        #     subnet_selection=ec2.SubnetSelection(
-        #         subnet_type=ec2.SubnetType.PUBLIC
-        #     )
-        # )
+        #NACL
+        network_acl = ec2.NetworkAcl(
+            self,
+            "Web_NACL",
+            vpc=vpc1,
+            subnet_selection=ec2.SubnetSelection(
+                subnet_type=ec2.SubnetType.PUBLIC
+            )
+        )      
+
+        network_acl.add_entry(
+            id="Inbound: HTTP from anywhere",
+            cidr=ec2.AclCidr.any_ipv4(),
+            rule_number=100,
+            traffic=ec2.AclTraffic.tcp_port(80),
+            direction=ec2.TrafficDirection.INGRESS,
+            rule_action=ec2.Action.ALLOW
+        )
+
+        network_acl.add_entry(
+            "Outbound: HTTP to anywhere",
+            cidr=ec2.AclCidr.any_ipv4(),
+            rule_number=100,
+            traffic=ec2.AclTraffic.tcp_port(80),
+            direction=ec2.TrafficDirection.EGRESS,
+            rule_action=ec2.Action.ALLOW
+        )
+
+        network_acl.add_entry(
+            "Inbound: HTTPS from anywhere",
+            cidr=ec2.AclCidr.any_ipv4(),
+            rule_number=110,
+            traffic=ec2.AclTraffic.tcp_port(443),
+            direction=ec2.TrafficDirection.INGRESS,
+            rule_action=ec2.Action.ALLOW
+        )
+
+        network_acl.add_entry(
+            "Outbound: HTTPS to anywhere",
+            cidr=ec2.AclCidr.any_ipv4(),
+            rule_number=110,
+            traffic=ec2.AclTraffic.tcp_port(443),
+            direction=ec2.TrafficDirection.EGRESS,
+            rule_action=ec2.Action.ALLOW
+        )
 
         # network_acl.add_entry(
-        #     id="Inbound: HTTP from anywhere",
+        #     "Inbound: Ephemeral ports",
         #     cidr=ec2.AclCidr.any_ipv4(),
-        #     rule_number=([100]),
-        #     traffic=ec2.AclTraffic.tcp_port(80),
+        #     rule_number=140,
+        #     traffic=ec2.AclTraffic.tcp_port_range(1024, 65535),
         #     direction=ec2.TrafficDirection.INGRESS,
         #     rule_action=ec2.Action.ALLOW
         # )
 
-        # network_acl.add_entry(
-        #     "Outbound: HTTP to anywhere",
-        #     cidr=ec2.AclCidr.any_ipv4(),
-        #     rule_number=100,
-        #     traffic=ec2.AclTraffic.tcp_port(80),
-        #     direction=ec2.TrafficDirection.EGRESS,
-        #     rule_action=ec2.Action.ALLOW
-        # )
-
-        # network_acl.add_entry(
-        #     "Inbound: HTTPS from anywhere",
-        #     cidr=ec2.AclCidr.any_ipv4(),
-        #     rule_number=110,
-        #     traffic=ec2.AclTraffic.tcp_port(443),
-        #     direction=ec2.TrafficDirection.INGRESS,
-        #     rule_action=ec2.Action.ALLOW
-        # )
-
-        # network_acl.add_entry(
-        #     "Outbound: HTTPS to anywhere",
-        #     cidr=ec2.AclCidr.any_ipv4(),
-        #     rule_number=110,
-        #     traffic=ec2.AclTraffic.tcp_port(443),
-        #     direction=ec2.TrafficDirection.EGRESS,
-        #     rule_action=ec2.Action.ALLOW
-        # )
+        network_acl.add_entry(
+            "Outbound: Ephemeral ports to anywhere",
+            cidr=ec2.AclCidr.any_ipv4(),
+            rule_number=140,
+            traffic=ec2.AclTraffic.tcp_port_range(1024, 65535),
+            direction=ec2.TrafficDirection.EGRESS,
+            rule_action=ec2.Action.ALLOW
+        )
 
         # open port 80 for instance 
         instance_web.connections.allow_from_any_ipv4(
@@ -173,4 +191,6 @@ class Ec2InstanceStack(Stack):
             self,
             bucket="postdeploybucketau", 
             bucket_key="user_data_web.sh",         
-        )"""
+        )
+
+        user_data=instance_web.user_data.add_execute_file_command(file=instance_web_user_data)"""
