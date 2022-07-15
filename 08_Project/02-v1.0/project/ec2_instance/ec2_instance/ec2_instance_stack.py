@@ -15,8 +15,8 @@ instanceName2="managementserver"
 instanceType= "t2.micro"
 amiName="amzn2-ami-hvm-2.0.20200520.1-x86_64-gp2"
 
-with open("./postdeploymentscripts/user_data_web.sh", encoding="utf-8") as f:
-    user_data = f.read()
+"""with open("./postdeploymentscripts/user_data_web.sh", encoding="utf-8") as f:
+    user_data = f.read()"""
 
 class Ec2InstanceStack(Stack):
 
@@ -86,7 +86,7 @@ class Ec2InstanceStack(Stack):
             instance_type=ec2.InstanceType(instanceType),
             machine_image=ec2.MachineImage().lookup(name=amiName),
             security_group=app_prod_SG,
-            user_data=ec2.UserData.custom(user_data),
+            #user_data=ec2.UserData.custom(user_data),
             vpc=vpc1
         )
         
@@ -191,21 +191,22 @@ class Ec2InstanceStack(Stack):
             "postdeploybucketau",
             bucket_name="postdeploybucketau",
             removal_policy=aws_cdk.RemovalPolicy.DESTROY,
+            encryption=s3.BucketEncryption.S3_MANAGED,
             auto_delete_objects=True,
+            public_read_access=True,
         )
 
         #put the scripts in dir postdeploymentscripts into s3 bucket
-        s3deploy.BucketDeployment(
+        postdeploytest = s3deploy.BucketDeployment(
             self,
             "postdeploytest",
             sources=[s3deploy.Source.asset('./postdeploymentscripts')],
             destination_bucket=bucket,
         )
         
-        """instance_web_user_data=ec2.UserData.add_s3_download_command(
-            self,
-            bucket="postdeploybucketau", 
+        instance_web_user_data=instance_web.user_data.add_s3_download_command(
+            bucket=bucket, 
             bucket_key="user_data_web.sh",         
         )
 
-        user_data=instance_web.user_data.add_execute_file_command(file=instance_web_user_data)"""
+        instance_web.user_data.add_execute_file_command(file_path=instance_web_user_data)
