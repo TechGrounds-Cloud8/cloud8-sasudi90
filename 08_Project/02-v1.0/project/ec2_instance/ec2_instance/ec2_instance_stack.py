@@ -9,12 +9,6 @@ from aws_cdk import (
     aws_s3_assets as Asset
 )
 
-
-instanceName1="webserver"
-instanceName2="managementserver"
-instanceType= "t2.micro"
-amiName="amzn2-ami-hvm-2.0.20200520.1-x86_64-gp2"
-
 """with open("./postdeploymentscripts/user_data_web.sh", encoding="utf-8") as f:
     user_data = f.read()"""
 
@@ -31,6 +25,7 @@ class Ec2InstanceStack(Stack):
         cidr="10.10.10.0/24",
         max_azs=2,
         nat_gateways=0,
+        
         subnet_configuration = [
             ec2.SubnetConfiguration(
                 name="app-prd-vpc",
@@ -52,12 +47,12 @@ class Ec2InstanceStack(Stack):
         )
 
         #################################
-        ######### SG wWebserver #########
+        ######### SG Webserver #########
         #################################
 
         app_prod_SG = ec2.SecurityGroup(
             self,
-            "SG_allow_HTTP_HTTPS",
+            "SG_allow_HTTP_HTTPS_SSH",
             vpc=vpc1,
             allow_all_outbound=True,
         )
@@ -75,6 +70,12 @@ class Ec2InstanceStack(Stack):
             connection=ec2.Port.tcp(443)
         )
 
+        app_prod_SG.add_ingress_rule(
+            peer=ec2.Peer.any_ipv4(),
+            description="Allow SSH", 
+            connection=ec2.Port.tcp(22)
+        )
+
         #################################
         ###### Webserver Instance #######
         #################################
@@ -82,10 +83,11 @@ class Ec2InstanceStack(Stack):
         instance_web = ec2.Instance(
             self,
             "web instance_web",
-            instance_name=instanceName1,
-            instance_type=ec2.InstanceType(instanceType),
-            machine_image=ec2.MachineImage().lookup(name=amiName),
+            instance_name="webserver",
+            instance_type=ec2.InstanceType("t2.micro"),
+            machine_image=ec2.MachineImage().lookup(name="amzn2-ami-hvm-2.0.20200520.1-x86_64-gp2"),
             security_group=app_prod_SG,
+            key_name="project_key_pair",
             #user_data=ec2.UserData.custom(user_data),
             vpc=vpc1
         )
@@ -140,7 +142,7 @@ class Ec2InstanceStack(Stack):
         )
 
         network_acl.add_entry(
-            "Inbound: Ephemeral ports",
+            "Inbound: Ephemeral ports from anywhere",
             cidr=ec2.AclCidr.any_ipv4(),
             rule_number=140,
             traffic=ec2.AclTraffic.tcp_port_range(1024, 65535),
@@ -158,29 +160,103 @@ class Ec2InstanceStack(Stack):
         )
 
         #################################
+        ######### SG MNMGTserver #########
+        #################################
+
+        admin_SG = ec2.SecurityGroup(
+            self,
+            "SG_allow_SSH",
+            vpc=vpc2,
+            allow_all_outbound=True,
+        )
+
+        admin_SG.add_ingress_rule(
+            peer=ec2.Peer.any_ipv4(),
+            description="Allow SSH", 
+            connection=ec2.Port.tcp(22)
+        )
+
+        #################################
         ####### Management server #######
         #################################
 
         instance_mngmt= ec2.Instance(
             self,
-            "mngmnt instance_web",
-            instance_name=instanceName2,
-            instance_type=ec2.InstanceType(instanceType),
-            machine_image=ec2.MachineImage().lookup(name=amiName),
+            "admin instance",
+            instance_name="adminserver",
+            instance_type=ec2.InstanceType("t2.micro"),
+            machine_image=ec2.MachineImage().lookup(name="amzn2-ami-hvm-2.0.20200520.1-x86_64-gp2"),
+            security_group=admin_SG,
+            key_name="project_key_pair",
             vpc=vpc2
         )
+
+        #################################
+        ######## NACL Webserver #########
+        #################################
+
+        # network_acl_admin = ec2.NetworkAcl(
+        #     self,
+        #     "Admin_NACL",
+        #     vpc=vpc1,
+        #     subnet_selection=ec2.SubnetSelection(
+        #         subnet_type=ec2.SubnetType.PUBLIC
+        #     )
+        # )      
+
+        # network_acl_admin.add_entry(
+        #     id="Inbound: SSH from anywhere",
+        #     cidr=ec2.AclCidr.any_ipv4(),
+        #     rule_number=100,
+        #     traffic=ec2.AclTraffic.tcp_port(22),
+        #     direction=ec2.TrafficDirection.INGRESS,
+        #     rule_action=ec2.Action.ALLOW
+        # )
+
+        # network_acl_admin.add_entry(
+        #     "Inbound: Ephemeral ports from anywhere",
+        #     cidr=ec2.AclCidr.any_ipv4(),
+        #     rule_number=140,
+        #     traffic=ec2.AclTraffic.tcp_port_range(1024, 65535),
+        #     direction=ec2.TrafficDirection.INGRESS,
+        #     rule_action=ec2.Action.ALLOW
+        # )
+
+        # network_acl_admin.add_entry(
+        #     "Outbound: Ephemeral ports to anywhere",
+        #     cidr=ec2.AclCidr.any_ipv4(),
+        #     rule_number=140,
+        #     traffic=ec2.AclTraffic.tcp_port_range(1024, 65535),
+        #     direction=ec2.TrafficDirection.EGRESS,
+        #     rule_action=ec2.Action.ALLOW
+        # )
 
         #################################
         ########## VPC Peering ##########
         #################################
 
-        #create vpc peering
-        cfn_vPCPeering_connection = ec2.CfnVPCPeeringConnection(
+        vPCPeering_connection = ec2.CfnVPCPeeringConnection(
             self, 
             "PeerConnection",
             peer_vpc_id=vpc2.vpc_id,
             vpc_id=vpc1.vpc_id,
         )
+        
+        # cfn_route1=ec2.CfnRoute(
+        #     self,
+        #     "RouteVPC1", 
+        #     route_table_id="entry_vpc1-2",
+        #     destination_cidr_block="10.20.20.0/24",
+        #     vpc_peering_connection_id=vPCPeering_connection,
+        #     )
+
+        # cfn_route2=vpc1.public_subnet ec2.CfnRoute(
+        #     self,
+        #     "RouteVPC2", 
+        #     route_table_id="entry_vpc2",
+        #     destination_cidr_block="10.10.10.0/24",
+        #     vpc_peering_connection_id=vPCPeering_connection.ref,
+        #    )
 
         #################################
         ########### S3 Bucket ###########
@@ -193,7 +269,7 @@ class Ec2InstanceStack(Stack):
             removal_policy=aws_cdk.RemovalPolicy.DESTROY,
             encryption=s3.BucketEncryption.S3_MANAGED,
             auto_delete_objects=True,
-            public_read_access=True,
+            public_read_access=False,
         )
 
         #put the scripts in dir postdeploymentscripts into s3 bucket
