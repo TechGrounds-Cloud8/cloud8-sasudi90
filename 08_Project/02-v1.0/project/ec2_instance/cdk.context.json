@@ -29,5 +29,6 @@
     "eu-central-1a",
     "eu-central-1b",
     "eu-central-1c"
-  ]
+  ],
+  "ami:account=517734281713:filters.image-type.0=machine:filters.name.0=amzn2-ami-kernel-5.10-hvm-2.0.20220606.1-x86_64-gp2:filters.state.0=available:region=eu-central-1": "ami-0a1ee2fb28fe05df3"
 }

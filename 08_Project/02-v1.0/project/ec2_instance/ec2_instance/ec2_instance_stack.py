@@ -21,11 +21,10 @@ class Ec2InstanceStack(Stack):
         ############# VPC's #############
         #################################
 
-        vpc1 = ec2.Vpc(self, "Application Production Server",
+        vpc_web = ec2.Vpc(self, "Application Production Server",
         cidr="10.10.10.0/24",
         max_azs=2,
         nat_gateways=0,
-        
         subnet_configuration = [
             ec2.SubnetConfiguration(
                 name="app-prd-vpc",
@@ -34,7 +33,7 @@ class Ec2InstanceStack(Stack):
             )]
         )
         
-        vpc2 = ec2.Vpc(self, "Management Production Server",
+        vpc_admin = ec2.Vpc(self, "Management Production Server",
         cidr="10.20.20.0/24",
         max_azs=2,
         nat_gateways=0,
@@ -53,7 +52,7 @@ class Ec2InstanceStack(Stack):
         app_prod_SG = ec2.SecurityGroup(
             self,
             "SG_allow_HTTP_HTTPS_SSH",
-            vpc=vpc1,
+            vpc=vpc_web,
             allow_all_outbound=True,
         )
 
@@ -84,28 +83,28 @@ class Ec2InstanceStack(Stack):
             self,
             "web instance_web",
             instance_name="webserver",
-            instance_type=ec2.InstanceType("t2.micro"),
-            machine_image=ec2.MachineImage().lookup(name="amzn2-ami-hvm-2.0.20200520.1-x86_64-gp2"),
+            instance_type=ec2.InstanceType("t3a.nano"),
+            machine_image=ec2.MachineImage().lookup(name="amzn2-ami-kernel-5.10-hvm-2.0.20220606.1-x86_64-gp2"),
             security_group=app_prod_SG,
             key_name="project_key_pair",
             #user_data=ec2.UserData.custom(user_data),
-            vpc=vpc1
+            vpc=vpc_web
         )
         
         #################################
         ######## NACL Webserver #########
         #################################
 
-        network_acl = ec2.NetworkAcl(
+        web_nacl = ec2.NetworkAcl(
             self,
             "Web_NACL",
-            vpc=vpc1,
+            vpc=vpc_web,
             subnet_selection=ec2.SubnetSelection(
                 subnet_type=ec2.SubnetType.PUBLIC
             )
         )      
 
-        network_acl.add_entry(
+        web_nacl.add_entry(
             id="Inbound: HTTP from anywhere",
             cidr=ec2.AclCidr.any_ipv4(),
             rule_number=100,
@@ -114,7 +113,7 @@ class Ec2InstanceStack(Stack):
             rule_action=ec2.Action.ALLOW
         )
 
-        network_acl.add_entry(
+        web_nacl.add_entry(
             "Outbound: HTTP to anywhere",
             cidr=ec2.AclCidr.any_ipv4(),
             rule_number=100,
@@ -123,7 +122,7 @@ class Ec2InstanceStack(Stack):
             rule_action=ec2.Action.ALLOW
         )
 
-        network_acl.add_entry(
+        web_nacl.add_entry(
             "Inbound: HTTPS from anywhere",
             cidr=ec2.AclCidr.any_ipv4(),
             rule_number=110,
@@ -132,7 +131,7 @@ class Ec2InstanceStack(Stack):
             rule_action=ec2.Action.ALLOW
         )
 
-        network_acl.add_entry(
+        web_nacl.add_entry(
             "Outbound: HTTPS to anywhere",
             cidr=ec2.AclCidr.any_ipv4(),
             rule_number=110,
@@ -141,7 +140,7 @@ class Ec2InstanceStack(Stack):
             rule_action=ec2.Action.ALLOW
         )
 
-        network_acl.add_entry(
+        web_nacl.add_entry(
             "Inbound: Ephemeral ports from anywhere",
             cidr=ec2.AclCidr.any_ipv4(),
             rule_number=140,
@@ -150,7 +149,7 @@ class Ec2InstanceStack(Stack):
             rule_action=ec2.Action.ALLOW
         )
 
-        network_acl.add_entry(
+        web_nacl.add_entry(
             "Outbound: Ephemeral ports to anywhere",
             cidr=ec2.AclCidr.any_ipv4(),
             rule_number=140,
@@ -166,7 +165,7 @@ class Ec2InstanceStack(Stack):
         admin_SG = ec2.SecurityGroup(
             self,
             "SG_allow_SSH",
-            vpc=vpc2,
+            vpc=vpc_admin,
             allow_all_outbound=True,
         )
 
@@ -175,20 +174,19 @@ class Ec2InstanceStack(Stack):
             description="Allow SSH", 
             connection=ec2.Port.tcp(22)
         )
-
         #################################
-        ####### Management server #######
+        ####### Admin Instance #######
         #################################
 
         instance_mngmt= ec2.Instance(
             self,
             "admin instance",
             instance_name="adminserver",
-            instance_type=ec2.InstanceType("t2.micro"),
-            machine_image=ec2.MachineImage().lookup(name="amzn2-ami-hvm-2.0.20200520.1-x86_64-gp2"),
+            instance_type=ec2.InstanceType("t3a.nano"),
+            machine_image=ec2.MachineImage().lookup(name="amzn2-ami-kernel-5.10-hvm-2.0.20220606.1-x86_64-gp2"),
             security_group=admin_SG,
             key_name="project_key_pair",
-            vpc=vpc2
+            vpc=vpc_admin
         )
 
         #################################
@@ -198,7 +196,7 @@ class Ec2InstanceStack(Stack):
         # network_acl_admin = ec2.NetworkAcl(
         #     self,
         #     "Admin_NACL",
-        #     vpc=vpc1,
+        #     vpc=vpc_web,
         #     subnet_selection=ec2.SubnetSelection(
         #         subnet_type=ec2.SubnetType.PUBLIC
         #     )
@@ -238,25 +236,27 @@ class Ec2InstanceStack(Stack):
         vPCPeering_connection = ec2.CfnVPCPeeringConnection(
             self, 
             "PeerConnection",
-            peer_vpc_id=vpc2.vpc_id,
-            vpc_id=vpc1.vpc_id,
+            peer_vpc_id=vpc_admin.vpc_id,
+            vpc_id=vpc_web.vpc_id,
         )
         
-        # cfn_route1=ec2.CfnRoute(
-        #     self,
-        #     "RouteVPC1", 
-        #     route_table_id="entry_vpc1-2",
-        #     destination_cidr_block="10.20.20.0/24",
-        #     vpc_peering_connection_id=vPCPeering_connection,
-        #     )
+        # for subnet in vpc_web.public_subnets:
+        #     ec2.CfnRoute(
+        #         self,
+        #         id=f"{subnet.subnet_id}", 
+        #         route_table_id=subnet.route_table.route_table_id,
+        #         destination_cidr_block="10.20.20.0/24",
+        #         vpc_peering_connection_id=vPCPeering_connection.ref,
+        #         )
 
-        # cfn_route2=vpc1.public_subnet ec2.CfnRoute(
-        #     self,
-        #     "RouteVPC2", 
-        #     route_table_id="entry_vpc2",
-        #     destination_cidr_block="10.10.10.0/24",
-        #     vpc_peering_connection_id=vPCPeering_connection.ref,
-        #    )
+        # for subnet in vpc_admin.public_subnets:
+        #     ec2.CfnRoute(
+        #         self,
+        #         id=f"{subnet.subnet_id}",
+        #         route_table_id=subnet.route_table.route_table_id,
+        #         destination_cidr_block="10.10.10.0/24",
+        #         vpc_peering_connection_id=vPCPeering_connection.ref,
+        #         )
 
         #################################
         ########### S3 Bucket ###########
