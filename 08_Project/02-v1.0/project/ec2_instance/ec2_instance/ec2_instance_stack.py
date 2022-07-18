@@ -91,17 +91,16 @@ class Ec2InstanceStack(Stack):
             machine_image=ec2.MachineImage().lookup(name="amzn2-ami-kernel-5.10-hvm-2.0.20220606.1-x86_64-gp2"),
             security_group=app_prod_SG,
             key_name="project_key_pair",
-            # role=iam.Role(
-            #     self, 
-            #     "WebServerRole",
-            #     assumed_by=iam.ServicePrincipal("ec2.amazonaws.com"),
-            #     description="Webserver role",
-            #     managed_policies=[iam.ManagedPolicy.from_managed_policy_name("AmazonS3ReadOnlyAccess")],
-            # ),
+            role=iam.Role(
+                self, 
+                "WebServerRole",
+                assumed_by=iam.ServicePrincipal("ec2.amazonaws.com"),
+                description="Webserver role",
+            ),
             vpc=vpc_web,
         )
         
-        # instance_web.add_to_role_policy(iam.ManagedPolicy.from_aws_managed_policy_name("AmazonS3ReadOnlyAccess"))
+        #instance_web.add_to_role_policy(iam.ManagedPolicy.from_aws_managed_policy_name("AmazonS3ReadOnlyAccess"))
 
         #################################
         ######## NACL Webserver #########
@@ -212,7 +211,7 @@ class Ec2InstanceStack(Stack):
         )
 
         #################################
-        ######## NACL Adminserver #########
+        ######## NACL Adminserver #######
         #################################
 
         network_acl_admin = ec2.NetworkAcl(
@@ -301,6 +300,8 @@ class Ec2InstanceStack(Stack):
             encryption=s3.BucketEncryption.S3_MANAGED,
             auto_delete_objects=True,
         )
+
+        bucket.grant_read(instance_web)
 
         #put the scripts in dir postdeploymentscripts into s3 bucket
         postdeploytest = s3deploy.BucketDeployment(
