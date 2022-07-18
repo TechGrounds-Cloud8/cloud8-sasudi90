@@ -298,10 +298,9 @@ class Ec2InstanceStack(Stack):
             bucket_name="postdeploybucketau",
             removal_policy=aws_cdk.RemovalPolicy.DESTROY,
             encryption=s3.BucketEncryption.S3_MANAGED,
+            enforce_ssl=True,
             auto_delete_objects=True,
         )
-
-        bucket.grant_read(instance_web)
 
         #put the scripts in dir postdeploymentscripts into s3 bucket
         postdeploytest = s3deploy.BucketDeployment(
@@ -317,3 +316,5 @@ class Ec2InstanceStack(Stack):
         )
 
         instance_web.user_data.add_execute_file_command(file_path=instance_web_user_data)
+
+        bucket.grant_read(instance_web)

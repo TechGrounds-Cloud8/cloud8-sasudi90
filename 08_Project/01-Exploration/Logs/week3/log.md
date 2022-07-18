@@ -1,14 +1,16 @@
 # Log [18-7-2022]
 
 ## One Sentence summary of the day
-A hot and steamy day, my brain is still going
+A hot and steamy day, my brain is still going strong.
 
 ## Challenges
-Come up with a solution for cFnRoute, untoken the token
+- Come up with a solution for cFnRoute, untoken the token by using node.id.
+- Make the S3 public data readable by an Web ec2instance
 
 ## Solutions
-https://bobbyhadz.com/blog/aws-cdk-cannot-use-tokens-construct-id
-And did some Canvas 
+- https://bobbyhadz.com/blog/aws-cdk-cannot-use-tokens-construct-id
+- Gave read acces to Web server instance
+- And did some Canvas 
 
 ____
 
