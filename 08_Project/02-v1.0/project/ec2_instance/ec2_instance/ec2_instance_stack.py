@@ -3,12 +3,15 @@ import aws_cdk
 from constructs import Construct
 from aws_cdk import (
     CfnOutput,
+    Duration,
     Stack,
     aws_ec2 as ec2,
     aws_s3 as s3,
     aws_s3_deployment as s3deploy,
     aws_s3_assets as Asset,
     aws_iam as iam,
+    aws_backup as backup,
+    aws_events as event,
 )
 
 my_ip="24.132.91.9/32"
@@ -318,3 +321,44 @@ class Ec2InstanceStack(Stack):
         instance_web.user_data.add_execute_file_command(file_path=instance_web_user_data)
 
         bucket.grant_read(instance_web)
+
+        #################################
+        ########### AWS Backup ##########
+        #################################
+
+        #nodig -> vault, plan , rule, selection
+        
+        back_up_vault = backup.BackupVault(
+            self, "backup_vault",
+            backup_vault_name="backup_vault",
+            removal_policy=aws_cdk.RemovalPolicy.DESTROY
+        )
+
+        backup_plan=backup.BackupPlan(
+            self, 
+            "backup_webserver",
+            backup_plan_name="backup_webserver",
+           # removal_policy=aws_cdk.RemovalPolicy.DESTROY
+        )
+
+        backup_plan.add_rule(
+            rule=backup.BackupPlanRule(
+                rule_name="daily_backup_webserver",
+                delete_after=Duration.days(7),
+                schedule_expression=event.Schedule.cron(
+                    minute="0",
+                    hour="11",
+                    month="*",
+                    week_day="*",
+                    year="*"
+                )
+            )
+        )
+
+        backup_plan.add_selection(
+            id="backup_web_selection",
+            backup_selection_name="backup_web_selection",
+            resources=[
+                backup.BackupResource.from_ec2_instance(instance_web)
+            ]
+        )

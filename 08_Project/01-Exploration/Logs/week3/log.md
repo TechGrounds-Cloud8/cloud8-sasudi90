@@ -32,7 +32,8 @@ ____
 ## Challenges
 
 ## Solutions
-
+https://dev.to/vumdao/create-aws-backup-plan-a0f
+https://crontab.guru/
 ____
 
 # Log [21-7-2022]
