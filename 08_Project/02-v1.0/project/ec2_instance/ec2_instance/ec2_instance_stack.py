@@ -327,7 +327,7 @@ class Ec2InstanceStack(Stack):
         #################################
 
         #nodig -> vault, plan , rule, selection
-        
+
         back_up_vault = backup.BackupVault(
             self, "backup_vault",
             backup_vault_name="backup_vault",
@@ -345,12 +345,10 @@ class Ec2InstanceStack(Stack):
             rule=backup.BackupPlanRule(
                 rule_name="daily_backup_webserver",
                 delete_after=Duration.days(7),
+                enable_continuous_backup=True,
                 schedule_expression=event.Schedule.cron(
                     minute="0",
                     hour="11",
-                    month="*",
-                    week_day="*",
-                    year="*"
                 )
             )
         )
