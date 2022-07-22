@@ -4,6 +4,7 @@ from constructs import Construct
 from aws_cdk import (
     CfnOutput,
     Duration,
+    RemovalPolicy,
     Stack,
     aws_ec2 as ec2,
     aws_s3 as s3,
@@ -82,6 +83,13 @@ class Ec2InstanceStack(Stack):
             connection=ec2.Port.tcp(22)
         )
 
+        app_prod_SG.add_ingress_rule(
+            peer=ec2.Peer.any_ipv4(),
+            description="Allow RDP", 
+            connection=ec2.Port.tcp(3389)
+        )
+
+
         #################################
         ###### Webserver Instance #######
         #################################
@@ -90,8 +98,9 @@ class Ec2InstanceStack(Stack):
             self,
             "web instance_web",
             instance_name="webserver",
-            instance_type=ec2.InstanceType("t3a.nano"),
-            machine_image=ec2.MachineImage().lookup(name="amzn2-ami-kernel-5.10-hvm-2.0.20220606.1-x86_64-gp2"),
+            instance_type=ec2.InstanceType("t3.nano"),
+            machine_image=ec2.MachineImage.latest_amazon_linux(
+                generation=ec2.AmazonLinuxGeneration.AMAZON_LINUX_2),
             security_group=app_prod_SG,
             key_name="project_key_pair",
             role=iam.Role(
@@ -100,10 +109,15 @@ class Ec2InstanceStack(Stack):
                 assumed_by=iam.ServicePrincipal("ec2.amazonaws.com"),
                 description="Webserver role",
             ),
+            block_devices=[ec2.BlockDevice(
+                device_name="/dev/xvda",
+                volume=ec2.BlockDeviceVolume.ebs(
+                    volume_size=8,
+                    encrypted=True,
+                    delete_on_termination=True)
+            )],
             vpc=vpc_web,
         )
-        
-        #instance_web.add_to_role_policy(iam.ManagedPolicy.from_aws_managed_policy_name("AmazonS3ReadOnlyAccess"))
 
         #################################
         ######## NACL Webserver #########
@@ -173,14 +187,32 @@ class Ec2InstanceStack(Stack):
         )
 
         web_nacl.add_entry(
-            id="Inbound: SSH from my IP",
+            id="Inbound: SSH from anywhere",
             cidr=ec2.AclCidr.any_ipv4(),
             rule_number=150,
             traffic=ec2.AclTraffic.tcp_port(22),
             direction=ec2.TrafficDirection.INGRESS,
             rule_action=ec2.Action.ALLOW
         )
+
+        web_nacl.add_entry(
+            id="Outbound: SSH to anywhere",
+            cidr=ec2.AclCidr.any_ipv4(),
+            rule_number=150,
+            traffic=ec2.AclTraffic.tcp_port(22),
+            direction=ec2.TrafficDirection.EGRESS,
+            rule_action=ec2.Action.ALLOW
+        )
         
+        web_nacl.add_entry(
+            id="Inbound: RDP from anywhere",
+            cidr=ec2.AclCidr.any_ipv4(),
+            rule_number=160,
+            traffic=ec2.AclTraffic.tcp_port(3389),
+            direction=ec2.TrafficDirection.INGRESS,
+            rule_action=ec2.Action.ALLOW
+        )
+
         #################################
         ######### SG MNMGTserver #########
         #################################
@@ -198,6 +230,12 @@ class Ec2InstanceStack(Stack):
             connection=ec2.Port.tcp(22)
         )
 
+        admin_SG.add_ingress_rule(
+            peer=ec2.Peer.ipv4(my_ip),
+            description="Allow RDP",
+            connection=ec2.Port.tcp(3389)
+        )
+
         #################################
         ####### Admin Instance #######
         #################################
@@ -206,10 +244,17 @@ class Ec2InstanceStack(Stack):
             self,
             "admin instance",
             instance_name="adminserver",
-            instance_type=ec2.InstanceType("t3a.nano"),
-            machine_image=ec2.MachineImage().lookup(name="amzn2-ami-kernel-5.10-hvm-2.0.20220606.1-x86_64-gp2"),
+            instance_type=ec2.InstanceType("t2.nano"),
+            machine_image=ec2.MachineImage.latest_windows(ec2.WindowsVersion.WINDOWS_SERVER_2019_ENGLISH_FULL_BASE),
             security_group=admin_SG,
             key_name="project_key_pair",
+            block_devices=[ec2.BlockDevice(
+                device_name="/dev/sda1",
+                volume=ec2.BlockDeviceVolume.ebs(
+                    volume_size=30,
+                    encrypted=True,
+                    delete_on_termination=True)
+            )],
             vpc=vpc_admin
         )
 
@@ -217,7 +262,7 @@ class Ec2InstanceStack(Stack):
         ######## NACL Adminserver #######
         #################################
 
-        network_acl_admin = ec2.NetworkAcl(
+        admin_nacl=ec2.NetworkAcl(
             self,
             "Admin_NACL",
             vpc=vpc_admin,
@@ -226,7 +271,7 @@ class Ec2InstanceStack(Stack):
             )
         )      
 
-        network_acl_admin.add_entry(
+        admin_nacl.add_entry(
             id="Inbound: SSH from my IP",
             cidr=ec2.AclCidr.ipv4(my_ip),
             rule_number=200,
@@ -235,7 +280,7 @@ class Ec2InstanceStack(Stack):
             rule_action=ec2.Action.ALLOW
         )
 
-        network_acl_admin.add_entry(
+        admin_nacl.add_entry(
             id="Outbound: SSH to anywhere",
             cidr=ec2.AclCidr.any_ipv4(),
             rule_number=200,
@@ -244,7 +289,7 @@ class Ec2InstanceStack(Stack):
             rule_action=ec2.Action.ALLOW
         )
 
-        network_acl_admin.add_entry(
+        admin_nacl.add_entry(
             "Inbound: Ephemeral ports from anywhere",
             cidr=ec2.AclCidr.any_ipv4(),
             rule_number=210,
@@ -253,14 +298,33 @@ class Ec2InstanceStack(Stack):
             rule_action=ec2.Action.ALLOW
         )
 
-        network_acl_admin.add_entry(
+        admin_nacl.add_entry(
             "Outbound: Ephemeral ports to anywhere",
             cidr=ec2.AclCidr.any_ipv4(),
-            rule_number=210,
+            rule_number=220,
             traffic=ec2.AclTraffic.tcp_port_range(1024, 65535),
             direction=ec2.TrafficDirection.EGRESS,
             rule_action=ec2.Action.ALLOW
         )
+
+        admin_nacl.add_entry(
+            "Inbound: RDP from anywhere",
+            cidr=ec2.AclCidr.any_ipv4(),
+            rule_number=230,
+            traffic=ec2.AclTraffic.tcp_port(3389),
+            direction=ec2.TrafficDirection.INGRESS,
+            rule_action=ec2.Action.ALLOW
+        )
+
+        admin_nacl.add_entry(
+            "Outbound: RDP to anywhere",
+            cidr=ec2.AclCidr.any_ipv4(),
+            rule_number=240,
+            traffic=ec2.AclTraffic.tcp_port(3389),
+            direction=ec2.TrafficDirection.EGRESS,
+            rule_action=ec2.Action.ALLOW
+        )
+
 
         #################################
         ########## VPC Peering ##########
@@ -320,6 +384,17 @@ class Ec2InstanceStack(Stack):
 
         instance_web.user_data.add_execute_file_command(file_path=instance_web_user_data)
 
+        instance_web.user_data.add_s3_download_command(
+            bucket=bucket, 
+            bucket_key="demo.zip",
+            local_file="/tmp/demo.zip",         
+        )
+
+        #-R recursive, give 775 permission to everything under var dir
+        instance_web.user_data.add_commands("chmod 775 -R /var/www/html/")
+        #destination
+        instance_web.user_data.add_commands("unzip /tmp/demo.zip -d /var/www/html/")
+
         bucket.grant_read(instance_web)
 
         #################################
@@ -338,8 +413,10 @@ class Ec2InstanceStack(Stack):
             self, 
             "backup_webserver",
             backup_plan_name="backup_webserver",
-           # removal_policy=aws_cdk.RemovalPolicy.DESTROY
+            backup_vault=back_up_vault,        
         )
+
+        backup_plan.apply_removal_policy(RemovalPolicy.DESTROY)
 
         backup_plan.add_rule(
             rule=backup.BackupPlanRule(
