@@ -32,7 +32,7 @@ class Ec2InstanceStack(Stack):
         cidr="10.10.10.0/24",
         max_azs=2,
         nat_gateways=0,
-        subnet_configuration = [
+        subnet_configuration=[
             ec2.SubnetConfiguration(
                 name="app-prd-vpc",
                 subnet_type=ec2.SubnetType.PUBLIC,
@@ -442,14 +442,6 @@ class Ec2InstanceStack(Stack):
             self, "backup_vault",
             backup_vault_name="backup_vault",
             removal_policy=aws_cdk.RemovalPolicy.DESTROY,
-            access_policy=iam.PolicyDocument(
-                statements=[iam.PolicyStatement(
-                    principals=[iam.AnyPrincipal()],
-                    actions=["backup:DeleteRecoveryPoint"],
-                    resources=["*"],
-                ) 
-                ]
-            )
         )
 
         backup_plan=backup.BackupPlan(
