@@ -17,8 +17,6 @@ from aws_cdk import (
 
 my_ip="24.132.91.9/32"
 
-"""with open("./postdeploymentscripts/user_data_web.sh", encoding="utf-8") as f:
-    user_data = f.read()"""
 
 class Ec2InstanceStack(Stack):
 
@@ -236,6 +234,18 @@ class Ec2InstanceStack(Stack):
             connection=ec2.Port.tcp(3389)
         )
 
+        admin_SG.add_ingress_rule(
+            peer=ec2.Peer.any_ipv4(),
+            description="Allow HTTP", 
+            connection=ec2.Port.tcp(80)
+        )
+
+        admin_SG.add_ingress_rule(
+            peer=ec2.Peer.any_ipv4(),
+            description="Allow HTTPS", 
+            connection=ec2.Port.tcp(443)
+        )
+
         #################################
         ####### Admin Instance #######
         #################################
@@ -301,7 +311,7 @@ class Ec2InstanceStack(Stack):
         admin_nacl.add_entry(
             "Outbound: Ephemeral ports to anywhere",
             cidr=ec2.AclCidr.any_ipv4(),
-            rule_number=220,
+            rule_number=210,
             traffic=ec2.AclTraffic.tcp_port_range(1024, 65535),
             direction=ec2.TrafficDirection.EGRESS,
             rule_action=ec2.Action.ALLOW
@@ -319,8 +329,44 @@ class Ec2InstanceStack(Stack):
         admin_nacl.add_entry(
             "Outbound: RDP to anywhere",
             cidr=ec2.AclCidr.any_ipv4(),
-            rule_number=240,
+            rule_number=230,
             traffic=ec2.AclTraffic.tcp_port(3389),
+            direction=ec2.TrafficDirection.EGRESS,
+            rule_action=ec2.Action.ALLOW
+        )
+
+        admin_nacl.add_entry(
+            "Inbound: HTTP from anywhere",
+            cidr=ec2.AclCidr.any_ipv4(),
+            rule_number=250,
+            traffic=ec2.AclTraffic.tcp_port(80),
+            direction=ec2.TrafficDirection.INGRESS,
+            rule_action=ec2.Action.ALLOW
+        )
+
+        admin_nacl.add_entry(
+            "Outbound: HTTP to anywhere",
+            cidr=ec2.AclCidr.any_ipv4(),
+            rule_number=250,
+            traffic=ec2.AclTraffic.tcp_port(80),
+            direction=ec2.TrafficDirection.EGRESS,
+            rule_action=ec2.Action.ALLOW
+        )
+
+        admin_nacl.add_entry(
+            "Inbound: HTTPS from anywhere",
+            cidr=ec2.AclCidr.any_ipv4(),
+            rule_number=270,
+            traffic=ec2.AclTraffic.tcp_port(443),
+            direction=ec2.TrafficDirection.INGRESS,
+            rule_action=ec2.Action.ALLOW
+        )
+
+        admin_nacl.add_entry(
+            "Outbound: HTTPS to anywhere",
+            cidr=ec2.AclCidr.any_ipv4(),
+            rule_number=270,
+            traffic=ec2.AclTraffic.tcp_port(443),
             direction=ec2.TrafficDirection.EGRESS,
             rule_action=ec2.Action.ALLOW
         )
@@ -416,6 +462,7 @@ class Ec2InstanceStack(Stack):
             backup_vault=back_up_vault,        
         )
 
+        #werkt niet, zoek uit waar je recovery points kunt deleten
         backup_plan.apply_removal_policy(RemovalPolicy.DESTROY)
 
         backup_plan.add_rule(
