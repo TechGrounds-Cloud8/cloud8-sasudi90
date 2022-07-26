@@ -1,4 +1,5 @@
 from re import sub
+from turtle import back
 import aws_cdk
 from constructs import Construct
 from aws_cdk import (
@@ -55,7 +56,7 @@ class Ec2InstanceStack(Stack):
         ######### SG Webserver #########
         #################################
 
-        app_prod_SG = ec2.SecurityGroup(
+        web_SG = ec2.SecurityGroup(
             self,
             "SG_allow_HTTP_HTTPS_SSH",
             vpc=vpc_web,
@@ -63,30 +64,20 @@ class Ec2InstanceStack(Stack):
         )
 
         #APP_PROD_SG: add a new ingress rules to allow port 80 and 443
-        app_prod_SG.add_ingress_rule(
+        web_SG.add_ingress_rule(
             peer=ec2.Peer.any_ipv4(),
             description="Allow HTTP", 
             connection=ec2.Port.tcp(80)
         )
 
-        app_prod_SG.add_ingress_rule(
+        web_SG.add_ingress_rule(
             peer=ec2.Peer.any_ipv4(),
             description="Allow HTTPS", 
             connection=ec2.Port.tcp(443)
         )
 
-        app_prod_SG.add_ingress_rule(
-            peer=ec2.Peer.any_ipv4(),
-            description="Allow SSH", 
-            connection=ec2.Port.tcp(22)
-        )
-
-        app_prod_SG.add_ingress_rule(
-            peer=ec2.Peer.any_ipv4(),
-            description="Allow RDP", 
-            connection=ec2.Port.tcp(3389)
-        )
-
+        #ssh allowed from admin IP
+        web_SG.connections.allow_from(ec2.Peer.ipv4("10.20.20.0/24"), ec2.Port.tcp(22))
 
         #################################
         ###### Webserver Instance #######
@@ -99,7 +90,7 @@ class Ec2InstanceStack(Stack):
             instance_type=ec2.InstanceType("t3.nano"),
             machine_image=ec2.MachineImage.latest_amazon_linux(
                 generation=ec2.AmazonLinuxGeneration.AMAZON_LINUX_2),
-            security_group=app_prod_SG,
+            security_group=web_SG,
             key_name="project_key_pair",
             role=iam.Role(
                 self, 
@@ -201,15 +192,6 @@ class Ec2InstanceStack(Stack):
             direction=ec2.TrafficDirection.EGRESS,
             rule_action=ec2.Action.ALLOW
         )
-        
-        web_nacl.add_entry(
-            id="Inbound: RDP from anywhere",
-            cidr=ec2.AclCidr.any_ipv4(),
-            rule_number=160,
-            traffic=ec2.AclTraffic.tcp_port(3389),
-            direction=ec2.TrafficDirection.INGRESS,
-            rule_action=ec2.Action.ALLOW
-        )
 
         #################################
         ######### SG MNMGTserver #########
@@ -268,6 +250,15 @@ class Ec2InstanceStack(Stack):
             vpc=vpc_admin
         )
 
+        instance_admin.user_data.for_windows()
+        
+        instance_admin.add_user_data(
+            "Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0",
+            "Start-Service sshd",
+            "Set-Service -Name sshd -StartupType 'Automatic'",
+            "New-NetFirewallRule -Name sshd -DisplayName 'Allow SSH' -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22",
+        )
+        
         #################################
         ######## NACL Adminserver #######
         #################################
@@ -319,7 +310,7 @@ class Ec2InstanceStack(Stack):
 
         admin_nacl.add_entry(
             "Inbound: RDP from anywhere",
-            cidr=ec2.AclCidr.any_ipv4(),
+            cidr=ec2.AclCidr.ipv4(my_ip),
             rule_number=230,
             traffic=ec2.AclTraffic.tcp_port(3389),
             direction=ec2.TrafficDirection.INGRESS,
@@ -447,12 +438,18 @@ class Ec2InstanceStack(Stack):
         ########### AWS Backup ##########
         #################################
 
-        #nodig -> vault, plan , rule, selection
-
         back_up_vault = backup.BackupVault(
             self, "backup_vault",
             backup_vault_name="backup_vault",
-            removal_policy=aws_cdk.RemovalPolicy.DESTROY
+            removal_policy=aws_cdk.RemovalPolicy.DESTROY,
+            access_policy=iam.PolicyDocument(
+                statements=[iam.PolicyStatement(
+                    principals=[iam.AnyPrincipal()],
+                    actions=["backup:DeleteRecoveryPoint"],
+                    resources=["*"],
+                ) 
+                ]
+            )
         )
 
         backup_plan=backup.BackupPlan(
