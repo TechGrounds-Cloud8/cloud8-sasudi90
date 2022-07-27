@@ -10,7 +10,7 @@ A hot and steamy day, brain is still going strong.
 ## Solutions
 - https://bobbyhadz.com/blog/aws-cdk-cannot-use-tokens-construct-id
 - Gave read acces to Web server instance
-- And did some Canvas 
+- And did some Canvas
 
 ____
 
@@ -23,6 +23,7 @@ Too hot, did halve a day but nothing (fruitful).
 Heat
 
 ## Solutions
+
 Take it easy
 
 ____
