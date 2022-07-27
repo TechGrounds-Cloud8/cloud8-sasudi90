@@ -18,16 +18,17 @@
     - must be accessible from Admin Server only by SSH: port 22
   - an instance for Admin Server VPC
     - must have internet connection to download OPENSSH: ports 80 and 443
-    - must be accessible from administrators home IP adress
-    - allow RDP connection: port 3389
+    - SSH connection must ONLY be accessible from administrators home IP adress
+    - allow RDP connection from admin's home IP: port 3389
   - both VM's must be encrypted
 - Web Server must run 'User Data' to automatically install 'Apache'
 - Admin server must run 'Custom Data' to automatically run 'OPENSSH'
-- Web Server must be running Windows
+- Remark was added later on by product owner: Admin Server must be running Windows
 
 ## NACLS
 
 - One of the requirements was to have a firewall on subnet level. As Security Group rules are allowing all outbound and NACL's don't, the outbound rules of the NACLS have to be specified as well.  
+  - As the default setting in a NACL is 'deny all outbound', this has to be adjusted. So open the needed ports on the outbound as well. As TCP works with the three way handshake, ephemeral ports has to allowed to the in- and outbound rules.
 
 ## Storage
 

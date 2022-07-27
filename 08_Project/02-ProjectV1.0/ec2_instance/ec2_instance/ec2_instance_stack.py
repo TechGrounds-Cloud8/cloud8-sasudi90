@@ -13,8 +13,9 @@ from aws_cdk import (
     aws_events as event,
 )
 
-##----------------------Change your IP below!----------------------#
-my_ip="24.132.91.9/32"
+##----------------------Change your IP and key pair name below!----------------------#
+my_ip="0.0.0.0/32"
+key_pair_name="project_key_pair"
 
 
 class Ec2InstanceStack(Stack):
@@ -89,7 +90,7 @@ class Ec2InstanceStack(Stack):
             machine_image=ec2.MachineImage.latest_amazon_linux(
                 generation=ec2.AmazonLinuxGeneration.AMAZON_LINUX_2),
             security_group=web_SG,
-            key_name="project_key_pair",
+            key_name=key_pair_name,
             role=iam.Role(
                 self, 
                 "WebServerRole",
@@ -237,7 +238,7 @@ class Ec2InstanceStack(Stack):
             instance_type=ec2.InstanceType("t2.nano"),
             machine_image=ec2.MachineImage.latest_windows(ec2.WindowsVersion.WINDOWS_SERVER_2019_ENGLISH_FULL_BASE),
             security_group=admin_SG,
-            key_name="project_key_pair",
+            key_name=key_pair_name,
             block_devices=[ec2.BlockDevice(
                 device_name="/dev/sda1",
                 volume=ec2.BlockDeviceVolume.ebs(
