@@ -1,5 +1,5 @@
 
-# Welcome to your CDK Python project!
+# README TechGrounds Project 1.0
 
 This is a blank project for CDK development with Python.
 
