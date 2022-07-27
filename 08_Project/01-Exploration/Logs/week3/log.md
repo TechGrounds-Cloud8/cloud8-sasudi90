@@ -1,7 +1,7 @@
 # Log [18-7-2022]
 
 ## One Sentence summary of the day
-A hot and steamy day, my brain is still going strong.
+A hot and steamy day, brain is still going strong.
 
 ## Challenges
 - Come up with a solution for cFnRoute, untoken the token by using node.id.
@@ -17,12 +17,13 @@ ____
 # Log [19-7-2022]
 
 ## One Sentence summary of the day
-Too hot, did halve a day but nothing fruitful.
+Too hot, did halve a day but nothing (fruitful).
 
 ## Challenges
+Heat
 
 ## Solutions
-
+Take it easy
 
 ____
 
@@ -45,7 +46,7 @@ ____
 Pretty ok
 
 ## Challenges
-- Find out what to encrypt exactly
+- Find out what to encrypt exactly and encrypt 
 - How to ssh from admin (windows) to web (linux)
 
 ## Solutions
