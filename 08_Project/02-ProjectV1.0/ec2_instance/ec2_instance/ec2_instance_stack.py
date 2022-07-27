@@ -1,9 +1,6 @@
-from re import sub
-from turtle import back
 import aws_cdk
 from constructs import Construct
 from aws_cdk import (
-    CfnOutput,
     Duration,
     RemovalPolicy,
     Stack,
@@ -16,6 +13,7 @@ from aws_cdk import (
     aws_events as event,
 )
 
+##----------------------Change your IP below!----------------------#
 my_ip="24.132.91.9/32"
 
 
@@ -309,7 +307,7 @@ class Ec2InstanceStack(Stack):
         )
 
         admin_nacl.add_entry(
-            "Inbound: RDP from anywhere",
+            "Inbound: RDP from my IP",
             cidr=ec2.AclCidr.ipv4(my_ip),
             rule_number=230,
             traffic=ec2.AclTraffic.tcp_port(3389),
@@ -429,7 +427,7 @@ class Ec2InstanceStack(Stack):
 
         #-R recursive, give 775 permission to everything under var dir
         instance_web.user_data.add_commands("chmod 775 -R /var/www/html/")
-        #destination
+        #unzip and direct destination for file 
         instance_web.user_data.add_commands("unzip /tmp/demo.zip -d /var/www/html/")
 
         bucket.grant_read(instance_web)
@@ -451,7 +449,6 @@ class Ec2InstanceStack(Stack):
             backup_vault=back_up_vault,        
         )
 
-        #werkt niet, zoek uit waar je recovery points kunt deleten
         backup_plan.apply_removal_policy(RemovalPolicy.DESTROY)
 
         backup_plan.add_rule(
@@ -461,7 +458,7 @@ class Ec2InstanceStack(Stack):
                 enable_continuous_backup=True,
                 schedule_expression=event.Schedule.cron(
                     minute="0",
-                    hour="11",
+                    hour="3",
                 )
             )
         )
