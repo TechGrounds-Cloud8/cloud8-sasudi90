@@ -1,9 +1,8 @@
-from importlib import resources
-import py_compile
 from aws_cdk import (
     Stack,
     aws_ec2 as ec2,
     aws_iam as iam,
+    aws_backup as backup,
 )
 
 from constructs import Construct
@@ -11,6 +10,7 @@ from project_v1_1.s3_construct import S3_construct
 from project_v1_1.sg_construct import SG_admin_construct
 from project_v1_1.sg_construct import SG_web_construct
 from project_v1_1.nacl_construct import NACL_construct
+from project_v1_1.backup_construct import Backup_construct
 
 key_pair_name="project_key_pair"
 
@@ -132,10 +132,10 @@ class ProjectV11Stack(Stack):
         ########### NACLS ###########
 
 
-        # nacl=NACL_construct(self, "NACLS web and admin",
-        #     vpc_web=vpc_web,
-        #     vpc_admin=vpc_admin,
-        #     )
+        nacl=NACL_construct(self, "NACLS web and admin",
+            vpc_web=vpc_web,
+            vpc_admin=vpc_admin,
+            )
 
 
         ########### S3 Bucket ###########
@@ -160,4 +160,16 @@ class ProjectV11Stack(Stack):
         instance_web.user_data.add_commands("unzip /tmp/web_content.zip -d /var/www/html/")
 
         bucket.pdsbucket.grant_read(instance_web)
+
+        ############# Backup #################
+
+        backupplan=Backup_construct(self, "backup_plan",)
+
+        backupplan.backup_plan.add_selection(
+            id="backup_web_selection",
+            backup_selection_name="backup_web_selection",
+            resources=[
+                backup.BackupResource.from_ec2_instance(instance_web)
+            ]
+        )
 

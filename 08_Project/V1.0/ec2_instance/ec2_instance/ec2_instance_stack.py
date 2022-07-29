@@ -450,8 +450,6 @@ class Ec2InstanceStack(Stack):
             backup_vault=back_up_vault,        
         )
 
-        backup_plan.apply_removal_policy(RemovalPolicy.DESTROY)
-
         backup_plan.add_rule(
             rule=backup.BackupPlanRule(
                 rule_name="daily_backup_webserver",
