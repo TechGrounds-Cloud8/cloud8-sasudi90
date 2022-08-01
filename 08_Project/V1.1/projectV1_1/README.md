@@ -56,3 +56,7 @@ command.
  * `cdk docs`        open CDK documentation
 
 Enjoy!
+
+## Edit while deployed
+
+When a new admin IP-adress needs to be added or edited it can be done in the AWS Management Console

@@ -11,6 +11,7 @@ from project_v1_1.sg_construct import SG_admin_construct
 from project_v1_1.sg_construct import SG_web_construct
 from project_v1_1.nacl_construct import NACL_construct
 from project_v1_1.backup_construct import Backup_construct
+from project_v1_1.vpc_construct import web_vpc_construct, admin_vpc_construct
 
 key_pair_name="project_key_pair"
 
@@ -21,34 +22,13 @@ class ProjectV11Stack(Stack):
 
         ############# VPC's #############
 
-        vpc_web = ec2.Vpc(self, "Web Server",
-        cidr="10.10.10.0/24",
-        max_azs=2,
-        nat_gateways=0,
-        subnet_configuration=[
-            ec2.SubnetConfiguration(
-                name="web-vpc",
-                subnet_type=ec2.SubnetType.PUBLIC,
-                cidr_mask=26
-            )]
-        )
-        
-        vpc_admin = ec2.Vpc(self, "Admin Server",
-        cidr="10.20.20.0/24",
-        max_azs=2,
-        nat_gateways=0,
-        subnet_configuration = [
-            ec2.SubnetConfiguration(
-                name="admin-vpc",
-                subnet_type=ec2.SubnetType.PUBLIC,
-                cidr_mask=26
-            )]
-        )
+        vpc_web=web_vpc_construct(self, "web-vpc")
+        vpc_admin=admin_vpc_construct(self, "admin-vpc")
 
         ###### Webserver Instance #######
 
         sg_web=SG_web_construct(self,"web-sg",
-            vpc=vpc_web,
+            vpc=vpc_web.vpc,
             )
 
         instance_web = ec2.Instance(
@@ -73,13 +53,13 @@ class ProjectV11Stack(Stack):
                     encrypted=True,
                     delete_on_termination=True)
             )],
-            vpc=vpc_web,
+            vpc=vpc_web.vpc,
         )
 
         ######### Admin Instance ########
 
         sg_admin=SG_admin_construct(self, "admin-sg",
-            vpc=vpc_admin,
+            vpc=vpc_admin.vpc,
         )
 
         instance_admin= ec2.Instance(
@@ -97,21 +77,19 @@ class ProjectV11Stack(Stack):
                     encrypted=True,
                     delete_on_termination=True)
             )],
-            vpc=vpc_admin
+            vpc=vpc_admin.vpc
         )
 
-
         ########## VPC Peering ##########
-
 
         vPCPeering_connection = ec2.CfnVPCPeeringConnection(
             self, 
             "PeerConnection",
-            peer_vpc_id=vpc_admin.vpc_id,
-            vpc_id=vpc_web.vpc_id,
+            peer_vpc_id=vpc_admin.vpc.vpc_id,
+            vpc_id=vpc_web.vpc.vpc_id,
         )
 
-        for subnet in vpc_web.public_subnets:
+        for subnet in vpc_web.vpc.public_subnets:
             ec2.CfnRoute(
                 self,
                 id=f"${subnet.node.id}-PeerRoute",
@@ -120,7 +98,7 @@ class ProjectV11Stack(Stack):
                 vpc_peering_connection_id=vPCPeering_connection.ref,
             )
 
-        for subnet in vpc_admin.public_subnets:
+        for subnet in vpc_admin.vpc.public_subnets:
             ec2.CfnRoute(
                 self,
                 id=f"${subnet.node.id}-PeerRoute", 
@@ -133,8 +111,8 @@ class ProjectV11Stack(Stack):
 
 
         nacl=NACL_construct(self, "NACLS web and admin",
-            vpc_web=vpc_web,
-            vpc_admin=vpc_admin,
+            vpc_web=vpc_web.vpc,
+            vpc_admin=vpc_admin.vpc,
             )
 
 
@@ -163,9 +141,9 @@ class ProjectV11Stack(Stack):
 
         ############# Backup #################
 
-        backupplan=Backup_construct(self, "backup_plan",)
+        daily_backup_dps=Backup_construct(self, "backup_plan",)
 
-        backupplan.backup_plan.add_selection(
+        daily_backup_dps.backup_plan.add_selection(
             id="backup_web_selection",
             backup_selection_name="backup_web_selection",
             resources=[

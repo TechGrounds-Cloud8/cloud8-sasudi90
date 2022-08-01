@@ -15,7 +15,7 @@ class NACL_construct(Construct):
         ######## NACL Webserver #########
         #################################
 
-        web_nacl = ec2.NetworkAcl(
+        self.web_nacl = ec2.NetworkAcl(
             self,
             "Web_NACL",
             vpc=vpc_web,
@@ -24,7 +24,7 @@ class NACL_construct(Construct):
             )
         )      
 
-        web_nacl.add_entry(
+        self.web_nacl.add_entry(
             id="Inbound: HTTP from anywhere",
             cidr=ec2.AclCidr.any_ipv4(),
             rule_number=100,
@@ -33,7 +33,7 @@ class NACL_construct(Construct):
             rule_action=ec2.Action.ALLOW
         )
 
-        web_nacl.add_entry(
+        self.web_nacl.add_entry(
             "Outbound: HTTP to anywhere",
             cidr=ec2.AclCidr.any_ipv4(),
             rule_number=100,
@@ -42,7 +42,7 @@ class NACL_construct(Construct):
             rule_action=ec2.Action.ALLOW
         )
 
-        web_nacl.add_entry(
+        self.web_nacl.add_entry(
             "Inbound: HTTPS from anywhere",
             cidr=ec2.AclCidr.any_ipv4(),
             rule_number=110,
@@ -51,7 +51,7 @@ class NACL_construct(Construct):
             rule_action=ec2.Action.ALLOW
         )
 
-        web_nacl.add_entry(
+        self.web_nacl.add_entry(
             "Outbound: HTTPS to anywhere",
             cidr=ec2.AclCidr.any_ipv4(),
             rule_number=110,
@@ -60,7 +60,7 @@ class NACL_construct(Construct):
             rule_action=ec2.Action.ALLOW
         )
 
-        web_nacl.add_entry(
+        self.web_nacl.add_entry(
             "Inbound: Ephemeral ports from anywhere",
             cidr=ec2.AclCidr.any_ipv4(),
             rule_number=140,
@@ -69,7 +69,7 @@ class NACL_construct(Construct):
             rule_action=ec2.Action.ALLOW
         )
 
-        web_nacl.add_entry(
+        self.web_nacl.add_entry(
             "Outbound: Ephemeral ports to anywhere",
             cidr=ec2.AclCidr.any_ipv4(),
             rule_number=140,
@@ -78,7 +78,7 @@ class NACL_construct(Construct):
             rule_action=ec2.Action.ALLOW
         )
 
-        web_nacl.add_entry(
+        self.web_nacl.add_entry(
             id="Inbound: SSH from anywhere",
             cidr=ec2.AclCidr.any_ipv4(),
             rule_number=150,
@@ -87,7 +87,7 @@ class NACL_construct(Construct):
             rule_action=ec2.Action.ALLOW
         )
 
-        web_nacl.add_entry(
+        self.web_nacl.add_entry(
             id="Outbound: SSH to anywhere",
             cidr=ec2.AclCidr.any_ipv4(),
             rule_number=150,
@@ -100,7 +100,7 @@ class NACL_construct(Construct):
         ######## NACL Adminserver #######
         #################################
 
-        admin_nacl=ec2.NetworkAcl(
+        self.admin_nacl=ec2.NetworkAcl(
             self,
             "Admin_NACL",
             vpc=vpc_admin,
@@ -109,7 +109,7 @@ class NACL_construct(Construct):
             )
         )      
 
-        admin_nacl.add_entry(
+        self.admin_nacl.add_entry(
             id="Inbound: SSH from my IP",
             cidr=ec2.AclCidr.ipv4(my_ip),
             rule_number=200,
@@ -118,7 +118,7 @@ class NACL_construct(Construct):
             rule_action=ec2.Action.ALLOW
         )
 
-        admin_nacl.add_entry(
+        self.admin_nacl.add_entry(
             id="Outbound: SSH to anywhere",
             cidr=ec2.AclCidr.any_ipv4(),
             rule_number=200,
@@ -127,7 +127,7 @@ class NACL_construct(Construct):
             rule_action=ec2.Action.ALLOW
         )
 
-        admin_nacl.add_entry(
+        self.admin_nacl.add_entry(
             "Inbound: Ephemeral ports from anywhere",
             cidr=ec2.AclCidr.any_ipv4(),
             rule_number=210,
@@ -136,7 +136,7 @@ class NACL_construct(Construct):
             rule_action=ec2.Action.ALLOW
         )
 
-        admin_nacl.add_entry(
+        self.admin_nacl.add_entry(
             "Outbound: Ephemeral ports to anywhere",
             cidr=ec2.AclCidr.any_ipv4(),
             rule_number=210,
@@ -145,7 +145,7 @@ class NACL_construct(Construct):
             rule_action=ec2.Action.ALLOW
         )
 
-        admin_nacl.add_entry(
+        self.admin_nacl.add_entry(
             "Inbound: RDP from my IP",
             cidr=ec2.AclCidr.ipv4(my_ip),
             rule_number=230,
@@ -154,7 +154,7 @@ class NACL_construct(Construct):
             rule_action=ec2.Action.ALLOW
         )
 
-        admin_nacl.add_entry(
+        self.admin_nacl.add_entry(
             "Outbound: RDP to anywhere",
             cidr=ec2.AclCidr.any_ipv4(),
             rule_number=230,
@@ -163,7 +163,7 @@ class NACL_construct(Construct):
             rule_action=ec2.Action.ALLOW
         )
 
-        admin_nacl.add_entry(
+        self.admin_nacl.add_entry(
             "Inbound: HTTP from anywhere",
             cidr=ec2.AclCidr.any_ipv4(),
             rule_number=250,
@@ -172,7 +172,7 @@ class NACL_construct(Construct):
             rule_action=ec2.Action.ALLOW
         )
 
-        admin_nacl.add_entry(
+        self.admin_nacl.add_entry(
             "Outbound: HTTP to anywhere",
             cidr=ec2.AclCidr.any_ipv4(),
             rule_number=250,
@@ -181,7 +181,7 @@ class NACL_construct(Construct):
             rule_action=ec2.Action.ALLOW
         )
 
-        admin_nacl.add_entry(
+        self.admin_nacl.add_entry(
             "Inbound: HTTPS from anywhere",
             cidr=ec2.AclCidr.any_ipv4(),
             rule_number=270,
@@ -190,7 +190,7 @@ class NACL_construct(Construct):
             rule_action=ec2.Action.ALLOW
         )
 
-        admin_nacl.add_entry(
+        self.admin_nacl.add_entry(
             "Outbound: HTTPS to anywhere",
             cidr=ec2.AclCidr.any_ipv4(),
             rule_number=270,
