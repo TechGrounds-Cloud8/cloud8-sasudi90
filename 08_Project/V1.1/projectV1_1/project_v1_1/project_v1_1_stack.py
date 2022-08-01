@@ -3,6 +3,8 @@ from aws_cdk import (
     aws_ec2 as ec2,
     aws_iam as iam,
     aws_backup as backup,
+    aws_autoscaling as autoscaling,
+    Duration,
 )
 
 from constructs import Construct
@@ -12,6 +14,7 @@ from project_v1_1.sg_construct import SG_web_construct
 from project_v1_1.nacl_construct import NACL_construct
 from project_v1_1.backup_construct import Backup_construct
 from project_v1_1.vpc_construct import web_vpc_construct, admin_vpc_construct
+from project_v1_1.webtemplate_construct import webtemplate_construct
 
 key_pair_name="project_key_pair"
 
@@ -56,6 +59,27 @@ class ProjectV11Stack(Stack):
             vpc=vpc_web.vpc,
         )
 
+        ############  Launch Template  ################
+        
+        web_template=webtemplate_construct(self, "web-template",
+            security_group=sg_web.web_SG,
+            key_name=key_pair_name,
+        )
+
+        ############### Auto Scaling Group ################
+
+        asg_web=autoscaling.AutoScalingGroup(self, "ASG",
+            vpc=vpc_web.vpc,
+            launch_template=web_template.template,
+            health_check=autoscaling.HealthCheck.ec2(
+                grace=Duration.seconds(10),
+            ),
+            max_capacity=3,
+        )
+
+        asg_web.scale_on_cpu_utilization("Scaling due CPU utilization",
+            target_utilization_percent=80)
+        
         ######### Admin Instance ########
 
         sg_admin=SG_admin_construct(self, "admin-sg",
@@ -80,6 +104,18 @@ class ProjectV11Stack(Stack):
             vpc=vpc_admin.vpc
         )
 
+        ############### User Data Admin Server #################
+        
+        instance_admin.user_data.for_windows()
+        
+        instance_admin.add_user_data(
+            "Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0",
+            "Start-Service sshd",
+            "Set-Service -Name sshd -StartupType 'Automatic'",
+            "New-NetFirewallRule -Name sshd -DisplayName 'Allow SSH' -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22",
+        )
+
+
         ########## VPC Peering ##########
 
         vPCPeering_connection = ec2.CfnVPCPeeringConnection(
@@ -94,7 +130,7 @@ class ProjectV11Stack(Stack):
                 self,
                 id=f"${subnet.node.id}-PeerRoute",
                 route_table_id=subnet.route_table.route_table_id,
-                destination_cidr_block="10.20.20.0/24",
+                destination_cidr_block="10.20.20.0/26",
                 vpc_peering_connection_id=vPCPeering_connection.ref,
             )
 
@@ -103,23 +139,24 @@ class ProjectV11Stack(Stack):
                 self,
                 id=f"${subnet.node.id}-PeerRoute", 
                 route_table_id=subnet.route_table.route_table_id,
-                destination_cidr_block="10.10.10.0/24",
+                destination_cidr_block="10.10.10.0/26",
                 vpc_peering_connection_id=vPCPeering_connection.ref,
             )
 
         ########### NACLS ###########
 
 
-        nacl=NACL_construct(self, "NACLS web and admin",
-            vpc_web=vpc_web.vpc,
-            vpc_admin=vpc_admin.vpc,
-            )
+        # nacl=NACL_construct(self, "NACLS web and admin",
+        #     vpc_web=vpc_web.vpc,
+        #     vpc_admin=vpc_admin.vpc,
+        #     )
 
 
         ########### S3 Bucket ###########
 
-        bucket=S3_construct(self, "PostDeploymentScripts", 
-        )
+        bucket=S3_construct(self, "PostDeploymentScripts",)
+
+        ########### User Data Web Server ###########
 
         instance_web_user_data=instance_web.user_data.add_s3_download_command(
             bucket=bucket.pdsbucket, 
@@ -136,18 +173,38 @@ class ProjectV11Stack(Stack):
 
         instance_web.user_data.add_commands("chmod 775 -R /var/www/html/")
         instance_web.user_data.add_commands("unzip /tmp/web_content.zip -d /var/www/html/")
-
+        
         bucket.pdsbucket.grant_read(instance_web)
 
-        ############# Backup #################
+        ################# User Data Web-Template ###############
 
-        daily_backup_dps=Backup_construct(self, "backup_plan",)
-
-        daily_backup_dps.backup_plan.add_selection(
-            id="backup_web_selection",
-            backup_selection_name="backup_web_selection",
-            resources=[
-                backup.BackupResource.from_ec2_instance(instance_web)
-            ]
+        asg_web_user_data=asg_web.user_data.add_s3_download_command(
+            bucket=bucket.pdsbucket,
+            bucket_key="user_data_web.sh",
         )
+
+        asg_web.user_data.add_execute_file_command(file_path=asg_web_user_data)
+
+        asg_web.user_data.add_s3_download_command(
+            bucket=bucket.pdsbucket, 
+            bucket_key="web_content.zip",
+            local_file="/tmp/web_content.zip",         
+        )
+
+        asg_web.user_data.add_commands("chmod 775 -R /var/www/html/")
+        asg_web.user_data.add_commands("unzip /tmp/web_content.zip -d /var/www/html/")
+
+        bucket.pdsbucket.grant_read(asg_web)
+        
+        # ############# Backup #################
+
+        # daily_backup_dps=Backup_construct(self, "backup_plan",)
+
+        # daily_backup_dps.backup_plan.add_selection(
+        #     id="backup_web_selection",
+        #     backup_selection_name="backup_web_selection",
+        #     resources=[
+        #         backup.BackupResource.from_ec2_instance(instance_web)
+        #     ]
+        # )
 

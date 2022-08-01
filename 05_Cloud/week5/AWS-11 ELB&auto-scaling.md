@@ -37,16 +37,16 @@ One of the main advantages of the cloud is that you don’t need to guess how mu
 
 ## Exercise 2
  Create an application load balancer with the following requirements:
-    -  Name: LabELB
-    -  Listener: HTTP on port 80
-    -  AZs: eu-central-1a and eu-central-1b
-    -  Subnets: must be public
-    -  Security Group: 
-       -  Name: ELB SG
-       -  Rules: allow HTTP access
-    -  Target Group:
-       -  Name: LabTargetGroup
-       -  Targets: to be registered by Auto Scaling
+  - Name: LabELB
+  - Listener: HTTP on port 80
+  - AZs: eu-central-1a and eu-central-1b
+  - Subnets: must be public
+  - Security Group: 
+  -   Name: ELB SG
+  -   Rules: allow HTTP access
+  - Target Group:
+  -   Name: LabTargetGroup
+  -   Targets: to be registered by Auto Scaling
   
 ## Exercise 3
 - Create a launch configuration for the Auto Scaling group. It has to be identical to the server that is currently running.

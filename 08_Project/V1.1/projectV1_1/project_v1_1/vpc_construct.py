@@ -11,14 +11,20 @@ class web_vpc_construct(Construct):
 
         self.vpc= ec2.Vpc(self, "Web Server",
         cidr="10.10.10.0/24",
-        max_azs=2,
+        max_azs=3,
         nat_gateways=0,
         subnet_configuration=[
             ec2.SubnetConfiguration(
-                name="web-vpc",
+                name="web-public-subnet",
                 subnet_type=ec2.SubnetType.PUBLIC,
-                cidr_mask=26
-            )]
+                cidr_mask=26,
+            ),
+            ec2.SubnetConfiguration(
+                name="web-private-subnet",
+                subnet_type=ec2.SubnetType.PRIVATE_ISOLATED,
+                cidr_mask=26,
+            ),
+            ]
         )
 
 class admin_vpc_construct(Construct):        
