@@ -1,4 +1,5 @@
 from aws_cdk import (
+    CfnOutput,
     Stack,
     aws_ec2 as ec2,
     aws_iam as iam,
@@ -15,6 +16,7 @@ from project_v1_1.nacl_construct import NACL_construct
 from project_v1_1.backup_construct import Backup_construct
 from project_v1_1.vpc_construct import web_vpc_construct, admin_vpc_construct
 from project_v1_1.webtemplate_construct import webtemplate_construct
+from project_v1_1.elb_construct import elb_construct
 
 key_pair_name="project_key_pair"
 
@@ -71,14 +73,20 @@ class ProjectV11Stack(Stack):
         asg_web=autoscaling.AutoScalingGroup(self, "ASG",
             vpc=vpc_web.vpc,
             launch_template=web_template.template,
-            health_check=autoscaling.HealthCheck.ec2(
-                grace=Duration.seconds(10),
-            ),
             max_capacity=3,
+            # vpc_subnets=ec2.SubnetSelection(
+            #     subnet_type=ec2.SubnetType.PUBLIC,
+            # )
         )
+        
 
         asg_web.scale_on_cpu_utilization("Scaling due CPU utilization",
-            target_utilization_percent=80)
+            target_utilization_percent=80,
+        )
+
+        # asg_web.scale_on_request_count("Scale on request count",
+        #     target_requests_per_minute=256,    
+        # )
         
         ######### Admin Instance ########
 
@@ -126,6 +134,15 @@ class ProjectV11Stack(Stack):
         )
 
         for subnet in vpc_web.vpc.public_subnets:
+            ec2.CfnRoute(
+                self,
+                id=f"${subnet.node.id}-PeerRoute",
+                route_table_id=subnet.route_table.route_table_id,
+                destination_cidr_block="10.20.20.0/26",
+                vpc_peering_connection_id=vPCPeering_connection.ref,
+            )
+
+        for subnet in vpc_web.vpc.private_subnets:
             ec2.CfnRoute(
                 self,
                 id=f"${subnet.node.id}-PeerRoute",
@@ -207,4 +224,15 @@ class ProjectV11Stack(Stack):
         #         backup.BackupResource.from_ec2_instance(instance_web)
         #     ]
         # )
+
+        alb=elb_construct(
+            self, "web server alb",
+            vpc=vpc_web.vpc,
+            asg=asg_web,
+        )
+
+        CfnOutput(self, "albDNS",
+            value= alb.alb.load_balancer_dns_name)
+
+        
 
