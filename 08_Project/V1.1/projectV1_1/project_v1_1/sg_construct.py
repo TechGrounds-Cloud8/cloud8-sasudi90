@@ -59,16 +59,4 @@ class SG_web_construct(Construct):
             allow_all_outbound=True,
         )
 
-        self.web_SG.add_ingress_rule(
-            peer=ec2.Peer.any_ipv4(),
-            description="Allow HTTP", 
-            connection=ec2.Port.tcp(80)
-        )
-
-        self.web_SG.add_ingress_rule(
-            peer=ec2.Peer.any_ipv4(),
-            description="Allow HTTPS", 
-            connection=ec2.Port.tcp(443)
-        )
-
         self.web_SG.connections.allow_from(ec2.Peer.ipv4("10.20.20.0/24"), ec2.Port.tcp(22))
