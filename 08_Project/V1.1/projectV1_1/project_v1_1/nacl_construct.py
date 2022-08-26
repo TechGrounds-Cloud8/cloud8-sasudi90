@@ -35,7 +35,7 @@ class NACL_construct(Construct):
 
         self.web_nacl_public.add_entry(
             "Outbound: HTTP to anywhere",
-            cidr=ec2.AclCidr.ipv4(vpc_web.vpc_cidr_block),
+            cidr=ec2.AclCidr.any_ipv4(),
             rule_number=100,
             traffic=ec2.AclTraffic.tcp_port(80),
             direction=ec2.TrafficDirection.EGRESS,
@@ -79,8 +79,8 @@ class NACL_construct(Construct):
         )
 
         self.web_nacl_public.add_entry(
-            id="Inbound: SSH from anywhere",
-            cidr=ec2.AclCidr.ipv4(vpc_web.vpc_cidr_block),
+            id="Inbound: SSH from Admin",
+            cidr=ec2.AclCidr.ipv4(vpc_admin.vpc_cidr_block),
             rule_number=160,
             traffic=ec2.AclTraffic.tcp_port(22),
             direction=ec2.TrafficDirection.INGRESS,
@@ -89,7 +89,7 @@ class NACL_construct(Construct):
 
         self.web_nacl_public.add_entry(
             id="Outbound: SSH to anywhere",
-            cidr=ec2.AclCidr.ipv4(vpc_web.vpc_cidr_block),
+            cidr=ec2.AclCidr.ipv4(vpc_admin.vpc_cidr_block),
             rule_number=160,
             traffic=ec2.AclTraffic.tcp_port(22),
             direction=ec2.TrafficDirection.EGRESS,
@@ -146,8 +146,8 @@ class NACL_construct(Construct):
         )
 
         self.web_nacl_private.add_entry(
-            "Inbound: Ephemeral ports allow",
-            cidr=ec2.AclCidr.ipv4(vpc_web.vpc_cidr_block),
+            "Inbound: Ephemeral ports allow Admin",
+            cidr=ec2.AclCidr.ipv4(vpc_admin.vpc_cidr_block),
             rule_number=140,
             traffic=ec2.AclTraffic.tcp_port_range(1024, 65535),
             direction=ec2.TrafficDirection.INGRESS,
@@ -155,8 +155,8 @@ class NACL_construct(Construct):
         )
 
         self.web_nacl_private.add_entry(
-            "Outbound: Ephemeral ports allow",
-            cidr=ec2.AclCidr.ipv4(vpc_web.vpc_cidr_block),
+            "Outbound: Ephemeral ports allow Admin",
+            cidr=ec2.AclCidr.ipv4(vpc_admin.vpc_cidr_block),
             rule_number=140,
             traffic=ec2.AclTraffic.tcp_port_range(1024, 65535),
             direction=ec2.TrafficDirection.EGRESS,
@@ -165,7 +165,7 @@ class NACL_construct(Construct):
 
         self.web_nacl_private.add_entry(
             id="Inbound: SSH allow",
-            cidr=ec2.AclCidr.ipv4(vpc_web.vpc_cidr_block),
+            cidr=ec2.AclCidr.ipv4(vpc_admin.vpc_cidr_block),
             rule_number=160,
             traffic=ec2.AclTraffic.tcp_port(22),
             direction=ec2.TrafficDirection.INGRESS,
@@ -174,7 +174,7 @@ class NACL_construct(Construct):
 
         self.web_nacl_private.add_entry(
             id="Outbound: SSH allow",
-            cidr=ec2.AclCidr.ipv4(vpc_web.vpc_cidr_block),
+            cidr=ec2.AclCidr.ipv4(vpc_admin.vpc_cidr_block),
             rule_number=160,
             traffic=ec2.AclTraffic.tcp_port(22),
             direction=ec2.TrafficDirection.EGRESS,
