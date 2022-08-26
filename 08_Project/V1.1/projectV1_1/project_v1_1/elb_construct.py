@@ -5,7 +5,7 @@ from aws_cdk import(
     aws_certificatemanager as acm, 
 )
 
-
+arn="arn:aws:acm:eu-central-1:517734281713:certificate/dc0d1172-7af9-489f-9d16-ab17a7cc20b5"
 
 from constructs import Construct
 

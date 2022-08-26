@@ -73,10 +73,10 @@ Add the key pair to the agent. Edit the key pair name if it has been named diffe
 ssh-add project_key_pair.pem
 ```
 
-SSH to your Admin server's public IP. Add the -A -J to enable forwarding of the connection to the webserver.
+SSH to your Admin server's public IP. Add the -A -J to enable forwarding of the connection to the webserver TEMPLATE.
 
 ```
-ssh -A -J Administrator@<admin.server.public.ip>  ec2-user@<web.server.private.ip>
+ssh -A -J Administrator@<admin.server.public.ip>  ec2-user@<web.server.TEMPLATE.private.ip>
 ```
 
 A password is now being asked to enter the Admin Server as user Administrator. Password can be acquired as explained in step 3 of 'Connecting through RDP to Admin Server'.
