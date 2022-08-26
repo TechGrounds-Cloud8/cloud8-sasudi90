@@ -74,19 +74,14 @@ class ProjectV11Stack(Stack):
             vpc=vpc_web.vpc,
             launch_template=web_template.template,
             max_capacity=3,
-            # vpc_subnets=ec2.SubnetSelection(
-            #     subnet_type=ec2.SubnetType.PUBLIC,
-            # )
+            vpc_subnets=ec2.SubnetSelection(
+                subnet_type=ec2.SubnetType.PUBLIC,
+            ),
         )
-        
 
         asg_web.scale_on_cpu_utilization("Scaling due CPU utilization",
             target_utilization_percent=80,
         )
-
-        # asg_web.scale_on_request_count("Scale on request count",
-        #     target_requests_per_minute=256,    
-        # )
         
         ######### Admin Instance ########
 
@@ -162,12 +157,10 @@ class ProjectV11Stack(Stack):
 
         ########### NACLS ###########
 
-
-        # nacl=NACL_construct(self, "NACLS web and admin",
-        #     vpc_web=vpc_web.vpc,
-        #     vpc_admin=vpc_admin.vpc,
-        #     )
-
+        nacl=NACL_construct(self, "NACLS web and admin",
+            vpc_web=vpc_web.vpc,
+            vpc_admin=vpc_admin.vpc,
+            )
 
         ########### S3 Bucket ###########
 
@@ -215,15 +208,15 @@ class ProjectV11Stack(Stack):
         
         # ############# Backup #################
 
-        # daily_backup_dps=Backup_construct(self, "backup_plan",)
+        daily_backup_dps=Backup_construct(self, "backup_plan",)
 
-        # daily_backup_dps.backup_plan.add_selection(
-        #     id="backup_web_selection",
-        #     backup_selection_name="backup_web_selection",
-        #     resources=[
-        #         backup.BackupResource.from_ec2_instance(instance_web)
-        #     ]
-        # )
+        daily_backup_dps.backup_plan.add_selection(
+            id="backup_web_selection",
+            backup_selection_name="backup_web_selection",
+            resources=[
+                backup.BackupResource.from_ec2_instance(instance_web)
+            ]
+        )
 
         alb=elb_construct(
             self, "web server alb",
@@ -231,8 +224,12 @@ class ProjectV11Stack(Stack):
             asg=asg_web,
         )
 
+        asg_web.scale_on_request_count("Target on request number",
+            target_requests_per_minute=256)
+
         CfnOutput(self, "albDNS",
             value= alb.alb.load_balancer_dns_name)
 
+    
         
 

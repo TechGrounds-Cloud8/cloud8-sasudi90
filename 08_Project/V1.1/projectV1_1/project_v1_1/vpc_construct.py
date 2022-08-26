@@ -12,18 +12,25 @@ class web_vpc_construct(Construct):
         self.vpc= ec2.Vpc(self, "Web Server",
         cidr="10.10.10.0/24",
         max_azs=3,
+        nat_gateways=0,
         subnet_configuration=[
             ec2.SubnetConfiguration(
                 name="web-public-subnet",
                 subnet_type=ec2.SubnetType.PUBLIC,
                 cidr_mask=26,
             ),
+            # hier isolated van maken
             ec2.SubnetConfiguration(
                 name="web-private-subnet",
-                subnet_type=ec2.SubnetType.PRIVATE_WITH_NAT,
+                subnet_type=ec2.SubnetType.PRIVATE_ISOLATED,
                 cidr_mask=26,
-            ),
-            ]
+            ),],
+        #gateway endpoint toevoegen
+        gateway_endpoints={
+            "S3:": ec2.GatewayVpcEndpointOptions(
+                service=ec2.GatewayVpcEndpointAwsService.S3,
+            )
+        }
         )
 
 class admin_vpc_construct(Construct):        
@@ -33,7 +40,7 @@ class admin_vpc_construct(Construct):
 
         self.vpc= ec2.Vpc(self, "Admin Server",
         cidr="10.20.20.0/24",
-        max_azs=2,
+        max_azs=1,
         nat_gateways=0,
         subnet_configuration = [
             ec2.SubnetConfiguration(
