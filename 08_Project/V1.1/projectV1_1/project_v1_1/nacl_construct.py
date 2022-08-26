@@ -88,7 +88,7 @@ class NACL_construct(Construct):
         )
 
         self.web_nacl_public.add_entry(
-            id="Outbound: SSH to anywhere",
+            id="Outbound: SSH to Admin",
             cidr=ec2.AclCidr.ipv4(vpc_admin.vpc_cidr_block),
             rule_number=160,
             traffic=ec2.AclTraffic.tcp_port(22),
