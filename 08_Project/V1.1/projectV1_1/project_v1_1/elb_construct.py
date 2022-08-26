@@ -20,8 +20,7 @@ class elb_construct(Construct):
         )
 
         self.alb.add_redirect()
-
-        arn="arn:aws:acm:eu-central-1:517734281713:certificate/dc0d1172-7af9-489f-9d16-ab17a7cc20b5"
+        
         self.certificate=acm.Certificate.from_certificate_arn(self, "Certificate", arn)
 
         self.listener=self.alb.add_listener("Listener", 
