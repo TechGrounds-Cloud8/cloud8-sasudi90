@@ -63,7 +63,7 @@ class ProjectV11Stack(Stack):
 
         ############  Launch Template  ################
         
-        web_template=webtemplate_construct(self, "web-template",
+        web_template=webtemplate_construct(self, "ASG-web-template",
             security_group=sg_web.web_SG,
             key_name=key_pair_name,
         )
@@ -91,7 +91,7 @@ class ProjectV11Stack(Stack):
 
         instance_admin= ec2.Instance(
             self,
-            "admin instance",
+            "admin_instance",
             instance_name="adminserver",
             instance_type=ec2.InstanceType("t2.nano"),
             machine_image=ec2.MachineImage.latest_windows(ec2.WindowsVersion.WINDOWS_SERVER_2019_ENGLISH_FULL_BASE),
@@ -201,7 +201,7 @@ class ProjectV11Stack(Stack):
             local_file="/tmp/web_content.zip",         
         )
 
-        asg_web.user_data.add_commands("chmod 775 -R /var/www/html/")
+        asg_web.user_data.add_commands("sudo chmod 775 -R /var/www/html/")
         asg_web.user_data.add_commands("unzip /tmp/web_content.zip -d /var/www/html/")
 
         bucket.pdsbucket.grant_read(asg_web)
@@ -219,7 +219,7 @@ class ProjectV11Stack(Stack):
         )
 
         alb=elb_construct(
-            self, "web server alb",
+            self, "web_server_alb",
             vpc=vpc_web.vpc,
             asg=asg_web,
         )

@@ -19,13 +19,11 @@ class web_vpc_construct(Construct):
                 subnet_type=ec2.SubnetType.PUBLIC,
                 cidr_mask=26,
             ),
-            # hier isolated van maken
             ec2.SubnetConfiguration(
                 name="web-private-subnet",
                 subnet_type=ec2.SubnetType.PRIVATE_ISOLATED,
                 cidr_mask=26,
             ),],
-        #gateway endpoint toevoegen
         gateway_endpoints={
             "S3:": ec2.GatewayVpcEndpointOptions(
                 service=ec2.GatewayVpcEndpointAwsService.S3,

@@ -108,42 +108,6 @@ class NACL_construct(Construct):
                 subnet_type=ec2.SubnetType.PRIVATE_ISOLATED
             )
         )  
-        
-        self.web_nacl_private.add_entry(
-            id="Inbound: HTTP allow",
-            cidr=ec2.AclCidr.ipv4(vpc_web.vpc_cidr_block),
-            rule_number=100,
-            traffic=ec2.AclTraffic.tcp_port(80),
-            direction=ec2.TrafficDirection.INGRESS,
-            rule_action=ec2.Action.ALLOW
-        )
-
-        self.web_nacl_private.add_entry(
-            id="Outbound: HTTP allow",
-            cidr=ec2.AclCidr.ipv4(vpc_web.vpc_cidr_block),
-            rule_number=100,
-            traffic=ec2.AclTraffic.tcp_port(80),
-            direction=ec2.TrafficDirection.EGRESS,
-            rule_action=ec2.Action.ALLOW
-        )
-
-        self.web_nacl_private.add_entry(
-            "Inbound: HTTPS allow",
-            cidr=ec2.AclCidr.ipv4(vpc_web.vpc_cidr_block),
-            rule_number=120,
-            traffic=ec2.AclTraffic.tcp_port(443),
-            direction=ec2.TrafficDirection.INGRESS,
-            rule_action=ec2.Action.ALLOW
-        )
-
-        self.web_nacl_private.add_entry(
-            "Outbound: HTTPS allow",
-            cidr=ec2.AclCidr.ipv4(vpc_web.vpc_cidr_block),
-            rule_number=120,
-            traffic=ec2.AclTraffic.tcp_port(443),
-            direction=ec2.TrafficDirection.EGRESS,
-            rule_action=ec2.Action.ALLOW
-        )
 
         self.web_nacl_private.add_entry(
             "Inbound: Ephemeral ports allow Admin",
