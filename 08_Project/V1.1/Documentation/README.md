@@ -76,7 +76,7 @@ ssh-add project_key_pair.pem
 SSH to your Admin server's public IP. Add the -A -J to enable forwarding of the connection to the webserver TEMPLATE.
 
 ```
-ssh -A -J Administrator@<admin.server.public.ip>  ec2-user@<web.server.TEMPLATE.private.ip>
+ssh -A -J Administrator@<admin.server.public.ip>  ec2-user@<webTEMPLATE.private.ip>
 ```
 
 A password is now being asked to enter the Admin Server as user Administrator. Password can be acquired as explained in step 3 of 'Connecting through RDP to Admin Server'.
@@ -84,7 +84,14 @@ A password is now being asked to enter the Admin Server as user Administrator. P
 
 # Edit website content
 
-When the website needs to be updated the `demo.zip` can be overwritten in the `postdeploymentscripts` directory. Just replace this ZIP file without adjusting the name.
+When the website needs to be updated the `web_content.zip` can be overwritten in the `postdeploymentscripts` directory. Just replace this ZIP file without adjusting the name.
+
+# Edit or add IP adress of administrator
+
+Edit or add the IP adress of the administrator in the console at the Sceurity Groups and the NACL's.
+- Go to the AWS console --> EC2 Instances --> Security Groups --> Inbound rules --> Edit inbound rules 
+- Go to the AWS console --> VPC --> Network ACL's --> Inbound rules --> Edit inbound rules
+- You can edit the existing rule or add an other IP adress
 
 # Clean up
 After testing destroy the stack by using:

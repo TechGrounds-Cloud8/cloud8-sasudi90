@@ -8,4 +8,4 @@
    - webserver should have a regularly scheduled health check
      - if health check fails the server should be automatically recovered
 5. when webserver is under ongoing stress an extra server should be automatically started. 
-- total webservers will never be more then 3 
+- total 'webservers' will never be more then 3 
