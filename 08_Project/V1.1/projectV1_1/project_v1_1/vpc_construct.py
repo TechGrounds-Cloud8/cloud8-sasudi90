@@ -24,11 +24,6 @@ class web_vpc_construct(Construct):
                 subnet_type=ec2.SubnetType.PRIVATE_ISOLATED,
                 cidr_mask=26,
             ),],
-        gateway_endpoints={
-            "S3:": ec2.GatewayVpcEndpointOptions(
-                service=ec2.GatewayVpcEndpointAwsService.S3,
-            )
-        }
         )
 
 class admin_vpc_construct(Construct):        
