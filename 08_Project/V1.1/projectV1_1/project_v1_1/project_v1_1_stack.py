@@ -170,19 +170,19 @@ class ProjectV11Stack(Stack):
 
         instance_web_user_data=instance_web.user_data.add_s3_download_command(
             bucket=bucket.pdsbucket, 
-            bucket_key="user_data_web.sh",         
+            bucket_key="userdataweb.sh",         
         )
 
         instance_web.user_data.add_execute_file_command(file_path=instance_web_user_data)
 
         instance_web.user_data.add_s3_download_command(
             bucket=bucket.pdsbucket, 
-            bucket_key="web_content.zip",
-            local_file="/tmp/web_content.zip",         
+            bucket_key="webcontent.zip",
+            local_file="/tmp/webcontent.zip",         
         )
 
         instance_web.user_data.add_commands("chmod 775 -R /var/www/html/")
-        instance_web.user_data.add_commands("unzip /tmp/web_content.zip -d /var/www/html/")
+        instance_web.user_data.add_commands("unzip /tmp/webcontent.zip -d /var/www/html/")
         
         bucket.pdsbucket.grant_read(instance_web)
 
@@ -190,19 +190,19 @@ class ProjectV11Stack(Stack):
 
         asg_web_user_data=asg_web.user_data.add_s3_download_command(
             bucket=bucket.pdsbucket,
-            bucket_key="user_data_web.sh",
+            bucket_key="userdataweb.sh",
         )
 
         asg_web.user_data.add_execute_file_command(file_path=asg_web_user_data)
 
         asg_web.user_data.add_s3_download_command(
             bucket=bucket.pdsbucket, 
-            bucket_key="web_content.zip",
-            local_file="/tmp/web_content.zip",         
+            bucket_key="webcontent.zip",
+            local_file="/tmp/webcontent.zip",         
         )
 
         asg_web.user_data.add_commands("sudo chmod 775 -R /var/www/html/")
-        asg_web.user_data.add_commands("unzip /tmp/web_content.zip -d /var/www/html/")
+        asg_web.user_data.add_commands("unzip /tmp/webcontent.zip -d /var/www/html/")
 
         bucket.pdsbucket.grant_read(asg_web)
         
