@@ -1,5 +1,5 @@
 
-# README TechGrounds Project 1.0
+# README TechGrounds Project 1.1
 
 This is guide will ease your way into the delivered Infrastructure as Code (IaC). It contains the prerequisites to start with the AWS CDK and how to deploy and adjust the IaC.
 
@@ -84,7 +84,7 @@ A password is now being asked to enter the Admin Server as user Administrator. P
 
 # Edit website content
 
-When the website needs to be updated the `web_content.zip` can be overwritten in the `postdeploymentscripts` directory. Just replace this ZIP file without adjusting the name.
+When the website needs to be updated the `webcontent.zip` can be overwritten in the `postdeploymentscripts` directory. Just replace this ZIP file without adjusting the name.
 
 # Edit or add IP adress of administrator
 

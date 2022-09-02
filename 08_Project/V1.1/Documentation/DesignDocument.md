@@ -55,3 +55,5 @@
 
 ### Suggestions
 - May be better practice in future to use a custom AMI instead of a Launch Template
+
+![Arch](/00_includes/project1_1/diagram.png)
